@@ -79,3 +79,21 @@
     padding: 0.75rem 1.25rem;
     cursor: pointer;
 }
+
+.whatsapp-button {
+    position: fixed;
+    bottom: 1.25rem;
+    right: 1.25rem;
+    z-index: 300;
+}
+
+#top {
+    display: none;
+    /* Initially hide the button */
+    position: fixed;
+    bottom: 100px;
+    right: 40px;
+    z-index: 400;
+    background: var(--clr-main);
+    box-shadow: var(--bs-button);
+}
