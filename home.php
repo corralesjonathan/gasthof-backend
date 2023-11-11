@@ -291,50 +291,9 @@
         <!--beers slider-->
 
         <!--about restaurant section-->
-        <div class="restaurant-data-container">
-            <div class="home-titles-container">
-                <h3 class="home-title1">about us</h3>
-                <h2 class="home-title2">meet gasthof</h2>
-            </div>
-            <section class="restaurant-data-grid">
-                <div class="restaurant-img-container">
-                    <img class="restaurant-img" src="./imgs/restaurant-farcade.webp" alt="">
-                </div>
-                <div class="restaurant-data-column">
-                    <div class="restaurant-data">
-                        <h2 class="dish-title slide-title">our mission</h2>
-                        <p class="dish-type restaurant-data-text">Lorem ipsum dolor sit amet consectetur. <br>
-                            Tempus interdum in facilisi sapien feugiat <br>
-                            parturient sed phasellus.</p>
-                        <h2 class="dish-title slide-title">our vision</h2>
-                        <p class="dish-type restaurant-data-text">Lorem ipsum dolor sit amet consectetur. <br> Proin
-                            senectus mauris ipsum suspendisse.</p>
-                        <a href="#" class="btn view-all">read more</a>
-                    </div>
-                </div>
-            </section>
-            <!--services cards-->
-            <div class="services-grid">
-                <div class="service-card">
-                    <img class="service-img" src="./imgs/icons/motorcycle.svg" alt="Motorcycle">
-                    <h2 class="dish-title service-title">Fast deliveries</h2>
-                    <p class="dish-type restaurant-data-text">Your freshly prepped 15-min dinner <br>
-                        kits arrive on your doorstep.</p>
-                </div>
-                <div class="service-card">
-                    <img class="service-img" src="./imgs/icons/fork-knife.svg" alt="Fork and Knife">
-                    <h2 class="dish-title service-title">Choose your Favorite</h2>
-                    <p class="dish-type restaurant-data-text">Choose your favorite German dish from<br>our diverse menu.
-                    </p>
-                </div>
-                <div class="service-card">
-                    <img class="service-img" src="./imgs/icons/food.svg" alt="Food">
-                    <h2 class="dish-title service-title">Fresh Food</h2>
-                    <p class="dish-type restaurant-data-text">We serve the best and fresh<br>quality food.</p>
-                </div>
-            </div>
-            <!--services cards-->
-        </div>
+        <?php 
+            include './parts/about-us.php'
+        ?>
         <!--about restaurant section-->
 
         <!--subscribe form-->
@@ -353,71 +312,14 @@
     <!--main content-->
 
     <!--footer-->
-    <footer class="footer-container">
-        <div class="footer-website-icon-container">
-            <img src="./imgs/icons/website-icon.svg" alt="">
-        </div>
-        <div class="footer-content">
-            <!--social links-->
-            <div>
-                <hr class="footer-hr">
-                <div class="social-icons-container">
-                    <a href="https://www.facebook.com/" target="_blank"> <img src="./imgs/icons/facebook.svg"
-                            alt="Facebook"></a>
-                    <a href="https://www.instagram.com/" target="_blank"><img src="./imgs/icons/instagram.svg"
-                            alt="Instagram"></a>
-                    <a href="https://www.tiktok.com/explore" target="_blank"><img src="./imgs/icons/tiktok.svg"
-                            alt="TikTok"></a>
-                </div>
-            </div>
-            <!--social links-->
-            <div class="footer-links">
-                <!--explore-->
-                <section>
-                    <hr class="footer-hr">
-                    <h2 class="dish-title footer-titles">explore</h2>
-                    <ul class="nav-footer-list">
-                        <li><a class="nav-footer-link" href="home.html">Home</a></li>
-                        <li><a class="nav-footer-link" href="menu.html">Menu</a></li>
-                        <li><a class="nav-footer-link" href="#">About Us</a></li>
-                    </ul>
-                </section>
-                <!--explore-->
-                <!--contact us-->
-                <section>
-                    <hr class="footer-hr">
-                    <h2 class="dish-title footer-titles">CONTACT US</h2>
-                    <ul class="nav-footer-list">
-                        <li><a class="nav-footer-link" href="tel:+490304664553700">+490304664553700</a></li>
-                        <li><a class="nav-footer-link" href="mailto:info@gasthof.com">info@gasthof.com</a></li>
-                        <li><a class="nav-footer-link" href="#">Berliner Strasse, Belin.</a></li>
-                    </ul>
-                </section>
-                <!--contact us-->
-                <!--legal-->
-                <section>
-                    <hr class="footer-hr">
-                    <h2 class="dish-title footer-titles">LEGAL</h2>
-                    <ul class="nav-footer-list">
-                        <li><a class="nav-footer-link" href="#">Terms</a></li>
-                        <li><a class="nav-footer-link" href="#">Privacy</a></li>
-                    </ul>
-                </section>
-                <!--legal-->
-            </div>
-        </div>
-        <!--footer legal-->
-        <p class="footer-legal">©<span id="current-year"></span> Gasthof. - All rights reserved.</p>
-        <!--footer legal-->
-    </footer>
+    <?php 
+        include './parts/footer.php'
+    ?>
     <!--footer-->
 
     <!--script-->
-    <script src="./js/mobileNavMenu.js"></script>
-    <script src="./js/navMenu.js"></script>
     <script src="./js/Slider.js"></script>
     <script src="./js/HeroSlider.js"></script>
-    <script src="./js/currentYear.js"></script>
     <!--script-->
 </body>
 
