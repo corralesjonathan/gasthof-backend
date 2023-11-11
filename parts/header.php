@@ -1,7 +1,7 @@
 <header class="hero-background">
         <!--nav-->
         <?php 
-            include 'nav-menu.php'
+            include 'navigation.php'
         ?>
         <!--nav-->
         <!--hero slider, titles & buttons-->
