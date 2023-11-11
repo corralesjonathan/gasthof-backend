@@ -1,0 +1,14 @@
+
+.quantity{
+    width: 30px;
+    text-align: center;
+    color: var(--clr-main);
+    border: .0625rem solid var(--clr-main);
+    padding: .5rem 1rem;
+    outline: none;
+    background: transparent;
+}
+
+input:focus{
+    border: .0625rem solid var(--clr-main);
+}

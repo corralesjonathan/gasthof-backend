@@ -1,0 +1,81 @@
+/*main button*/
+.btn { 
+    border: .0625rem solid var(--clr-white);
+    color: var(--clr-white);
+    font-family: var(--ff-secondary);
+    font-size: var(--fs-esm);
+    font-weight: var(--fw-md);
+    padding: .5rem 1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: 0.5s ease-out;
+}
+
+.btn:hover{
+    background: var(--clr-white);
+    color: var(--clr-main);
+}
+
+/*used in hero texts*/
+.view-menu {
+    background: var(--clr-main);
+    border: none;
+    color: var(--clr-white);
+}
+
+.view-menu:hover {
+    background: var(--clr-white);
+    color: var(--clr-main);
+}
+
+/*used in dishes cards and slider*/
+.order {
+    border-color: var(--clr-main);
+    color: var(--clr-main);
+    background: transparent;
+}
+
+.order:hover {
+    background: var(--clr-main);
+    color: var(--clr-white);
+}
+
+/*used in home page "view all" and "read more"*/
+.view-all {
+    background: var(--clr-main);
+    border-color: var(--clr-main);
+    box-shadow: var(--bs-button);
+    margin: var(--mg-nm) auto;
+}
+
+.view-all:hover {
+    background: var(--clr-main);
+    box-shadow: var(--bs-button-hover);
+    color: var(--clr-white);
+    opacity: .9;
+}
+
+/*used in dish page "add to cart"*/
+.add-cart{
+    background: var(--clr-main);
+    border: none; 
+    box-shadow: var(--bs-button);
+    padding: .6rem 4rem;
+}
+
+.add-cart:hover{
+    background: var(--clr-main);
+    box-shadow: var(--bs-button-hover);
+    color: var(--clr-white);
+    opacity: .9;
+}
+
+/*used in subscribe form*/
+.submit-btn {
+    background: url(../../imgs/icons/submit.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    padding: 0.75rem 1.25rem;
+    cursor: pointer;
+}

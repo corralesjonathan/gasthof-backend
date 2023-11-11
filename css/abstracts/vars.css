@@ -1,0 +1,38 @@
+:root{
+    /* FONTS */
+    /* font-family */
+    --ff-main: 'Bebas Neue', sans-serif;
+    --ff-secondary: 'Montserrat', sans-serif;
+    /* font size*/
+    --fs-xxl: 6rem; /* 96px*/
+    --fs-xl: 3.125rem; /* 50px*/
+    --fs-lg: 2.5rem; /* 40px*/
+    --fs-md: 1.5rem; /* 24px*/
+    --fs-nm: 1.125rem; /* 18px*/
+    --fs-sm: 1rem; /* 16px*/
+    --fs-esm: .875rem; /* 14px*/
+    /* font weight */
+    --fw-bk: 900;
+    --fw-sb: 600;
+    --fw-md: 500;
+    --fw-rg: 400;
+    --fw-lg: 300;
+    --fw-el: 300;
+    /* colors */
+    --clr-main: hsl(1, 81%, 34%);
+    --clr-main-bg: hsl(0, 0%, 97%);
+    --clr-white: hsla(0, 100%, 100%, 1);
+    --clr-gray: hsl(0, 0%, 20%);
+    --clr-placeholder-text: hsl(0, 0%, 56%);
+    --clr-black: hsla(0, 0%, 0%, 1);
+    /* box-shadows */
+    --bs-main: hsla(210, 8%, 62%, 0.2) 0px 8px 24px;
+    --bs-button: hsla(1, 81%, 34%, 0.30) 0px 8px 28px;
+    --bs-button-hover: hsla(1, 81%, 34%, 0.55) 0px 8px 28px;
+    /*margins*/
+    --mg-xl: 10rem; /* 160px*/
+    --mg-lg: 7.5rem; /* 120px*/
+    --mg-md: 5rem; /* 80px*/
+    --mg-nm: 2.5rem; /* 40px*/
+    --mg-sm: 1.25rem; /*20px*/
+}
