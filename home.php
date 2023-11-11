@@ -1,3 +1,24 @@
+<?php 
+    require_once 'database.php';
+    // Reference: https://medoo.in/api/select
+    // tb_dishes and tb_categories JOIN
+    $dishes = $database->select("tb_dishes", [
+        "[>]tb_dishes_categories" => ["id_dish_category" => "id_dish_category"]
+    ], [
+        "tb_dishes.id_dish",
+        "tb_dishes.dish_name",
+        "tb_dishes.dish_description",
+        "tb_dishes.dish_image",
+        "tb_dishes.dish_price",
+        "tb_dishes.featured",
+        "tb_dishes_categories.id_dish_category",
+        "tb_dishes_categories.dish_category_name" 
+    ], [
+        //where to show featured dishes only
+        "tb_dishes.featured" => 1 
+    ]);  
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,7 +51,27 @@
                 <h2 class="home-title2">featured dishes</h2>
             </div>
             <div class="dishes-container">
-                <section class="dish-card">
+                <?php
+                    foreach ($dishes as $dish) {
+                        echo "<section class='dish-card'>"
+                        ."<a href='dish.php?id=".$dish["id_dish"]."'>"
+                                ."<img src='./imgs/dishes/".$dish["dish_category_name"]."/".$dish["dish_image"]."' alt=".$dish["dish_name"]." class='dish-card-img'>"
+                                ."</a>"
+                                ."<div class='dish-data-container'>"
+                                    ."<div>"
+                                    ."<a class='a-titles' href='dish.php?id=".$dish["id_dish"]."'>"
+                                        ."<h2 class='dish-title'>".$dish["dish_name"]."</h2>"
+                                        ."</a>"
+                                        ."<p class='dish-type'>".$dish["dish_category_name"]."</p>"
+                                    ."</div>"
+                                    ."<a href='#'><img src='./imgs/icons/cart.svg' alt='Cart'></a>"
+                                ."</div>"
+                                ."<p class='dish-price'>$".$dish["dish_price"]."</p>"
+                                ."<a class='btn order' href='dish.php?id=".$dish["id_dish"]."'>Order</a>"
+                        ."</section>";
+                    }
+                ?>
+                <!--<section class="dish-card">
                     <img src="./imgs/cards/main-courses/schnitzel.webp" alt="Schnitzel" class="dish-card-img">
                     <div class="dish-data-container">
                         <div>
@@ -91,7 +132,8 @@
                     <a class="btn order" href="dish.html">Order</a>
                 </section>
                 <section class="dish-card">
-                    <img src="./imgs/cards/desserts/black-forest-cake.webp" alt="Black Forest Cake" class="dish-card-img">
+                    <img src="./imgs/cards/desserts/black-forest-cake.webp" alt="Black Forest Cake"
+                        class="dish-card-img">
                     <div class="dish-data-container">
                         <div>
                             <h2 class="dish-title">Black Forest Cake" </h2>
@@ -149,7 +191,7 @@
                     </div>
                     <p class="dish-price">$1.50</p>
                     <a class="btn order" href="dish.html">Order</a>
-                </section>
+                </section>-->
             </div>
             <a href="menu.html" class="btn view-all">view all</a>
         </div>
@@ -163,7 +205,8 @@
             </div>
             <!--slides-->
             <section class="slide fade">
-                <div class="slide-data-column"> <!--left-column-->
+                <div class="slide-data-column">
+                    <!--left-column-->
                     <div class="slide-data-container">
                         <h2 class="slide-title dish-title">Köstritzer Schwarzbier</h2>
                         <p class="dish-type ">330ml</p>
@@ -172,13 +215,16 @@
                         <p class="dish-price">$2.35</p>
                         <a class="btn order" href="">Order</a>
                     </div>
-                </div> <!--left-column-->
-                <div class="slide-img-container"><!--right column-->
+                </div>
+                <!--left-column-->
+                <div class="slide-img-container">
+                    <!--right column-->
                     <img src="./imgs/köstritzer.webp" alt="" class="slide-img">
                 </div>
             </section>
             <section class="slide fade">
-                <div class="slide-data-column"> <!--left-column-->
+                <div class="slide-data-column">
+                    <!--left-column-->
                     <div class="slide-data-container">
                         <h2 class="slide-title dish-title">bitburger premium pils</h2>
                         <p class="dish-type ">330ml</p>
@@ -188,13 +234,16 @@
                         <p class="dish-price">$2.25</p>
                         <a class="btn order" href="">Order</a>
                     </div>
-                </div> <!--left-column-->
-                <div class="slide-img-container"><!--right column-->
+                </div>
+                <!--left-column-->
+                <div class="slide-img-container">
+                    <!--right column-->
                     <img src="./imgs/bitburger.webp" alt="" class="slide-img">
                 </div>
             </section>
             <section class="slide fade">
-                <div class="slide-data-column"> <!--left-column-->
+                <div class="slide-data-column">
+                    <!--left-column-->
                     <div class="slide-data-container">
                         <h2 class="slide-title dish-title">schneider weisse</h2>
                         <p class="dish-type ">500ml</p>
@@ -204,13 +253,16 @@
                         <p class="dish-price">$3.95</p>
                         <a class="btn order" href="">Order</a>
                     </div>
-                </div> <!--left-column-->
-                <div class="slide-img-container"><!--right column-->
+                </div>
+                <!--left-column-->
+                <div class="slide-img-container">
+                    <!--right column-->
                     <img src="./imgs/schneider.webp" alt="" class="slide-img">
                 </div>
             </section>
             <section class="slide fade">
-                <div class="slide-data-column"> <!--left-column-->
+                <div class="slide-data-column">
+                    <!--left-column-->
                     <div class="slide-data-container">
                         <h2 class="slide-title dish-title">Weihenstephaner</h2>
                         <p class="dish-type ">330ml</p>
@@ -219,8 +271,10 @@
                         <p class="dish-price">$2.50</p>
                         <a class="btn order" href="">Order</a>
                     </div>
-                </div> <!--left-column-->
-                <div class="slide-img-container"><!--right column-->
+                </div>
+                <!--left-column-->
+                <div class="slide-img-container">
+                    <!--right column-->
                     <img src="./imgs/weihenstephaner.webp" alt="" class="slide-img">
                 </div>
             </section>
@@ -366,4 +420,5 @@
     <script src="./js/currentYear.js"></script>
     <!--script-->
 </body>
+
 </html>
