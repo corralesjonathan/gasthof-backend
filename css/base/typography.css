@@ -41,8 +41,10 @@
     font-size: clamp(var(--fs-lg), var(--fs-xl), var(--fs-xxl));
     font-weight: var(--fw-bk);
     margin: 0;
-    width: 15ch;
+    width: 20ch;
 }
+
+a{text-decoration: none;}
 
 /*used for dishes titles*/
 .dish-title{
@@ -81,7 +83,7 @@
 /*used for slides descriptions*/
 .slide-description{
     font-size: var(--fs-sm);
-    margin: .5rem auto;
+    margin: 1rem auto;
 }
 
 /*used for about us section description*/
@@ -105,6 +107,7 @@
     text-decoration: none;
 }
 
+
 .filter-dishes-title{
     text-transform: uppercase;
     font-family: var(--ff-secondary);
@@ -119,6 +122,10 @@
 
 .single-dish-price{font-size: var(--fs-md);}
 
+.contact-texts{
+    color: var(--clr-gray);
+}
+
 .footer-legal{
     font-family: var(--ff-secondary);
     font-weight: var(--fw-lg);
@@ -126,7 +133,4 @@
     color: var(--clr-white);
     text-align: center;
 }
-
-
-
 
