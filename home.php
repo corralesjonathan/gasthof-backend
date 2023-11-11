@@ -219,7 +219,7 @@
                 <!--left-column-->
                 <div class="slide-img-container">
                     <!--right column-->
-                    <img src="./imgs/köstritzer.webp" alt="" class="slide-img">
+                    <img src="./imgs/slides/köstritzer.webp" alt="" class="slide-img">
                 </div>
             </section>
             <section class="slide fade">
@@ -238,7 +238,7 @@
                 <!--left-column-->
                 <div class="slide-img-container">
                     <!--right column-->
-                    <img src="./imgs/bitburger.webp" alt="" class="slide-img">
+                    <img src="./imgs/slides/bitburger.webp" alt="" class="slide-img">
                 </div>
             </section>
             <section class="slide fade">
@@ -257,7 +257,7 @@
                 <!--left-column-->
                 <div class="slide-img-container">
                     <!--right column-->
-                    <img src="./imgs/schneider.webp" alt="" class="slide-img">
+                    <img src="./imgs/slides/schneider.webp" alt="" class="slide-img">
                 </div>
             </section>
             <section class="slide fade">
@@ -275,7 +275,7 @@
                 <!--left-column-->
                 <div class="slide-img-container">
                     <!--right column-->
-                    <img src="./imgs/weihenstephaner.webp" alt="" class="slide-img">
+                    <img src="./imgs/slides/weihenstephaner.webp" alt="" class="slide-img">
                 </div>
             </section>
             <!--slides-->
@@ -297,16 +297,9 @@
         <!--about restaurant section-->
 
         <!--subscribe form-->
-        <div class="subscribe-form-container">
-            <div class="form-titles-container">
-                <h3 class="home-title1">subscribe now</h3>
-                <h2 class="home-title2">join the family</h2>
-            </div>
-            <form class="subscribe-form">
-                <input class="email email-focus" type="text" placeholder="Email Address">
-                <input class="submit-btn" type="submit" value="">
-            </form>
-        </div>
+        <?php 
+            include './parts/subscribe-form.php'
+        ?>
         <!--subscribe form-->
     </main>
     <!--main content-->
