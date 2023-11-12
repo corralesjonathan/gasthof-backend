@@ -171,7 +171,7 @@
         top: 0;
         right: 0;
         bottom: 0;
-        width: auto;
+        width: 70vw;
         background-color: var(--clr-main-bg);
         padding: 1rem;
         z-index: 200;
