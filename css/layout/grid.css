@@ -7,7 +7,7 @@
 
 .home-titles-container {
     margin-bottom: var(--mg-md);
-    width: 80vw;
+    width: auto;
 }
 
 .dishes-container {

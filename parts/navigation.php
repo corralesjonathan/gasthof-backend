@@ -23,12 +23,51 @@
         <!--nav icons-->
         <div class="icons_container">
             <a class="search-icon" href="#"><img src="./imgs/icons/search-icon.svg" alt="Search"></a>
-            <a class="user-icon" href="#"><img src="./imgs/icons/user.svg" alt="Account"></a>
+            <a class="user-icon" href="#" id="account-icon"><img src="./imgs/icons/user.svg" alt="Account"></a>
             <a class="bag-icon" href="#"><img src="./imgs/icons/bag.svg" alt="Bag"></a>
+            <!-- Menú de cuenta -->
+            <div id="account-menu">
+            <ul class="nav-list account-list">
+                <?php 
+                    session_start();
+                    if(isset($_SESSION["isLoggedIn"])){
+                        echo "<li><a class='nav-list-link account-nav-list-link'>Hola, ".$_SESSION["fullname"]."</a></li>";
+                        echo "<li><a class='nav-list-link account-nav-list-link' href='account.php'>My account</a></li>";
+                        echo "<li><a class='nav-list-link account-nav-list-link' href='logout.php'>log out</a> <a href='logout.php'><img src='./imgs/icons/logout.svg' alt='Logout'></a></li>";
+                    }else{
+                        echo "<li><a class='nav-list-link account-nav-list-link' href='login.php'>My account</a></li>";
+                        echo "<li><a class='nav-list-link account-nav-list-link' href='login.php'>login</a></li>";
+                    }
+                ?>
+            </ul>
+            </div>
+
         </div>
+
         <!--nav icons-->
     </nav>
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    let accountIcon = document.getElementById("account-icon");
+    let accountMenu = document.getElementById("account-menu");
+
+    // Mostrar/ocultar el menú de cuenta al hacer clic en el icono de cuenta
+    accountIcon.addEventListener("mouseover", function() {
+        accountMenu.classList.add("visible");
+    })
+
+    accountMenu.addEventListener("mouseover", function() {
+        accountMenu.classList.add("visible");
+    })
+
+    accountMenu.addEventListener("mouseout", function() {
+        accountMenu.classList.remove("visible");
+    })
+
+});
+</script>
 
 <script src="./js/mobileNavMenu.js"></script>
 <script src="./js/navMenu.js"></script>
