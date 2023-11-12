@@ -46,6 +46,7 @@
     border-color: var(--clr-main);
     box-shadow: var(--bs-button);
     margin: var(--mg-nm) auto;
+    cursor: pointer;
 }
 
 .view-all:hover {

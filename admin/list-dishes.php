@@ -32,32 +32,32 @@
 <body>
     <div class="main-container">
     <img src="../imgs/gasthof-logo.webp" alt="Gathof Logo"> 
-    <h2 style='color: #333333'>Registered Dishes</h2>
-    <table style="width: 90vw">
+    <h2>Registered Dishes</h2>
+    <table>
         <thead>
-            <tr style='background: #9d1310; height: 30px'>
-                <td style='color: #ffffff'>Name</td>
-                <td style='color: #ffffff'>Name - TR</td>
-                <td style='color: #ffffff'>Category</td>
-                <td style='color: #ffffff'>Size</td>
-                <td style='color: #ffffff'>Description</td>
-                <td style='color: #ffffff'>Description - TR</td>
-                <td style='color: #ffffff'>Price</td>
-                <td style='color: #ffffff'>Actions</td>
+            <tr class="titles-bg">
+                <td class="titles-td">Name</td>
+                <td class="titles-td">Name - TR</td>
+                <td class="titles-td">Category</td>
+                <td class="titles-td">Size</td>
+                <td class="titles-td">Description</td>
+                <td class="titles-td">Description - TR</td>
+                <td class="titles-td">Price</td>
+                <td class="titles-td">Actions</td>
             </tr>
         </thead>
         <tbody>
             <?php 
                 for($i=0; $i<count ($dishes); $i++){
-                echo "<tr style='background: #f7f7f7'>";
-                echo "<td style='padding-right: 40px'>".$dishes[$i]["dish_name"]."</td>";
-                echo "<td style='padding-right: 40px'>".$dishes[$i]["dish_name_de"]."</td>";
-                echo "<td style='padding-right: 40px'>".$dishes[$i]["dish_category_name"]."</td>";
-                echo "<td style='padding-right: 40px'>".$dishes[$i]["dish_size_name"]."</td>";
-                echo "<td style='padding-right: 40px; max-width: 300px;'>".$dishes[$i]["dish_description"]."</td>";
-                echo "<td style='padding-right: 40px; max-width: 300px;'>".$dishes[$i]["dish_description_de"]."</td>";
-                echo "<td style='padding-right: 40px'>".$dishes[$i]["dish_price"]."</td>";
-                echo "<td style='padding-right: 40px'><a style='color: blue; text-decoration:none' href='edit-dish.php?id=".$dishes[$i]["id_dish"]."'> 
+                echo "<tr class='data-bg'>";
+                echo "<td class='data-td'>".$dishes[$i]["dish_name"]."</td>";
+                echo "<td class='data-td'>".$dishes[$i]["dish_name_de"]."</td>";
+                echo "<td class='data-td'>".$dishes[$i]["dish_category_name"]."</td>";
+                echo "<td class='data-td'>".$dishes[$i]["dish_size_name"]."</td>";
+                echo "<td class='data-td'>".$dishes[$i]["dish_description"]."</td>";
+                echo "<td class='data-td'>".$dishes[$i]["dish_description_de"]."</td>";
+                echo "<td class='data-td'>".$dishes[$i]["dish_price"]."</td>";
+                echo "<td ><a style='color: blue; text-decoration:none' href='edit-dish.php?id=".$dishes[$i]["id_dish"]."'> 
                 Edit </a> <a style='color: red; text-decoration:none' href='delete-dish.php?id=".$dishes[$i]["id_dish"]."'>Delete</a></td>";
                 echo "</tr>";
             };

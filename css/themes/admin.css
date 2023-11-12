@@ -1,0 +1,117 @@
+body{
+    font-family: Arial;
+    color: #333;
+}
+
+.main-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 80vw;
+}
+
+.form-items{
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+}
+
+label{
+    font-weight: bold;
+}
+
+input, textarea{
+    padding: .5rem;
+}
+
+#preview{
+    display: block;
+    width: 100%;
+}
+
+.submit-btn{
+    border: none;
+    background: #9d1310;
+    color: white;
+    padding: 1rem 0;
+    cursor: pointer;
+}
+
+.link-btn{
+    border-radius: .5rem;
+    color: black;
+    text-decoration: none;
+    background: #009eff;
+    padding: 0.5rem;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+
+
+input[type='file'] {
+    background: #9d1310;
+    color: transparent;
+    padding: 1rem 0;
+}
+
+input[type='file']::before {
+    content: 'Pick an image file';
+    color: white;
+    margin: 0 .7rem;
+  }
+
+select{
+    height: 3rem;
+}
+
+thead{
+    font-weight: bold;
+}
+
+td{
+    padding: .7rem;  
+}
+
+table{
+    width: 90vw;
+}
+
+.titles-td{
+    color: white;
+}
+
+.data-td{
+    color: #333;
+}
+
+.titles-bg{
+    background: #9d1310; 
+    height: 30px
+}
+.data-bg{
+    background: #f7f7f7
+}
+
+h2{
+    color: #333;
+}
+
+.price-container{
+    display: flex;
+    align-items: center;
+}
+
+
+@media (max-width: 768px){
+    .container{grid-template-columns: 1fr};
+    }
