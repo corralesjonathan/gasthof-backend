@@ -10,9 +10,9 @@ function selectedPage() {
     let url = window.location.href;
 
     //check url
-    if (url.includes("home.html")) {
+    if (url.includes("home.php")) {
         btnHome.classList.add("active");
-    } else if (url.includes("menu.html")) {
+    } else if (url.includes("menu.php")) {
         btnMenu.classList.add("active");
     } else if (url.includes("contact.html")) {
         btnContact.classList.add("active");
