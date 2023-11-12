@@ -1,6 +1,6 @@
 <?php 
         include 'parts/floating-widgets.php'
-    ?>
+?>
 
 <div class="top-nav-container">
     <nav class="top-nav">
@@ -26,9 +26,10 @@
             <a class="user-icon" href="#" id="account-icon"><img src="./imgs/icons/user.svg" alt="Account"></a>
             <a class="bag-icon" href="#"><img src="./imgs/icons/bag.svg" alt="Bag"></a>
             <!-- Menú de cuenta -->
-            <div id="account-menu">
-            <ul class="nav-list account-list">
-                <?php 
+        </div>
+        <div id="account-menu">
+    <ul class="nav-list account-list">
+        <?php 
                     session_start();
                     if(isset($_SESSION["isLoggedIn"])){
                         echo "<li><a class='nav-list-link account-nav-list-link'>Hola, ".$_SESSION["fullname"]."</a></li>";
@@ -39,14 +40,13 @@
                         echo "<li><a class='nav-list-link account-nav-list-link' href='login.php'>login</a></li>";
                     }
                 ?>
-            </ul>
-            </div>
-
-        </div>
-
-        <!--nav icons-->
-    </nav>
+    </ul>
 </div>
+</div>
+
+<!--nav icons-->
+</nav>
+
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {

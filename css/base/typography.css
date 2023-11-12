@@ -31,7 +31,7 @@
     font-size: clamp(1rem,var(--fs-lg), var(--fs-xl));
     font-weight: var(--fw-rg);
     margin: 0;
-    width: 17ch;
+  
 }
 
 /*used for website sections title*/
@@ -41,7 +41,7 @@
     font-size: clamp(var(--fs-lg), var(--fs-xl), var(--fs-xxl));
     font-weight: var(--fw-bk);
     margin: 0;
-    width: 20ch;
+
 }
 
 a{text-decoration: none;}

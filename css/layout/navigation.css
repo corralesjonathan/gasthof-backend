@@ -6,7 +6,7 @@
     padding-bottom: var(--mg-sm);
     position: fixed;
     top: 0;
-    width: 100%;
+    width: 100vw;
     z-index: 100;
 }
 
@@ -150,7 +150,7 @@
 }
 
 
-@media (max-width: 767px) {
+@media (max-width: 767.98px) {
     .website-logo-container {
         order: 1;
     }
@@ -171,10 +171,10 @@
         top: 0;
         right: 0;
         bottom: 0;
-        width: 70vw;
+        width: 80vw;
         background-color: var(--clr-main-bg);
         padding: 1rem;
-        z-index: 200;
+        z-index: 5000;
         box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .5);
         transition: .5s;
     }
@@ -186,7 +186,7 @@
 
     .nav-list {
         flex-direction: column;
-        align-items: end;
+        align-items: flex-start;
         gap: 2rem;
     }
 
@@ -205,6 +205,10 @@
 
     #mobile-close-btn {
         display: block;
+    }
+
+    #account-menu{
+        display: none;
     }
 
     .categories-buttons-container {

@@ -1,4 +1,7 @@
-.form-titles-container {margin-bottom: var(--mg-nm);}
+.form-titles-container {
+    margin-bottom: var(--mg-nm);
+    width: 80vw;
+}
 
 .subscribe-form-container {
     display: grid;
@@ -83,6 +86,6 @@
 }
 
 @media (max-width: 768px) {
-    .subscribe-form {width: auto;}
+    .subscribe-form {width: 100%;}
     .form-items{ width: 100%;}
 }

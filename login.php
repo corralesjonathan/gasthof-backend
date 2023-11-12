@@ -91,7 +91,7 @@
     <main>
         <div class="login-container">
             <div class="login">
-                <div class="home-titles-container">
+                <div class="home-titles-container login-titles-container">
                     <h3 class="home-title1">login to</h3>
                     <h2 class="home-title2">your account</h2>
                 </div>
@@ -114,7 +114,7 @@
                 </form>
             </div>
             <div class="sing-up">
-                <div class="home-titles-container">
+                <div class="home-titles-container login-titles-container">
                     <h3 class="home-title1">need</h3>
                     <h2 class="home-title2">an account?</h2>
                 </div>
