@@ -13,7 +13,14 @@
             <button id="mobile-close-btn"><img src="./imgs/icons/close.svg" alt=""></button>
             <ul class="nav-list">
                 <li><a id="btnHome" class="nav-list-link" href="home.php">Home</a></li>
-                <li><a id="btnMenu" class="nav-list-link" href="menu.php">Menu</a></li>
+                <li><a id="btnMenu" class="nav-list-link" href="menu.php">Menu +</a>
+                    <div id="dropdown-content">
+                        <a class="nav-list-link" href="#">Starters</a>
+                        <a class="nav-list-link" href="#">Main Courses</a>
+                        <a class="nav-list-link" href="#">Desserts</a>
+                        <a class="nav-list-link" href="#">Drinks</a>
+                    </div>
+                </li>
                 <li><a id="btnContact" class="nav-list-link" href="contact.html">Contact</a></li>
                 <li><a id="btnAboutUs" class="nav-list-link" href="#">About Us</a></li>
             </ul>
@@ -28,8 +35,8 @@
             <!-- Menú de cuenta -->
         </div>
         <div id="account-menu">
-    <ul class="nav-list account-list">
-        <?php 
+            <ul class="nav-list account-list">
+                <?php 
                     session_start();
                     if(isset($_SESSION["isLoggedIn"])){
                         echo "<li><a class='nav-list-link account-nav-list-link'>Hola, ".$_SESSION["fullname"]."</a></li>";
@@ -40,8 +47,8 @@
                         echo "<li><a class='nav-list-link account-nav-list-link' href='login.php'>login</a></li>";
                     }
                 ?>
-    </ul>
-</div>
+            </ul>
+        </div>
 </div>
 
 <!--nav icons-->
@@ -52,20 +59,21 @@
 document.addEventListener("DOMContentLoaded", function() {
     let accountIcon = document.getElementById("account-icon");
     let accountMenu = document.getElementById("account-menu");
+    let btnMenu = document.getElementById("btnMenu");
 
-    // Mostrar/ocultar el menú de cuenta al hacer clic en el icono de cuenta
-    accountIcon.addEventListener("mouseover", function() {
+    function showAccountMenu() {
         accountMenu.classList.add("visible");
-    })
+    }
 
-    accountMenu.addEventListener("mouseover", function() {
-        accountMenu.classList.add("visible");
-    })
-
-    accountMenu.addEventListener("mouseout", function() {
+    function hideAccountMenu() {
         accountMenu.classList.remove("visible");
-    })
+    }
 
+    accountIcon.addEventListener("mouseover", showAccountMenu);
+    accountIcon.addEventListener("mouseout", hideAccountMenu);
+    accountMenu.addEventListener("mouseover", showAccountMenu);
+    accountMenu.addEventListener("mouseout", hideAccountMenu);
+    btnMenu.addEventListener("mouseover", hideAccountMenu);
 });
 </script>
 
