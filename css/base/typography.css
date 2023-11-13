@@ -50,7 +50,7 @@ a{text-decoration: none;}
 .dish-title{
     color: var(--clr-main);
     font-family: var(--ff-secondary);
-    font-size: var(--fs-nm);
+    font-size: var(--fs-sm);
     font-weight: var(--fw-sb);
     margin: 0;
     text-transform: uppercase;
