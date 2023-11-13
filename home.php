@@ -13,9 +13,9 @@
         "tb_dishes.featured",
         "tb_dishes_categories.id_dish_category",
         "tb_dishes_categories.dish_category_name" 
-    ], [
+    //], [
         //where to show featured dishes only
-        "tb_dishes.featured" => 1 
+        //"tb_dishes.featured" => 1 
     ]);  
 ?>
 
