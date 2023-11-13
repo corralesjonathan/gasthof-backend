@@ -1,4 +1,14 @@
 <?php 
+    require_once './database.php';
+
+    // Reference: https://medoo.in/api/select
+    $categories = $database->select("tb_dishes_categories",[
+        "tb_dishes_categories.id_dish_category",
+        "tb_dishes_categories.dish_category_name",
+    ]);
+?>
+
+<?php 
         include 'parts/floating-widgets.php'
 ?>
 
@@ -15,10 +25,12 @@
                 <li><a id="btnHome" class="nav-list-link" href="home.php">Home</a></li>
                 <li><a id="btnMenu" class="nav-list-link" href="menu.php">Menu +</a>
                     <div id="dropdown-content">
-                        <a class="nav-list-link" href="#">Starters</a>
-                        <a class="nav-list-link" href="#">Main Courses</a>
-                        <a class="nav-list-link" href="#">Desserts</a>
-                        <a class="nav-list-link" href="#">Drinks</a>
+                        <?php 
+                        echo "<a class='nav-list-link' href='#'>".$categories[0]["dish_category_name"]."</a>"
+                        ."<a class='nav-list-link' href='#'>".$categories[1]["dish_category_name"]."</a>"
+                        ."<a class='nav-list-link' href='#'>".$categories[2]["dish_category_name"]."</a>"
+                        ."<a class='nav-list-link' href='#'>".$categories[3]["dish_category_name"]."</a>";
+                        ?>
                     </div>
                 </li>
                 <li><a id="btnContact" class="nav-list-link" href="contact.html">Contact</a></li>
