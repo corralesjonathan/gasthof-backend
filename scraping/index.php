@@ -5,23 +5,29 @@
     /*
     GERMANY
     https://www.allrecipes.com/recipes/722/world-cuisine/european/german/
+    
     FOR STARTERS AND SALADS -> https://www.allrecipes.com/search?q=german+salads
 
+    FOR DESSERTS -> https://www.allrecipes.com/recipes/16220/bread/yeast-bread/pretzels/
+                    https://www.allrecipes.com/search?german%20desserts=german%20desserts&offset=24&q=german%20desserts
+                    https://www.allrecipes.com/search?german%20desserts=german%20desserts&offset=96&q=german%20desserts
+                    https://www.allrecipes.com/search?german%20desserts=german%20desserts&offset=0&q=german%20desserts
 
-    GENERIC DRINKS 
-    https://www.allrecipes.com/recipes/77/drinks/
+    FOR DRINKS -> https://www.allrecipes.com/recipes/77/drinks/
+                  https://www.allrecipes.com/recipes/136/drinks/punch
+                  https://www.allrecipes.com/recipes/1822/drinks/mocktails/
 
     */
 
     //link
-    $link = "https://www.allrecipes.com/search?q=german+salads";
+    $link = "https://www.allrecipes.com/search?german%20desserts=german%20desserts&offset=0&q=german%20desserts";
 
     $filenames = [];
     $menu_item_names = [];
     $menu_item_descriptions = [];
     $image_urls = [];
 
-    $menu_items = 10;
+    $menu_items = 3;
 
     $items = file_get_html($link);
 
@@ -69,7 +75,7 @@
         echo "<br>";
         echo $image_urls[$index];
         echo "<br>";
-        echo rand (1*10, 20*10)/10;
+        echo rand (1*10, 7*10)/10;
         echo "<br>";
         //$menu_items--;
         //if($menu_items == 0) break;
@@ -79,20 +85,24 @@
         $database->insert("tb_dishes",[
             "dish_name"=> $menu_item_names[$index],
             "id_dish_size"=> 1,
-            "id_dish_category"=> 1,
+            "id_dish_category"=> 3,
             "featured" => $isFeatured ? 1 : 0,
             "dish_description"=> $menu_item_descriptions[$index],
-            "dish_price"=> rand (1*10, 10*10)/10,
+            "dish_price"=> rand (1*10, 7*10)/10,
             "dish_image"=> $item.'.jpg'
         ]);
     }
 
     //get and download images
-    foreach ($filenames as $index=>$image){
+   foreach ($filenames as $index=>$image){
         //route to save Starters
-        file_put_contents("../imgs/dishes/Starters/".$image.".jpg", file_get_contents($image_urls[$index]));
+        //file_put_contents("../imgs/dishes/Starters/".$image.".jpg", file_get_contents($image_urls[$index]));
         //route to save Main Courses
         //file_put_contents("../imgs/dishes/Main Courses/".$image.".jpg", file_get_contents($image_urls[$index]));
+        //route to save Drinks
+        //file_put_contents("../imgs/dishes/Drinks/".$image.".jpg", file_get_contents($image_urls[$index]));
+        //route to save Desserts
+        file_put_contents("../imgs/dishes/Desserts/".$image.".jpg", file_get_contents($image_urls[$index]));
     }
 
     //insert info
