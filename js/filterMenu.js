@@ -1,6 +1,6 @@
 //filter menu
 //function to filter dishes by category
-function filterDishes(category) {
+/*function filterDishes(category) {
     //get buttons by id
     let btnAll = document.getElementById('btnAll');
     let btnDesserts = document.getElementById('btnDesserts');
@@ -27,7 +27,7 @@ function filterDishes(category) {
 
         activeButton(category);
     });
-}
+}*/
 //function to add and delete "active" class for filter menu
 function activeButton(category) {
 
@@ -66,4 +66,5 @@ function activeButton(category) {
 document.addEventListener("DOMContentLoaded", function(){
     //show all by defalult
     filterDishes('all');
+    activeButton(category);
     });

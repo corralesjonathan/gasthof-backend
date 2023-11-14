@@ -1,3 +1,31 @@
+<?php
+    
+    require_once 'database.php';
+
+    // Reference: https://medoo.in/api/select
+    $categories = $database->select("tb_dishes_categories",[
+        "tb_dishes_categories.id_dish_category",
+        "tb_dishes_categories.dish_category_name",
+    ]);
+
+    // Reference: https://medoo.in/api/select
+    // tb_dishes and tb_categories JOIN
+    $dishes = $database->select("tb_dishes", [
+        "[>]tb_dishes_categories" => ["id_dish_category" => "id_dish_category"]
+    ], [
+        "tb_dishes.id_dish",
+        "tb_dishes.dish_name",
+        "tb_dishes.dish_description",
+        "tb_dishes.dish_image",
+        "tb_dishes.dish_price",
+        "tb_dishes.featured",
+        "tb_dishes_categories.id_dish_category",
+        "tb_dishes_categories.dish_category_name" 
+    //], [
+        //where to show featured dishes only
+       //"tb_dishes_categories.id_dish_category" => 1
+    ]);  
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,17 +66,42 @@
             <div class="categories-buttons-container">
                 <ul class="nav-list menu-filter-products-list">
                     <li><a id="btnAll" class="nav-list-link nav-menu-list-link" href="#">All</a></li>
-                    <li><a id="btnStarters" class="nav-list-link nav-menu-list-link" href="#">Starters</a></li>
-                    <li><a id="btnMainCourses" class="nav-list-link nav-menu-list-link" href="#">Main courses</a></li>
-                    <li><a id="btnDesserts" class="nav-list-link nav-menu-list-link" href="#">Desserts</a></li>
-                    <li><a id="btnDrinks" class="nav-list-link nav-menu-list-link" href="#">Drinks</a></li>
+                    <?php 
+                        echo "<li><a id='btnStarters' class='nav-list-link nav-menu-list-link' href='#'>".$categories[0]["dish_category_name"]."</a></li>"
+                        ."<li><a id='btnMainCourses' class='nav-list-link nav-menu-list-link' href='#'>".$categories[1]["dish_category_name"]."</a></li>"
+                        ."<li><a id='btnDesserts' class='nav-list-link nav-menu-list-link' href='#'>".$categories[2]["dish_category_name"]."</a></li>"
+                        ."<li><a id='btnDrinks' class='nav-list-link nav-menu-list-link' href='#'>".$categories[3]["dish_category_name"]."</a></li>";
+                    ?>
                 </ul>
             </div>
             <!--filter dishes menu-->
             <!--dishes cards grid-->
             <div class="menu-container">
                 <div class="dishes-container">
-                    <section class="dish-card" data-category="main-courses">
+                    <?php
+                    foreach ($dishes as $dish) {
+                        echo "<section class='dish-card'>"
+                        ."<div class='card-img-container'>"
+                        ."<a class='dish-card-link' href='dish.php?id=".$dish["id_dish"]."'>"
+                                ."<img src='./imgs/dishes/".$dish["dish_category_name"]."/".$dish["dish_image"]."' alt=".$dish["dish_name"]." class='dish-card-img'>"
+                                ."</a>"
+                                ."<button class='like'><img class='like-icon' src='./imgs/icons/like.svg'></button>"
+                                ."</div>"
+                                ."<div class='dish-data-container'>"
+                                    ."<div class='dish-texts-container'>"
+                                    ."<a class='a-titles' href='dish.php?id=".$dish["id_dish"]."'>"
+                                        ."<h2 class='dish-title'>".$dish["dish_name"]."</h2>"
+                                        ."</a>"
+                                        ."<p class='dish-type'>".$dish["dish_category_name"]."</p>"
+                                    ."</div>"
+                                    ."<a href='#'><img src='./imgs/icons/cart.svg' alt='Cart'></a>"
+                                ."</div>"
+                                ."<p class='dish-price'>$".$dish["dish_price"]."</p>"
+                                ."<a class='btn order' href='dish.php?id=".$dish["id_dish"]."'>Order</a>"
+                        ."</section>";
+                    }
+                ?>
+                    <!--<section class="dish-card" data-category="main-courses">
                         <img src="./imgs/dishes/Main Courses/schnitzel.webp" alt="Schnitzel" class="dish-card-img">
                         <div class="dish-data-container">
                             <div>
@@ -59,188 +112,7 @@
                         </div>
                         <p class="dish-price">$5.90</p>
                         <a class="btn order" href="">Order</a>
-                    </section>
-                    <section class="dish-card" data-category="main-courses">
-                        <img src="./imgs/cards/main-courses/spätzle.webp" alt="Spätzle" class="dish-card-img">
-                        <div class="dish-data-container">
-                            <div>
-                                <h2 class="dish-title">Spätzle</h2>
-                                <p class="dish-type">Main course</p>
-                            </div>
-                            <a href="#"><img src="./imgs/icons/cart.svg" alt="Cart"></a>
-                        </div>
-                        <p class="dish-price">$6.85</p>
-                        <a class="btn order" href="">Order</a>
-                    </section>
-                    <section class="dish-card" data-category="desserts">
-                        <img src="./imgs//cards/desserts/käsekuchen.webp" alt="Käsekuchen" class="dish-card-img">
-                        <div class="dish-data-container">
-                            <div>
-                                <h2 class="dish-title">Käsekuchen</h2>
-                                <p class="dish-type">Dessert</p>
-                            </div>
-                            <a href="#"><img src="./imgs/icons/cart.svg" alt="Cart"></a>
-                        </div>
-                        <p class="dish-price">$7.25</p>
-                        <a class="btn order" href="">Order</a>
-                    </section>
-                    <section class="dish-card" data-category="starters">
-                        <img src="./imgs//cards/starters/kartoffelpuffer.webp" alt="Kartoffelpuffer" class="dish-card-img">
-                        <div class="dish-data-container">
-                            <div>
-                                <h2 class="dish-title">Kartoffelpuffer </h2>
-                                <p class="dish-type">Starter</p>
-                            </div>
-                            <a href="#"><img src="./imgs/icons/cart.svg" alt="Cart"></a>
-                        </div>
-                        <p class="dish-price">$6.25</p>
-                        <a class="btn order" href="">Order</a>
-                    </section>
-                    <section class="dish-card" data-category="starters">
-                        <img src="./imgs/cards/starters/kohlrouladen.webp" alt="Kohlrouladen" class="dish-card-img">
-                        <div class="dish-data-container">
-                            <div>
-                                <h2 class="dish-title">Kohlrouladen </h2>
-                                <p class="dish-type">Starter</p>
-                            </div>
-                            <a href="#"><img src="./imgs/icons/cart.svg" alt="Cart"></a>
-                        </div>
-                        <p class="dish-price">$5.95</p>
-                        <a class="btn order" href="">Order</a>
-                    </section>
-                    <section class="dish-card" data-category="desserts">
-                        <img src="./imgs/cards/desserts//rote-grütze.webp" alt="Rote Grütze" class="dish-card-img">
-                        <div class="dish-data-container">
-                            <div>
-                                <h2 class="dish-title">Rote Grütze</h2>
-                                <p class="dish-type">Dessert</p>
-                            </div>
-                            <a href="#"><img src="./imgs/icons/cart.svg" alt="Cart"></a>
-                        </div>
-                        <p class="dish-price">$3.35</p>
-                        <a class="btn order" href="">Order</a>
-                    </section>
-                    <section class="dish-card" data-category="drinks">
-                        <img src="./imgs/cards/drinks/bitburger.webp" alt="Bitburger" class="dish-card-img">
-                        <div class="dish-data-container">
-                            <div>
-                                <h2 class="dish-title">Bitburger</h2>
-                                <p class="dish-type">Drink</p>
-                            </div>
-                            <a href="#"><img src="./imgs/icons/cart.svg" alt="Cart"></a>
-                        </div>
-                        <p class="dish-price">$2.35</p>
-                        <a class="btn order" href="">Order</a>
-                    </section>
-                    <section class="dish-card" data-category="drinks">
-                        <img src="./imgs/cards/drinks/kefir.webp" alt="Kefir" class="dish-card-img">
-                        <div class="dish-data-container">
-                            <div>
-                                <h2 class="dish-title">Kefir</h2>
-                                <p class="dish-type">Drink</p>
-                            </div>
-                            <a href="#"><img src="./imgs/icons/cart.svg" alt="Cart"></a>
-                        </div>
-                        <p class="dish-price">$1.505</p>
-                        <a class="btn order" href="">Order</a>
-                    </section>
-                    <section class="dish-card" data-category="main-courses">
-                        <img src="./imgs/cards/main-courses/roastbeef-mit.webp" alt="Roastbeef mit" class="dish-card-img">
-                        <div class="dish-data-container">
-                            <div>
-                                <h2 class="dish-title">Roastbeef mit</h2>
-                                <p class="dish-type">Main course</p>
-                            </div>
-                            <a href="#"><img src="./imgs/icons/cart.svg" alt="Cart"></a>
-                        </div>
-                        <p class="dish-price">$6.90</p>
-                        <a class="btn order" href="">Order</a>
-                    </section>
-                    <section class="dish-card" data-category="drinks">
-                        <img src="./imgs/cards/drinks/glühwein.webp" alt="Glühwein" class="dish-card-img">
-                        <div class="dish-data-container">
-                            <div>
-                                <h2 class="dish-title">Glühwein</h2>
-                                <p class="dish-type">Drink</p>
-                            </div>
-                            <a href="#"><img src="./imgs/icons/cart.svg" alt="Cart"></a>
-                        </div>
-                        <p class="dish-price">$1.15</p>
-                        <a class="btn order" href="">Order</a>
-                    </section>
-                    <section class="dish-card" data-category="desserts">
-                        <img src="./imgs/cards/desserts/eisbecher.webp" alt="Eisbecher" class="dish-card-img">
-                        <div class="dish-data-container">
-                            <div>
-                                <h2 class="dish-title">Eisbecher</h2>
-                                <p class="dish-type">Dessert</p>
-                            </div>
-                            <a href="#"><img src="./imgs/icons/cart.svg" alt="Cart"></a>
-                        </div>
-                        <p class="dish-price">$2.25</p>
-                        <a class="btn order" href="">Order</a>
-                    </section>
-                    <section class="dish-card" data-category="starters">
-                        <img src="./imgs/cards/starters/radieschen-salat.webp" alt="Radieschen Salat" class="dish-card-img">
-                        <div class="dish-data-container">
-                            <div>
-                                <h2 class="dish-title">Radieschen Salat</h2>
-                                <p class="dish-type">Starter</p>
-                            </div>
-                            <a href="#"><img src="./imgs/icons/cart.svg" alt="Cart"></a>
-                        </div>
-                        <p class="dish-price">$2</p>
-                        <a class="btn order" href="">Order</a>
-                    </section>
-                    <section class="dish-card" data-category="starters">
-                        <img src="./imgs/cards/starters/kartoffelsalat.webp" alt="Kartoffelsalat" class="dish-card-img">
-                        <div class="dish-data-container">
-                            <div>
-                                <h2 class="dish-title">Kartoffelsalat</h2>
-                                <p class="dish-type">Starter</p>
-                            </div>
-                            <a href="#"><img src="./imgs/icons/cart.svg" alt="Cart"></a>
-                        </div>
-                        <p class="dish-price">$2.99</p>
-                        <a class="btn order" href="">Order</a>
-                    </section>
-                    <section class="dish-card" data-category="desserts">
-                        <img src="./imgs/cards/desserts/black-forest-cake.webp" alt="Black Forest Cake" class="dish-card-img">
-                        <div class="dish-data-container">
-                            <div>
-                                <h2 class="dish-title">Black Forest Cake</h2>
-                                <p class="dish-type">Dessert</p>
-                            </div>
-                            <a href="#"><img src="./imgs/icons/cart.svg" alt="Cart"></a>
-                        </div>
-                        <p class="dish-price">$4.30</p>
-                        <a class="btn order" href="">Order</a>
-                    </section>
-                    <section class="dish-card" data-category="main-courses">
-                        <img src="./imgs/cards/main-courses/schweinebraten-mit.webp" alt="Schweinebraten mit" class="dish-card-img">
-                        <div class="dish-data-container">
-                            <div>
-                                <h2 class="dish-title">Schweinebraten mit</h2>
-                                <p class="dish-type">Main course</p>
-                            </div>
-                            <a href="#"><img src="./imgs/icons/cart.svg" alt="Cart"></a>
-                        </div>
-                        <p class="dish-price">$9</p>
-                        <a class="btn order" href="">Order</a>
-                    </section>
-                    <section class="dish-card" data-category="drinks">
-                        <img src="./imgs/cards/drinks/apfelsaftschorle.webp" alt="Apfelsaftschorle" class="dish-card-img">
-                        <div class="dish-data-container">
-                            <div>
-                                <h2 class="dish-title">Apfelsaftschorle</h2>
-                                <p class="dish-type">Drink</p>
-                            </div>
-                            <a href="#"><img src="./imgs/icons/cart.svg" alt="Cart"></a>
-                        </div>
-                        <p class="dish-price">$1.50</p>
-                        <a class="btn order" href="">Order</a>
-                    </section>
-
+                    </section>-->
                 </div>
                 <!--dishes cards grid-->
             </div>
@@ -263,7 +135,8 @@
     <!--footer-->
 
     <!--script-->
-    <script src="./js/filterMenu.js"></script>
+    <!--<script src="./js/filterMenu.js"></script>-->
     <!--script-->
 </body>
+
 </html>

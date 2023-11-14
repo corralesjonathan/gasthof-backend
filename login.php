@@ -25,14 +25,6 @@
             } else {
                 $messageLogin = "wrong username or password";
             }
-            //validate if user already logged in
-            /*session_start();
-            if(isset($_SESSION["isLoggedIn"])){
-                header("location: book.php?id=".$_POST["login"]);
-            }else{
-                //validate login
-                echo "validate login: ".$_POST["login"];
-            }*/
         }
 
         if(isset($_POST["signup"])){

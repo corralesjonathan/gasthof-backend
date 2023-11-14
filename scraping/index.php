@@ -91,7 +91,7 @@
 
         $isFeatured = ($index < 2);
         
-        $database->insert("tb_dishes",[
+       /* $database->insert("tb_dishes",[
             "dish_name"=> $menu_item_names[$index],
             "id_dish_size"=> 1,
             "id_dish_category"=> 2,
@@ -99,20 +99,20 @@
             "dish_description"=> $menu_item_descriptions[$index],
             "dish_price"=> rand (1*10, 10*15)/10,
             "dish_image"=> $item.'.jpg'
-        ]);
+        ]);*/
     }
 
     //get and download images
-   foreach ($filenames as $index=>$image){
+   //foreach ($filenames as $index=>$image){
         //route to save Starters
         //file_put_contents("../imgs/dishes/Starters/".$image.".jpg", file_get_contents($image_urls[$index]));
         //route to save Main Courses
-        file_put_contents("../imgs/dishes/Main Courses/".$image.".jpg", file_get_contents($image_urls[$index]));
+        //file_put_contents("../imgs/dishes/Main Courses/".$image.".jpg", file_get_contents($image_urls[$index]));
         //route to save Drinks
         //file_put_contents("../imgs/dishes/Drinks/".$image.".jpg", file_get_contents($image_urls[$index]));
         //route to save Desserts
         //file_put_contents("../imgs/dishes/Desserts/".$image.".jpg", file_get_contents($image_urls[$index]));
-    }
+   // }
 
     //insert info
     // Reference: https://medoo.in/api/insert

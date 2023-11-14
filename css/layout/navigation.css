@@ -147,12 +147,11 @@
     right: 90px;
     background-color: var(--clr-main-bg);
     z-index: 1000;
-    width: 120px;
+    width: 160px;
     border-bottom: .0625rem solid var(--clr-main);
     transition: .3s;
     opacity: 0;
     box-shadow: var(--bs-main);
-
 }
 
 #account-menu.visible {
