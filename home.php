@@ -1,3 +1,4 @@
+
 <?php 
     require_once 'database.php';
     // Reference: https://medoo.in/api/select
@@ -52,6 +53,19 @@
             </div>
             <div class="dishes-container">
                 <?php
+
+                    /*$database->insert("tb_dishes",[
+                        "id_dish_category" => $_POST["dish_category_name"],
+                        "id_dish_size" => $_POST["dish_size_name"],
+                        "dish_name" => $_POST["dish_name"],
+                        "dish_name_de" => $_POST["dish_name_de"],
+                        "dish_description"=> $_POST["dish_description"],
+                        "dish_description_de"=> $_POST["dish_description_de"],
+                        "dish_image"=> $img,
+                        "dish_price"=> $_POST["dish_price"],
+                        "featured" => $_POST["featured"],
+                    ]);*/
+                    
                     foreach ($dishes as $dish) {
                         echo "<section class='dish-card'>"
                         ."<div class='card-img-container'>"
