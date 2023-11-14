@@ -72,6 +72,10 @@
     opacity: .9;
 }
 
+.dish-card-link{
+    width: 100%;
+}
+
 /*used in subscribe form*/
 .submit-btn {
     background: url(../../imgs/icons/submit.svg);

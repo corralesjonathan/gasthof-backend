@@ -18,7 +18,7 @@
     width: 80vw;
     display: grid;
     gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     margin: auto;
 }
 
@@ -38,17 +38,59 @@
     transition: transform 0.5s;
 }
 
+.dish-texts-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 280px;
+    gap: .3rem;
+}
+
 .dish-data-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 2rem;
     text-align: left;
-    height: 6.25rem;
+    height: 5rem;
 }
 
-.dish-card:hover .dish-card-img {
+.card-img-container{
+    display: flex;
+    position: relative;
+}
+
+.dish-card:hover .dish-card-img  {
     transform: scale(1.1);
+}
+
+.dish-card:hover .like {
+    opacity: 1;
+    visibility: visible;
+}
+
+.like {
+    visibility: hidden;
+    position: absolute;
+    background: var(--clr-white);
+    border-radius: .5rem;
+    border: none;
+    top: 1rem;
+    left: 2rem;
+    width: 3rem;
+    height: 3rem;
+    box-shadow: var(--bs-main);
+    transition: ease-out 0.5s; /* Duración de la transición */
+    cursor: pointer;
+    opacity: 0;
+}
+.like-icon{
+    content: url(../../imgs/icons/like.svg);
+}
+
+.like-icon:hover{
+    content: url(../../imgs/icons/like-fill.svg);
+
 }
 
 .restaurant-data-container {
