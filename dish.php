@@ -59,9 +59,13 @@
                             ."<span id='de' class='btn order' onclick='getTranslation(".$dish[0]["id_dish"].", \"de\")'>DE</span>"
                         ."</div>"
                         ."<div class='dish-title-container'>"
-                            ."<h2 id='dish-title' class='single-dish-title dish-title'>".$dish[0]["dish_name"]."</h2>"
-                            ."<img src='./imgs/icons/star.svg' alt='Star'>"
-                        ."</div>"
+                            ."<h2 id='dish-title' class='single-dish-title dish-title'>".$dish[0]["dish_name"]."</h2>";
+                                if($dish[0]["featured"] == 0){
+                                    echo "<img class='star-unvisible' src='./imgs/icons/star.svg' alt='Star'>"; 
+                                }else{
+                                    echo "<img class='setar-visible' src='./imgs/icons/star.svg' alt='Star'>"; 
+                                } 
+                        echo "</div>"
                         ."<p id='dish-category' class='dish-type'>".$dish[0]["dish_category_name"]."</p>"
                         ."<p id='dish-price' class='single-dish-price dish-price'>$".$dish[0]["dish_price"]."</p>"
                         ."<p id='dish-description' class='dish-type slide-description'>".$dish[0]["dish_description"]."</p>";

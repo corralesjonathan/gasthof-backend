@@ -52,6 +52,14 @@
     color: var(--clr-white);
 }
 
+.star-visible{
+    display: block;
+}
+
+.star-unvisible{
+    display: none;
+}
+
 
 /*used in home page "view all" and "read more"*/
 .view-all {

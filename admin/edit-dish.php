@@ -162,6 +162,29 @@
                             ?>
                         </select>
                     </div>
+                    <div class="form-items"> <!---Featured--->
+                    <div>
+                        <label>"Is a featured dish?"</label>
+                        <div class="radio-group">
+                            <?php 
+                                if($dish[0]["featured"] == 1){
+                                    echo "<input id='featured-yes' type='radio' name='featured' value='1' checked>";
+                                }else{
+                                    echo "<input id='featured-yes' type='radio' name='featured' value='1'>";   
+                                }
+                            ?>
+                            <label for="featured-yes">Yes</label>
+                            <?php 
+                                if($dish[0]["featured"] == 0){
+                                    echo "<input id='featured-no' type='radio' name='featured' value='0' checked>"; 
+                                }  else{
+                                    echo "<input id='featured-no' type='radio' name='featured' value='0'>"; 
+                                }
+                            ?>
+                            <label for="featured-no">No</label>
+                        </div>
+                    </div>
+                </div>
             </div>
             
             <div class="column"> 
