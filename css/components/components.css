@@ -34,12 +34,24 @@
     color: var(--clr-main);
     background: transparent;
     display: inline-block;
+    cursor: pointer;
 }
 
 .order:hover {
     background: var(--clr-main);
     color: var(--clr-white);
 }
+
+#en.clicked{
+    background: var(--clr-main);
+    color: var(--clr-white);
+}
+
+#de.clicked{
+    background: var(--clr-main);
+    color: var(--clr-white);
+}
+
 
 /*used in home page "view all" and "read more"*/
 .view-all {

@@ -1,21 +1,43 @@
-//get elements by id
-let btnEN = document.getElementById("btnEN");
-let btnDE = document.getElementById("btnDE");
+// Esta función se ejecutará cuando la página haya terminado de cargar
+window.onload = function () {
+    // Agrega la clase "clicked" a la etiqueta de "en" por defecto
+    document.getElementById("en").classList.add("clicked");
+};
 
-//add "click" event to change the language of the dish description to German
-btnDE.addEventListener("click", () => {
-    document.getElementById("dish-title").innerHTML = "KARTOFFELPUFFER";
-    document.getElementById("dish-category").innerHTML = "Starthilfe";
-    document.getElementById("dish-price").innerHTML = "€6.52";
-    document.getElementById("dish-description").innerHTML = "Kartoffelpuffer sind flach gebratene Pfannkuchen aus geriebenen oder gemahlenen Kartoffeln,"+
-    "Matzenmehl und einer bindenden Zutat wie Ei oder Apfelmus, oft gewürzt mit geriebenem Knoblauch oder Zwiebeln und Gewürzen.";
-})
+// Función para cambiar el idioma y obtener la traducción
+function getTranslation(id, language) {
+    // Agrega la clase "clicked" a la etiqueta actual
+    document.getElementById(language).classList.add("clicked");
 
-//add "click" event to change the language of the dish description to English
-btnEN.addEventListener("click", () => {
-    document.getElementById("dish-title").innerHTML = "KARTOFFELPUFFER";
-    document.getElementById("dish-category").innerHTML = "Starter";
-    document.getElementById("dish-price").innerHTML = "$6.90";
-    document.getElementById("dish-description").innerHTML = "Potato Pancakes Are Shallow Fried Pancakes Of Grated Or Ground Potato,"+
-    "Matzo Meal, And A Binding Ingredient Such As Egg Or Applesauce, Often Flavored With Grated Garlic Or Onion And Seasonings.";
-})
+    // Elimina la clase "clicked" de la etiqueta opuesta
+    let oppositeLanguage = (language === 'en') ? 'de' : 'en';
+    document.getElementById(oppositeLanguage).classList.remove("clicked");
+
+    // Muestra el ID en la consola
+    console.log(id);
+
+    // Crea un objeto con la información del plato y el idioma
+    let info = {
+        id_dish: id,
+        language: language
+    };
+
+    // Realiza una solicitud fetch para obtener la traducción desde el servidor
+    fetch("http://localhost/gasthof-backend/language.php", {
+        method: "POST",
+        mode: "same-origin",
+        credentials: "same-origin",
+        headers: {
+            'Accept': "application/json, text/plain, */*",
+            'Content-Type': "application/json"
+        },
+        body: JSON.stringify(info)
+    })
+        .then(response => response.json())
+        .then(data => {
+            // Actualiza el título y la descripción del plato con la traducción obtenida
+            document.getElementById("dish-title").innerHTML = data.name;
+            document.getElementById("dish-description").innerHTML = data.description;
+        })
+        .catch(err => console.log("error: " + err));
+}
