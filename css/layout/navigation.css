@@ -116,9 +116,10 @@
 .icons_container {
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: flex-start;
     gap: 1.5rem;
     list-style-type: none;
+    padding: 0;
 }
 
 #mobile-open-btn,
@@ -143,7 +144,7 @@
     padding: 1rem;
 }
 
-.account-menu {
+#account-menu {
     display: flex;
     visibility: hidden;
     flex-direction: column;
@@ -160,11 +161,15 @@
     margin-top: 3rem;
 }
 
-.user-icon:hover + .account-menu, 
-.account-menu:hover {
+#user-icon:hover + #account-menu, 
+#account-menu:hover {
    visibility: visible;
    opacity: 1;
    margin-top: 0rem;
+}
+
+#user-icon{
+    cursor: pointer;
 }
 
 .account-list {
@@ -187,11 +192,33 @@
 
 @media (max-width: 767.98px) {
     .website-logo-container {
-        order: 1;
+        order: 2;
+        margin-bottom: .5rem;
     }
 
-    .icons_container {
+    .search-icon, .bag-icon{
         display: none;
+    }
+
+    #user-icon{
+        display: flex;
+        width: 1.5625rem;
+        height: 1.5625rem;
+        cursor: pointer;
+    }
+
+    
+
+    .account-list{
+        align-items: flex-start !important;
+    }
+    
+
+    .icons_container {
+        display: flex;
+        order: 1;
+        justify-content: flex-start;
+        gap: 0;
     }
 
     #nav-container {
@@ -235,7 +262,7 @@
 
     #mobile-open-btn {
         display: block;
-        order: 2;
+        order: 3;
     }
 
     #mobile-close-btn {
@@ -243,7 +270,8 @@
     }
 
     #account-menu {
-        display: none;
+        width: 70px;
+        left: 0;
     }
 
     .categories-buttons-container {

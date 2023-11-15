@@ -43,8 +43,8 @@
        
             <ul class="icons_container">
                 <li><a class="search-icon" href="#"><img src="./imgs/icons/search-icon.svg" alt="Search"></a></li>
-                <li><a class="user-icon" href="#" id="account-icon"><img src="./imgs/icons/user.svg" alt="Account"></a>
-                    <div class="account-menu">
+                <li><a id="user-icon"  id="account-icon"><img src="./imgs/icons/user.svg" alt="Account"></a>
+                    <div id="account-menu">
                         <ul class="nav-list account-list">
                             <?php 
                                 session_start();
@@ -69,5 +69,16 @@
 <!--nav icons-->
 </nav>
 
+<script>
+   /* let userIcon = document.getElementById("user-icon");
+    let accountMenu = document.getElementById("account-menu");
+
+    userIcon.addEventListener("click", () => {
+        console.log("listened");
+        accountMenu.classList.add("mobile");
+    })*/
+
+   
+</script>
 <script src="./js/mobileNavMenu.js"></script>
 <script src="./js/navMenu.js"></script>
