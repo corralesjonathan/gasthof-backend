@@ -174,13 +174,18 @@
 .dish-img-container{
     overflow: hidden;
     position: relative;
+    display: flex;
+    width: auto;
+    justify-content: center;
 }
 
 .dish-img{
-    width: 100%;
-    height: 100%;
+    position: relative;
+    width: auto;
+    height: 600px;
     object-fit: cover;
 }
+
 
 .dish-info-container{
     text-align: left;
@@ -233,9 +238,8 @@
     width: auto;
 }
 
-
-
 @media (max-width: 768px){
     .restaurant-data{text-align: center;}
     .restaurant-data-column{justify-content: center;}
+    .dish-img{width: 100%;height: auto;}
     }
