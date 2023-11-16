@@ -18,6 +18,8 @@
                     session_start();
                     $_SESSION["isLoggedIn"] = true;
                     $_SESSION["fullname"] = $user[0]["name"];
+                    //this session variable stores the user id
+                    $_SESSION["user_id"] = $user[0]["id_user"];
                     header("location: home.php");
                 } else {
                     $messageLogin = "wrong username or password";

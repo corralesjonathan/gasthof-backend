@@ -34,32 +34,33 @@
     <!--fonts-->
     <link rel="stylesheet" href="./css/main.css">
 </head>
-    <body>
-        <!--header & hero-->
-        <header>
-            <?php 
+
+<body>
+    <!--header & hero-->
+    <header>
+        <?php 
                 include './parts/header.php'
             ?>
-        </header>
-        <!--header & hero-->
+    </header>
+    <!--header & hero-->
 
-        <!--main content-->
-        <main>
-            <!--featured dishes-->
-            <div class="dishes-main-container">
-                <div class="home-titles-container">
-                    <h3 class="home-title1">discover our</h3>
-                    <h2 class="home-title2">featured dishes</h2>
-                </div>
-                <div class="dishes-container">
-                    <?php
+    <!--main content-->
+    <main>
+        <!--featured dishes-->
+        <div class="dishes-main-container">
+            <div class="home-titles-container">
+                <h3 class="home-title1">discover our</h3>
+                <h2 class="home-title2">featured dishes</h2>
+            </div>
+            <div class="dishes-container">
+                <?php
                         foreach ($dishes as $dish) {
                             echo "<section class='dish-card'>"
                             ."<div class='card-img-container'>"
                             ."<a class='dish-card-link' href='dish.php?id=".$dish["id_dish"]."'>"
                                     ."<img src='./imgs/dishes/".$dish["dish_category_name"]."/".$dish["dish_image"]."' alt=".$dish["dish_name"]." class='dish-card-img'>"
                                     ."</a>"
-                                    ."<button class='like'><img class='like-icon' src='./imgs/icons/like.svg'></button>"
+                                    ."<button id='like' onclick='addToWishlist(".$dish["id_dish"].", ".$_SESSION["user_id"].")'><img class='like-icon' src='./imgs/icons/like.svg'></button>"
                                     ."</div>"
                                     ."<div class='dish-data-container'>"
                                         ."<div class='dish-texts-container'>"
@@ -75,121 +76,146 @@
                             ."</section>";
                         }
                     ?>
-                </div>
-                <a href="menu.php" class="btn view-all">view all</a>
             </div>
-            <!--featured dishes-->
+            <a href="menu.php" class="btn view-all">view all</a>
+        </div>
+        <!--featured dishes-->
 
-            <!--beers slider-->
-            <div id="slider-container">
-                <div class="home-titles-container">
-                    <h3 class="home-title1">we have the better</h3>
-                    <h2 class="home-title2">german beer</h2>
-                </div>
-                <!--slides-->
-                <section class="slide fade">
-                    <div class="slide-data-column">
-                        <!--left-column-->
-                        <div class="slide-data-container">
-                            <h2 class="slide-title dish-title">Köstritzer Schwarzbier</h2>
-                            <p class="dish-type ">330ml</p>
-                            <p class="dish-type slide-description">A Schwarzbier is a dark lager with roasted malt and
-                                sometimes a slightly memorable smoky flavour.</p>
-                            <p class="dish-price">$2.35</p>
-                            <a class="btn order" href="">Order</a>
-                        </div>
-                    </div>
-                    <!--left-column-->
-                    <div class="slide-img-container">
-                        <!--right column-->
-                        <img src="./imgs/slides/köstritzer.webp" alt="" class="slide-img">
-                    </div>
-                </section>
-                <section class="slide fade">
-                    <div class="slide-data-column">
-                        <!--left-column-->
-                        <div class="slide-data-container">
-                            <h2 class="slide-title dish-title">bitburger premium pils</h2>
-                            <p class="dish-type ">330ml</p>
-                            <p class="dish-type slide-description">The straw-coloured pilsner is crystal-clear and
-                                perfectly hopped,
-                                boasting a light taste and a lasting foam head with extra-fine bubbles.</p>
-                            <p class="dish-price">$2.25</p>
-                            <a class="btn order" href="">Order</a>
-                        </div>
-                    </div>
-                    <!--left-column-->
-                    <div class="slide-img-container">
-                        <!--right column-->
-                        <img src="./imgs/slides/bitburger.webp" alt="" class="slide-img">
-                    </div>
-                </section>
-                <section class="slide fade">
-                    <div class="slide-data-column">
-                        <!--left-column-->
-                        <div class="slide-data-container">
-                            <h2 class="slide-title dish-title">schneider weisse</h2>
-                            <p class="dish-type ">500ml</p>
-                            <p class="dish-type slide-description">Schneider Weisse Love Beer is a wheat beer with a
-                                lovely golden color topped with a
-                                dense and bright white foam.</p>
-                            <p class="dish-price">$3.95</p>
-                            <a class="btn order" href="">Order</a>
-                        </div>
-                    </div>
-                    <!--left-column-->
-                    <div class="slide-img-container">
-                        <!--right column-->
-                        <img src="./imgs/slides/schneider.webp" alt="" class="slide-img">
-                    </div>
-                </section>
-                <section class="slide fade">
-                    <div class="slide-data-column">
-                        <!--left-column-->
-                        <div class="slide-data-container">
-                            <h2 class="slide-title dish-title">Weihenstephaner</h2>
-                            <p class="dish-type ">330ml</p>
-                            <p class="dish-type slide-description">A full-bodied golden yellow wheat beer with aromas of
-                                cloves.</p>
-                            <p class="dish-price">$2.50</p>
-                            <a class="btn order" href="">Order</a>
-                        </div>
-                    </div>
-                    <!--left-column-->
-                    <div class="slide-img-container">
-                        <!--right column-->
-                        <img src="./imgs/slides/weihenstephaner.webp" alt="" class="slide-img">
-                    </div>
-                </section>
-                <!--slides-->
-                <!--slider dots-->
-                <div class="dots-container">
-                    <span class="dot" onclick="currentSlide(1)"></span>
-                    <span class="dot" onclick="currentSlide(2)"></span>
-                    <span class="dot" onclick="currentSlide(3)"></span>
-                    <span class="dot" onclick="currentSlide(4)"></span>
-                </div>
-                <!--slider dots-->
+        <!--beers slider-->
+        <div id="slider-container">
+            <div class="home-titles-container">
+                <h3 class="home-title1">we have the better</h3>
+                <h2 class="home-title2">german beer</h2>
             </div>
-            <!--beers slider-->
+            <!--slides-->
+            <section class="slide fade">
+                <div class="slide-data-column">
+                    <!--left-column-->
+                    <div class="slide-data-container">
+                        <h2 class="slide-title dish-title">Köstritzer Schwarzbier</h2>
+                        <p class="dish-type ">330ml</p>
+                        <p class="dish-type slide-description">A Schwarzbier is a dark lager with roasted malt and
+                            sometimes a slightly memorable smoky flavour.</p>
+                        <p class="dish-price">$2.35</p>
+                        <a class="btn order" href="">Order</a>
+                    </div>
+                </div>
+                <!--left-column-->
+                <div class="slide-img-container">
+                    <!--right column-->
+                    <img src="./imgs/slides/köstritzer.webp" alt="" class="slide-img">
+                </div>
+            </section>
+            <section class="slide fade">
+                <div class="slide-data-column">
+                    <!--left-column-->
+                    <div class="slide-data-container">
+                        <h2 class="slide-title dish-title">bitburger premium pils</h2>
+                        <p class="dish-type ">330ml</p>
+                        <p class="dish-type slide-description">The straw-coloured pilsner is crystal-clear and
+                            perfectly hopped,
+                            boasting a light taste and a lasting foam head with extra-fine bubbles.</p>
+                        <p class="dish-price">$2.25</p>
+                        <a class="btn order" href="">Order</a>
+                    </div>
+                </div>
+                <!--left-column-->
+                <div class="slide-img-container">
+                    <!--right column-->
+                    <img src="./imgs/slides/bitburger.webp" alt="" class="slide-img">
+                </div>
+            </section>
+            <section class="slide fade">
+                <div class="slide-data-column">
+                    <!--left-column-->
+                    <div class="slide-data-container">
+                        <h2 class="slide-title dish-title">schneider weisse</h2>
+                        <p class="dish-type ">500ml</p>
+                        <p class="dish-type slide-description">Schneider Weisse Love Beer is a wheat beer with a
+                            lovely golden color topped with a
+                            dense and bright white foam.</p>
+                        <p class="dish-price">$3.95</p>
+                        <a class="btn order" href="">Order</a>
+                    </div>
+                </div>
+                <!--left-column-->
+                <div class="slide-img-container">
+                    <!--right column-->
+                    <img src="./imgs/slides/schneider.webp" alt="" class="slide-img">
+                </div>
+            </section>
+            <section class="slide fade">
+                <div class="slide-data-column">
+                    <!--left-column-->
+                    <div class="slide-data-container">
+                        <h2 class="slide-title dish-title">Weihenstephaner</h2>
+                        <p class="dish-type ">330ml</p>
+                        <p class="dish-type slide-description">A full-bodied golden yellow wheat beer with aromas of
+                            cloves.</p>
+                        <p class="dish-price">$2.50</p>
+                        <a class="btn order" href="">Order</a>
+                    </div>
+                </div>
+                <!--left-column-->
+                <div class="slide-img-container">
+                    <!--right column-->
+                    <img src="./imgs/slides/weihenstephaner.webp" alt="" class="slide-img">
+                </div>
+            </section>
+            <!--slides-->
+            <!--slider dots-->
+            <div class="dots-container">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+            </div>
+            <!--slider dots-->
+        </div>
+        <!--beers slider-->
 
-            <!--about restaurant section-->
-            <?php include './parts/about-us.php'?>
-            <!--about restaurant section-->
+        <!--about restaurant section-->
+        <?php include './parts/about-us.php'?>
+        <!--about restaurant section-->
 
-            <!--subscribe form-->
-            <?php include './parts/subscribe-form.php'?>
-            <!--subscribe form-->
-        </main>
-        <!--main content-->
+        <!--subscribe form-->
+        <?php include './parts/subscribe-form.php'?>
+        <!--subscribe form-->
+    </main>
+    <!--main content-->
 
-        <!--footer-->
-        <?php include './parts/footer.php'?>
-        <!--footer-->
+    <!--footer-->
+    <?php include './parts/footer.php'?>
+    <!--footer-->
 
-        <!--script-->
-        <script src="./js/Slider.js"></script>
-        <script src="./js/HeroSlider.js"></script>
-        <!--script-->
-    </body>
+    <!--script-->
+    <script>
+    
+    function addToWishlist(id_dish, id_user){
+        console.log(id_dish, id_user);
+
+        let info = {
+            id_dish: id_dish,
+            id_user: id_user
+        };
+
+        //fetch
+        fetch("http://localhost/gasthof-backend/add-to-wishlist.php", {
+                method: "POST",
+                mode: "same-origin",
+                credentials: "same-origin",
+                headers: {
+                    'Accept': "application/json, text/plain, */*",
+                    'Content-Type': "application/json"
+                },
+                body: JSON.stringify(info)
+            })
+            .catch(err => console.log("error: " + err));
+    }
+    </script>
+    <script src="./js/Slider.js"></script>
+    <script src="./js/HeroSlider.js"></script>
+    <!--script-->
+</body>
+
 </html>

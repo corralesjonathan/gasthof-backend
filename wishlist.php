@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gasthof=Contact</title>
+    <title>Wishlist - Gathof</title>
     <!--fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,10 +27,14 @@
 
     <main>
         <div class="dishes-main-container">
-            <div class="home-titles-container">
-                <h3 class="home-title1">Hello,</h3>
-                <h2 class="home-title2">next destination</h2>
-            </div>
+            <?php
+            if(isset($_SESSION["isLoggedIn"])){ 
+                echo "<div class='home-titles-container'>"
+                    ."<h3 class='home-title1'>Hello,</h3>"
+                    ."<h2 class='home-title2'>".$_SESSION["fullname"]."".$_SESSION["fullname"]."</h2>"
+                ."</div>";
+            }
+            ?>
             <h2 class="slide-title dish-title wish-list-title">This is your wish list</h2>
             <div class="dishes-container">
                 <section class="dish-card" data-category="main-courses">
