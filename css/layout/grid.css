@@ -83,6 +83,9 @@
     transition: ease-out 0.5s; /* Duración de la transición */
     cursor: pointer;
     opacity: 0;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 .like-icon{
     content: url(../../imgs/icons/like.svg);

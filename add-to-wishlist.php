@@ -15,8 +15,9 @@ if (isset($_SERVER["CONTENT_TYPE"])) {
         $database->insert("tb_wishlist",[
             "id_dish" => $id_dish,
             "id_user" => $id_user 
-        ]); 
-
+        ]);
+        
+        
         //echo json_encode(["id_dish" => $id_dish]);
     }
 }

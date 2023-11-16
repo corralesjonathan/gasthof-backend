@@ -85,7 +85,7 @@
                         ."<a class='dish-card-link' href='dish.php?id=".$dish["id_dish"]."'>"
                                 ."<img src='./imgs/dishes/".$dish["dish_category_name"]."/".$dish["dish_image"]."' alt=".$dish["dish_name"]." class='dish-card-img'>"
                                 ."</a>"
-                                ."<button class='like'><img class='like-icon' src='./imgs/icons/like.svg'></button>"
+                                ."<button id='like'><img class='like-icon' src='./imgs/icons/like.svg'></button>"
                                 ."</div>"
                                 ."<div class='dish-data-container'>"
                                     ."<div class='dish-texts-container'>"

@@ -31,7 +31,7 @@
             if(isset($_SESSION["isLoggedIn"])){ 
                 echo "<div class='home-titles-container'>"
                     ."<h3 class='home-title1'>Hello,</h3>"
-                    ."<h2 class='home-title2'>".$_SESSION["fullname"]."".$_SESSION["fullname"]."</h2>"
+                    ."<h2 class='home-title2'>".$_SESSION["fullname"]."</h2>"
                 ."</div>";
             }
             ?>
