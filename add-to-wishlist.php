@@ -16,9 +16,6 @@ if (isset($_SERVER["CONTENT_TYPE"])) {
             "id_dish" => $id_dish,
             "id_user" => $id_user 
         ]);
-        
-        
-        //echo json_encode(["id_dish" => $id_dish]);
     }
 }
 ?>

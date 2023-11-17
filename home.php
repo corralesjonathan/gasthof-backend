@@ -59,9 +59,13 @@
                             ."<div class='card-img-container'>"
                             ."<a class='dish-card-link' href='dish.php?id=".$dish["id_dish"]."'>"
                                     ."<img src='./imgs/dishes/".$dish["dish_category_name"]."/".$dish["dish_image"]."' alt=".$dish["dish_name"]." class='dish-card-img'>"
-                                    ."</a>"
-                                    ."<a href='wishlist.php' id='like' onclick='addToWishlist(".$dish["id_dish"].", ".$_SESSION["user_id"].")'><img class='like-icon' src='./imgs/icons/like.svg'></a>"
-                                    ."</div>"
+                                    ."</a>";
+                                    if(isset($_SESSION["isLoggedIn"])){
+                                    echo "<a href='wishlist.php'  id='like' onclick='addToWishlist(".$dish["id_dish"].", ".$_SESSION["user_id"].")'><img class='like-icon' src='./imgs/icons/like.svg'></a>";
+                                    }else{
+                                        echo "<a href='login.php' id='like'><img class='like-icon' src='./imgs/icons/like.svg'></a>";   
+                                    }
+                                    echo"</div>"
                                     ."<div class='dish-data-container'>"
                                         ."<div class='dish-texts-container'>"
                                         ."<a class='a-titles' href='dish.php?id=".$dish["id_dish"]."'>"
@@ -211,6 +215,7 @@
                 body: JSON.stringify(info)
             })
             .catch(err => console.log("error: " + err));
+
     }
     </script>
     <script src="./js/Slider.js"></script>
