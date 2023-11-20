@@ -26,10 +26,11 @@
                         fermentum tempor accumsan.</p>
                     <div class="hero-buttons-container">
                         <a href="#" class="btn">read more</a>
-                        <a href="menu.html" class="btn view-menu">view menu</a>
+                        <a href="./menu.php" class="btn view-menu">view menu</a>
                     </div>
                 </div>
             </div>
         </div>
         <!--hero slider, titles & buttons-->
     </header>
+    <script src="./js/HeroSlider.js"></script>

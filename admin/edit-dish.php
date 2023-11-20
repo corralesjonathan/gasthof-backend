@@ -70,13 +70,13 @@
         ]);
 
         if($_POST["dish_category_name"]==1){
-            move_uploaded_file($file_tmp, "../imgs/cards/Starters/".$img);
+            move_uploaded_file($file_tmp, "../imgs/dishes/Starters/".$img);
         } else if($_POST["dish_category_name"]==2){
-            move_uploaded_file($file_tmp, "../imgs/cards/Main Courses/".$img);
+            move_uploaded_file($file_tmp, "../imgs/dishes/Main Courses/".$img);
         } else if($_POST["dish_category_name"]==3){
-            move_uploaded_file($file_tmp, "../imgs/cards/Desserts/".$img);
+            move_uploaded_file($file_tmp, "../imgs/dishes/Desserts/".$img);
         } else {
-            move_uploaded_file($file_tmp, "../imgs/cards/Drinks/".$img);
+            move_uploaded_file($file_tmp, "../imgs/dishes/Drinks/".$img);
         }
 
         header ("location: list-dishes.php");
