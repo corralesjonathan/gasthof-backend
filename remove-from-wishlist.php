@@ -9,15 +9,14 @@ if (isset($_SERVER["CONTENT_TYPE"])) {
         $content = trim(file_get_contents("php://input"));
         $decoded = json_decode($content, true);
 
-        $id_dish = $decoded["id_dish"];
-        $id_user = $decoded["id_user"];
+        $id_wishlist = $decoded["id_wishlist"];
 
-        $database->insert("tb_wishlist",[
-            "id_dish" => $id_dish,
-            "id_user" => $id_user 
+        $database->delete("tb_wishlist",[
+            "id_wishlist" => $id_wishlist
         ]);
+        
 
-        echo json_encode($id_dish + $id_user);
+        echo json_encode($id_wishlist);
     }
 }
 ?>

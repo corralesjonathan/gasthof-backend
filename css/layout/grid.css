@@ -10,7 +10,7 @@
     width: 80vw;
 }
 
-.login-titles-container{
+.login-titles-container {
     width: auto;
 }
 
@@ -38,7 +38,7 @@
     transition: transform 0.5s;
 }
 
-.dish-texts-container{
+.dish-texts-container {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -55,12 +55,12 @@
     height: 5rem;
 }
 
-.card-img-container{
+.card-img-container {
     display: flex;
     position: relative;
 }
 
-.dish-card:hover .dish-card-img  {
+.dish-card:hover .dish-card-img {
     transform: scale(1.1);
 }
 
@@ -80,18 +80,16 @@
     width: 3rem;
     height: 3rem;
     box-shadow: var(--bs-main);
-    transition: ease-out 0.5s; /* Duración de la transición */
+    transition: ease-out 0.5s;
+    /* Duración de la transición */
     cursor: pointer;
     opacity: 0;
     align-items: center;
     display: flex;
     justify-content: center;
 }
-.like-icon{
-    content: url(../../imgs/icons/like.svg);
-}
 
-.like-icon:hover{
+.like-icon:hover {
     content: url(../../imgs/icons/like-fill.svg);
 
 }
@@ -131,7 +129,8 @@
     margin: 2rem;
     text-align: right;
 }
-.services-grid{
+
+.services-grid {
     gap: 2rem;
     margin-top: var(--mg-md);
     width: 80vw;
@@ -139,7 +138,7 @@
     grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
 }
 
-.service-card{
+.service-card {
     display: flex;
     text-align: center;
     justify-content: center;
@@ -147,34 +146,35 @@
     gap: 1rem;
 }
 
-.service-img{
-   height: 4rem;
+.service-img {
+    height: 4rem;
 }
 
-.menu-container{
+.menu-container {
     display: flex;
     gap: 2rem;
     width: 80vw;
 }
 
-.filters-container{
+.filters-container {
     display: block;
 }
 
-.dish-container{
+.dish-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
     width: 80vw;
     margin: var(--mg-lg) auto;
     gap: 4rem;
 }
-.dish-title-container{
+
+.dish-title-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.dish-img-container{
+.dish-img-container {
     overflow: hidden;
     position: relative;
     display: flex;
@@ -182,7 +182,7 @@
     justify-content: center;
 }
 
-.dish-img{
+.dish-img {
     position: relative;
     width: auto;
     height: 600px;
@@ -190,46 +190,46 @@
 }
 
 
-.dish-info-container{
+.dish-info-container {
     text-align: left;
     margin-top: var(--mg-sm);
 }
 
-.language-btn-container{
-    margin-bottom: 2rem; 
-    gap: 1rem; 
+.language-btn-container {
+    margin-bottom: 2rem;
+    gap: 1rem;
     display: flex;
 }
 
-.add-cart-container{
+.add-cart-container {
     display: flex;
     align-items: center;
     gap: 1rem;
     margin-top: var(--mg-nm);
 }
 
-.contact-container{
+.contact-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
     gap: 1rem;
     width: 80vw;
 }
 
-.contact-info-container{
+.contact-info-container {
     display: flex;
     flex-direction: column;
     align-items: start;
     text-align: left;
 }
 
-.contact-socialmedia-container{
+.contact-socialmedia-container {
     display: flex;
     flex-direction: row;
     gap: 1rem;
     margin-top: 1rem;
 }
 
-.login-container{
+.login-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
     gap: 7rem;
@@ -237,12 +237,80 @@
     margin: var(--mg-lg) auto;
 }
 
-.login{
+.login {
     width: auto;
 }
 
-@media (max-width: 768px){
-    .restaurant-data{text-align: center;}
-    .restaurant-data-column{justify-content: center;}
-    .dish-img{width: 100%;height: auto;}
+.wishlist-table {
+    width: 60vw;
+    border-collapse: collapse;
+    margin: auto;
+}
+
+.wishlist-thead{
+    color: var(--clr-gray);
+}
+
+.wishlist-tr{
+    padding: .5rem;
+    border-bottom: .0625rem solid var(--clr-main);
+    
+}
+
+.wishlist-img-container{
+    display: flex;
+    position: relative;
+}
+
+.wishlist-img{
+    position: relative;
+    object-fit: cover;
+    width: 100px;
+    height: 100px;
+    margin: 1rem;
+}
+
+.wishlist-td-delete{
+    padding: .5rem;
+    width: 5%;
+}
+
+.wishlist-td-image{
+    padding: .5rem;
+    width: 5%;
+}
+
+.wishlist-td-name{
+    padding: .5rem;
+    width: 42%;
+}
+
+.wishlist-td-price{
+    padding: .5rem;
+    width: 42%;
+}
+
+.wishlist-td-actions{
+    text-align: right;
+    padding: .5rem;
+    width: 5%;
+}
+
+@media (max-width: 768px) {
+    .restaurant-data {
+        text-align: center;
     }
+
+    .restaurant-data-column {
+        justify-content: center;
+    }
+
+    .dish-img {
+        width: 100%;
+        height: auto;
+    }
+
+    .wishlist-table {
+        width: 90vw;
+    }
+}

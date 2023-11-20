@@ -51,7 +51,7 @@
                                 if(isset($_SESSION["isLoggedIn"])){
                                     echo "<li><a class='nav-list-link account-nav-list-link'>Hi, <b>".$_SESSION["fullname"]."!</b></a></li>";
                                     echo "<li><a class='nav-list-link account-nav-list-link' href='account.php'>My account</a></li>";
-                                    echo "<li><a class='nav-list-link account-nav-list-link' href='wishlist.php'>Wish list</a></li>";
+                                    echo "<li><a class='nav-list-link account-nav-list-link' href='wishlist.php'>Wishlist</a></li>";
                                     echo "<li><a class='nav-list-link account-nav-list-link' href='logout.php'>log out</a> <a href='logout.php'><img src='./imgs/icons/logout.svg' alt='Logout'></a></li>";
                                 }else{
                                     echo "<li><a class='nav-list-link account-nav-list-link' href='login.php'>My account</a></li>";

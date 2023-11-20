@@ -1,20 +1,33 @@
-<?php 
-    require_once 'database.php';
-        $dishes = $database->select("tb_wishlist", [
-            "[>]tb_dishes" => ["id_dish" => "id_dish"],
-            "[>]tb_users" => ["id_user" => "id_user"],
-            "[>]tb_dishes_categories" => ["tb_dishes.id_dish_category" => "id_dish_category"],
-        ], [
-            "tb_wishlist.id_wishlist",
-            "tb_dishes.id_dish",
-            "tb_dishes.dish_name",
-            "tb_dishes.dish_image",
-            "tb_dishes.dish_price",
-            "tb_users.id_user",
-            "tb_dishes_categories.dish_category_name"
-        ], [
-            "tb_wishlist.id_user" => 1
-        ]);
+<?php
+
+function getWishlist($database) {
+
+    $dishes = $database->select("tb_wishlist", [
+        "[>]tb_dishes" => ["id_dish" => "id_dish"],
+        "[>]tb_users" => ["id_user" => "id_user"],
+        "[>]tb_dishes_categories" => ["tb_dishes.id_dish_category" => "id_dish_category"],
+    ], [
+        "tb_wishlist.id_wishlist",
+        "tb_dishes.id_dish",
+        "tb_dishes.dish_name",
+        "tb_dishes.dish_image",
+        "tb_dishes.dish_price",
+        "tb_users.id_user",
+        "tb_dishes_categories.dish_category_name"
+    ], [
+        "tb_wishlist.id_user" => $_SESSION["user_id"]
+    ]);
+
+    return $dishes;
+}
+
+function isWishlistEmpty($database) {
+    $wishlistCount = $database->count("tb_wishlist", [
+        "id_user" => $_SESSION["user_id"]
+    ]);
+
+    return $wishlistCount == 0;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,11 +53,12 @@
             include './parts/navigation.php'
         ?>
         <!--nav-->
-    <!--header & hero-->
+        <!--header & hero-->
 
-    <main>
-        <div class="dishes-main-container">
-            <?php
+        <main>
+            <div class="dishes-main-container">
+                <?php
+            $dishes = getWishlist($database);
             if(isset($_SESSION["isLoggedIn"])){ 
                 echo "<div class='home-titles-container'>"
                     ."<h3 class='home-title1'>Hello,</h3>"
@@ -52,39 +66,78 @@
                 ."</div>";
             }
             ?>
-            <h2 class="slide-title dish-title wish-list-title">This is your wish list</h2>
-            <div class="dishes-container">
-            <?php
-                        foreach ($dishes as $dish) {
-                            echo "<section class='dish-card'>"
-                            ."<div class='card-img-container'>"
-                            ."<a class='dish-card-link' href='dish.php?id=".$dish["id_dish"]."'>"
-                                    ."<img src='./imgs/dishes/".$dish["dish_category_name"]."/".$dish["dish_image"]."' alt=".$dish["dish_name"]." class='dish-card-img'>"
-                                    ."</a>"
-                                    ."</div>"
-                                    ."<div class='dish-data-container'>"
-                                        ."<div class='dish-texts-container'>"
-                                        ."<a class='a-titles' href='dish.php?id=".$dish["id_dish"]."'>"
-                                            ."<h2 class='dish-title'>".$dish["dish_name"]."</h2>"
-                                            ."</a>"
-                                            ."<p class='dish-type'>".$dish["dish_category_name"]."</p>"
-                                        ."</div>"
-                                        ."<a href='#'><img src='./imgs/icons/cart.svg' alt='Cart'></a>"
-                                    ."</div>"
-                                    ."<p class='dish-price'>$".$dish["dish_price"]."</p>"
-                                    ."<a class='btn order' href='dish.php?id=".$dish["id_dish"]."'>Order</a>"
-                            ."</section>";
-                        }
-                    ?>  
+                <h2 class="slide-title dish-title wish-list-title">My Wishlist</h2>
+                <table class="wishlist-table">
+                    <thead class="wishlist-thead">
+                        <tr class="wishlist-tr">
+                            <td class="dish-title wishlist-td-delete"></td>
+                            <td class="dish-title wishlist-td-image"></td>
+                            <td class="dish-title wishlist-td-name">Name</td>
+                            <td class="dish-title wishlist-td-price">Unit price</td>
+                            <td class="dish-title wishlist-td-actions"></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php 
+                foreach($dishes as $dish){
+                    echo "<tr id='tr-{$dish["id_wishlist"]}'>"
+                        ."<td><a onclick='removeFromWishlist(".$dish["id_wishlist"].")' href='#'><img src='./imgs/icons/delete.svg' alt=''></a></td>"
+                        ."<td class='dish-type slide-description'><a href='dish.php?id=".$dish["id_dish"]."'><img class='wishlist-img' src='./imgs/dishes/".$dish["dish_category_name"]."/".$dish["dish_image"]."' alt=''></a></td>"
+                        ."<td><a class='dish-type slide-description' href='dish.php?id=".$dish["id_dish"]."'>".$dish["dish_name"]."</a></td>"
+                        ."<td class='dish-type slide-description'>$".$dish["dish_price"]."</td>"
+                        ."<td><a href='#'><img src='./imgs/icons/cart.svg' alt=''></a></td>"
+                    ."</tr>";
+                }
+            ?>
+                    </tbody>
+                </table>
+                <?php 
+                if (isWishlistEmpty($database)){
+                echo "<p class='dish-type slide-description'>Your wishlist is empty.</p>";
+                }
+                ?>
             </div>
-        </div>
-    </main>
+        </main>
 
-    <footer>
-        <?php 
+        <footer>
+            <?php 
             include './parts/footer.php'
         ?>
-    </footer>
+        </footer>
+
+        <script>
+        function removeFromWishlist(id_wishlist) {
+            console.log(id_wishlist);
+
+            let info = {
+                id_wishlist: id_wishlist,
+            };
+
+            // Fetch
+            fetch("http://localhost/gasthof-backend/remove-from-wishlist.php", {
+                    method: "POST",
+                    mode: "same-origin",
+                    credentials: "same-origin",
+                    headers: {
+                        'Accept': "application/json, text/plain, */*",
+                        'Content-Type': "application/json"
+                    },
+                    body: JSON.stringify(info)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    updateInterface(id_wishlist);
+                    console.log(data);
+                })
+                .catch(err => console.log("Error al enviar la solicitud: " + err));
+        }
+
+        function updateInterface(id_wishlist) {
+            let tr = document.querySelector(`#tr-${id_wishlist}`);
+            tr.remove();
+            location.reload()
+        }
+        </script>
 </body>
 
 </html>

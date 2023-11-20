@@ -16,7 +16,31 @@
     ], [
         //where to show featured dishes only
         "tb_dishes.featured" => 1 
-    ]);  
+    ]);
+    
+    function getWishlist($database, $id_dish) {
+        $userId = $_SESSION["user_id"];
+    
+        // Obtén la información de la wishlist para un platillo específico y un usuario específico
+        $wishlist = $database->select("tb_wishlist", [
+            "[>]tb_dishes" => ["id_dish" => "id_dish"],
+            "[>]tb_users" => ["id_user" => "id_user"],
+            "[>]tb_dishes_categories" => ["tb_dishes.id_dish_category" => "id_dish_category"],
+        ], [
+            "tb_wishlist.id_wishlist",
+            "tb_dishes.id_dish",
+            "tb_dishes.dish_name",
+            "tb_dishes.dish_image",
+            "tb_dishes.dish_price",
+            "tb_users.id_user",
+            "tb_dishes_categories.dish_category_name"
+        ], [
+            "tb_wishlist.id_user" => $userId,
+            "tb_wishlist.id_dish" => $id_dish,
+        ]);
+    
+        return $wishlist;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -61,9 +85,14 @@
                                     ."<img src='./imgs/dishes/".$dish["dish_category_name"]."/".$dish["dish_image"]."' alt=".$dish["dish_name"]." class='dish-card-img'>"
                                     ."</a>";
                                     if(isset($_SESSION["isLoggedIn"])){
-                                    echo "<a href='wishlist.php'  id='like' onclick='addToWishlist(".$dish["id_dish"].", ".$_SESSION["user_id"].")'><img class='like-icon' src='./imgs/icons/like.svg'></a>";
+                                        $wishlist = getWishlist($database, $dish["id_dish"]);
+                                        if(!empty($wishlist)){
+                                            echo "<a id='like'  onclick='removeFromWishlist(".$wishlist[0]["id_wishlist"].")'><img class='like-icon' src='./imgs/icons/like-fill.svg'></a>";
+                                        }else{
+                                            echo "<a id='like'  onclick='addToWishlist(".$dish["id_dish"].", ".$_SESSION["user_id"].")'><img class='like-icon' src='./imgs/icons/like.svg'></a>";
+                                        }
                                     }else{
-                                        echo "<a href='login.php' id='like'><img class='like-icon' src='./imgs/icons/like.svg'></a>";   
+                                        echo "<a href='login.php' id='like'><img id='like-icon' src='./imgs/icons/like.svg'></a>";   
                                     }
                                     echo"</div>"
                                     ."<div class='dish-data-container'>"
@@ -194,10 +223,9 @@
 
     <!--script-->
     <script>
-    
-    function addToWishlist(id_dish, id_user){
+    function addToWishlist(id_dish, id_user) {
         console.log(id_dish, id_user);
-
+        
         let info = {
             id_dish: id_dish,
             id_user: id_user
@@ -214,9 +242,38 @@
                 },
                 body: JSON.stringify(info)
             })
+            .then(response => response.json())
+            .then(data => {
+                window.location.href = "http://localhost/gasthof-backend/wishlist.php";
+            })
             .catch(err => console.log("error: " + err));
 
     }
+    function removeFromWishlist(id_wishlist) {
+            console.log(id_wishlist);
+
+            let info = {
+                id_wishlist: id_wishlist,
+            };
+
+            // Fetch
+            fetch("http://localhost/gasthof-backend/remove-from-wishlist.php", {
+                    method: "POST",
+                    mode: "same-origin",
+                    credentials: "same-origin",
+                    headers: {
+                        'Accept': "application/json, text/plain, */*",
+                        'Content-Type': "application/json"
+                    },
+                    body: JSON.stringify(info)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    location.reload();
+                    console.log(data);
+                })
+                .catch(err => console.log("Error al enviar la solicitud: " + err));
+        }
     </script>
     <script src="./js/Slider.js"></script>
     <script src="./js/HeroSlider.js"></script>
