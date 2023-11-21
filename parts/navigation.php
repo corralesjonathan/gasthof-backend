@@ -26,10 +26,10 @@
                 <li><a id="btnMenu" class="nav-list-link" href="menu.php">Menu +</a>
                     <div id="dropdown-content">
                         <?php 
-                        echo "<a class='nav-list-link' href='#'>".$categories[0]["dish_category_name"]."</a>"
-                        ."<a class='nav-list-link' href='#'>".$categories[1]["dish_category_name"]."</a>"
-                        ."<a class='nav-list-link' href='#'>".$categories[2]["dish_category_name"]."</a>"
-                        ."<a class='nav-list-link' href='#'>".$categories[3]["dish_category_name"]."</a>";
+                        echo "<a class='nav-list-link' href='starters.php'>".$categories[0]["dish_category_name"]."</a>"
+                        ."<a class='nav-list-link' href='main-courses.php'>".$categories[1]["dish_category_name"]."</a>"
+                        ."<a class='nav-list-link' href='desserts.php'>".$categories[2]["dish_category_name"]."</a>"
+                        ."<a class='nav-list-link' href='drinks.php'>".$categories[3]["dish_category_name"]."</a>";
                         ?>
                     </div>
                 </li>
