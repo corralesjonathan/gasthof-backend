@@ -16,7 +16,7 @@
     <nav class="top-nav">
         <button id="mobile-open-btn"> <img src="./imgs/icons/mobile-btn.svg" alt="Mobile button"></button>
         <div class="website-logo-container">
-            <img src="./imgs/icons/website-logo.svg" alt="Gasthof logo" class="website-logo">
+            <a href="./home.php"><img src="./imgs/icons/website-logo.svg" alt="Gasthof logo" class="website-logo"></a>
         </div>
         <!--nav menu & mobile btn-->
         <div id="nav-container">

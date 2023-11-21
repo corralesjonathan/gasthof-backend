@@ -50,6 +50,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home-Gasthof</title>
+    <!--favicon-->
+    <link rel="icon" href="./imgs/icons/favicon.svg" type="image/x-icon">
     <!--fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
