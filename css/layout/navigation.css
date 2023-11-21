@@ -58,6 +58,7 @@
 .nav-menu-list-link {
     text-transform: capitalize;
     transition: 0s;
+    cursor: pointer;
 }
 
 .nav-menu-list-link:hover {

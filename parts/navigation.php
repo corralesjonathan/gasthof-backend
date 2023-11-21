@@ -70,15 +70,48 @@
 </nav>
 
 <script>
-   /* let userIcon = document.getElementById("user-icon");
-    let accountMenu = document.getElementById("account-menu");
-
-    userIcon.addEventListener("click", () => {
-        console.log("listened");
-        accountMenu.classList.add("mobile");
-    })*/
-
-   
+//mobile-nav-menu
+    //get elements by id
+    let nav = document.getElementById("nav-container");
+    let open = document.getElementById("mobile-open-btn");
+    let close = document.getElementById("mobile-close-btn");
+    
+    //make nav visible
+    open.addEventListener("click", () => {
+        nav.classList.add("visible");
+    })
+    
+    //make nav unvisible
+    close.addEventListener("click", () =>{
+        nav.classList.remove("visible");
+    })
 </script>
-<script src="./js/mobileNavMenu.js"></script>
-<script src="./js/navMenu.js"></script>
+
+<script>
+//nav-menu
+function selectedPage() {
+    //get buttons by id
+    let btnHome = document.getElementById('btnHome');
+    let btnMenu = document.getElementById('btnMenu');
+    let btnContact = document.getElementById('btnContact');
+    let btnAboutUs = document.getElementById('btnAboutUs');
+
+    //get currently url
+    let url = window.location.href;
+
+    //check url
+    if (url.includes("home.php")) {
+        btnHome.classList.add("active");
+    } else if (url.includes("menu.php")) {
+        btnMenu.classList.add("active");
+    } else if (url.includes("contact.html")) {
+        btnContact.classList.add("active");
+    } else if (url.includes("aboutUs.html")) {
+        btnAboutUs.classList.add("active");
+    }
+}
+//main loading
+document.addEventListener("DOMContentLoaded", function () {
+    selectedPage();
+});
+</script>
