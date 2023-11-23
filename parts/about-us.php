@@ -16,7 +16,7 @@
                         <h2 class="dish-title slide-title">our vision</h2>
                         <p class="dish-type restaurant-data-text">Lorem ipsum dolor sit amet consectetur. <br> Proin
                             senectus mauris ipsum suspendisse.</p>
-                        <a href="#" class="btn view-all">read more</a>
+                        <a href="./aboutus.php" class="btn view-all">read more</a>
                     </div>
                 </div>
             </section>

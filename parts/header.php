@@ -25,7 +25,7 @@
                     <p class="hero-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br> Pellentesque
                         fermentum tempor accumsan.</p>
                     <div class="hero-buttons-container">
-                        <a href="#" class="btn">read more</a>
+                        <a href="./aboutus.php" class="btn">read more</a>
                         <a href="./menu.php" class="btn view-menu">view menu</a>
                     </div>
                 </div>

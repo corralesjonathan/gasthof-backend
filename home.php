@@ -63,9 +63,7 @@
 
 <body>
     <!--header & hero-->
-    <header>
-        <?php include './parts/header.php'?>
-    </header>
+    <header> <?php include './parts/header.php'?> </header>
     <!--header & hero-->
 
     <!--main content-->
@@ -129,7 +127,7 @@
     <!--main content-->
 
     <!--footer-->
-    <?php include './parts/footer.php'?>
+    <footer> <?php include './parts/footer.php'?> </footer>
     <!--footer-->
 
     <!--script-->

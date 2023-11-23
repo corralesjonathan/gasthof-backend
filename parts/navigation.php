@@ -33,8 +33,8 @@
                         ?>
                     </div>
                 </li>
-                <li><a id="btnContact" class="nav-list-link" href="contact.html">Contact</a></li>
-                <li><a id="btnAboutUs" class="nav-list-link" href="#">About Us</a></li>
+                <li><a id="btnContact" class="nav-list-link" href="contact.php">Contact</a></li>
+                <li><a id="btnAboutUs" class="nav-list-link" href="aboutus.php">About Us</a></li>
             </ul>
         </div>
         <!--nav menu & mobile btn-->
@@ -104,9 +104,9 @@ function selectedPage() {
         btnHome.classList.add("active");
     } else if (url.includes("menu.php")) {
         btnMenu.classList.add("active");
-    } else if (url.includes("contact.html")) {
+    } else if (url.includes("contact.php")) {
         btnContact.classList.add("active");
-    } else if (url.includes("aboutUs.html")) {
+    } else if (url.includes("aboutus.php")) {
         btnAboutUs.classList.add("active");
     }
 }

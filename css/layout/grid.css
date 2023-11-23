@@ -229,6 +229,22 @@
     margin-top: 1rem;
 }
 
+.location-container{
+    display: flex;
+    overflow: hidden;
+    height: 400px;
+}
+
+.mockup-container{
+    display: flex;
+    justify-content: center;
+}
+
+.mockup-img{
+    position: relative;
+    object-fit: cover;
+}
+
 .login-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
