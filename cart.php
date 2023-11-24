@@ -77,6 +77,7 @@ function isWishlistEmpty($database) {
                             <td class="dish-title wishlist-td-name">Name</td>
                             <td class="dish-title wishlist-td-price">Unit price</td>
                             <td class="dish-title wishlist-td-actions">Quantity</td>
+                            <td class="dish-title wishlist-td-actions">Subtotal</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -85,9 +86,10 @@ function isWishlistEmpty($database) {
                     echo "<tr id='tr-{$dish["id_wishlist"]}'>"
                         ."<td><a onclick='removeFromWishlist(".$dish["id_wishlist"].")' href='#'><img src='./imgs/icons/delete.svg' alt=''></a></td>"
                         ."<td class='dish-type slide-description'><a href='dish.php?id=".$dish["id_dish"]."'><img class='wishlist-img' src='./imgs/dishes/".$dish["dish_category_name"]."/".$dish["dish_image"]."' alt=''></a></td>"
-                        ."<td><a class='dish-type slide-description' href='dish.php?id=".$dish["id_dish"]."'>".$dish["dish_name"]."</a></td>"
+                        ."<td class='wishlist-dish-title'><a class='dish-type slide-description' href='dish.php?id=".$dish["id_dish"]."'>".$dish["dish_name"]."</a><br><a class='dish-type'>".$dish["dish_category_name"]."</a></td>"
                         ."<td class='dish-type slide-description'>$".$dish["dish_price"]."</td>"
                         ."<td><input class='quantity' type='number' id='quantity' value='1'></td>"
+                        ."<td class='dish-type slide-description'>$".$dish["dish_price"]."</td>"
                     ."</tr>";
                 }
             ?>

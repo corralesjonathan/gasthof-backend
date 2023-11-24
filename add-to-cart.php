@@ -1,0 +1,21 @@
+<?php
+require_once 'database.php';
+
+if (isset($_SERVER["CONTENT_TYPE"])) {
+    $contentType = $_SERVER["CONTENT_TYPE"];
+
+    if ($contentType == "application/json") {
+        $content = trim(file_get_contents("php://input"));
+        $decoded = json_decode($content, true);
+
+        $cart = $database->insert("tb_cart",[
+            "id_user" => $decoded["id_user"],
+            "id_dish" => $decoded["id_dish"],
+            "quantity" => $decoded["quantity"],
+            "subtotal" => $decoded["subtotal"],
+        ]);
+
+        echo json_encode($cart);
+    }
+}
+?>

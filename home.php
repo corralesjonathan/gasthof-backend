@@ -100,7 +100,7 @@
                                             ."</a>"
                                             ."<p class='dish-type'>".$dish["dish_category_name"]."</p>"
                                         ."</div>"
-                                        ."<a href='#'><img src='./imgs/icons/cart.svg' alt='Cart'></a>"
+                                        ."<a onclick='addToCart(".$_SESSION["user_id"].", ".$dish["id_dish"].", 1, ".$dish["dish_price"].")' href='#'><img src='./imgs/icons/cart.svg' alt='Cart'></a>"
                                     ."</div>"
                                     ."<p class='dish-price'>$".$dish["dish_price"]."</p>"
                                     ."<a class='btn order' href='dish.php?id=".$dish["id_dish"]."'>Order</a>"
@@ -183,6 +183,36 @@
                 })
                 .catch(err => console.log("Error al enviar la solicitud: " + err));
         }
+        function addToCart(id_user, id_dish, quantity, subtotal) {
+        console.log(id_user, id_dish, quantity, subtotal);
+        
+        let info = {
+            id_user: id_user,
+            id_dish: id_dish,
+            quantity: quantity,
+            subtotal: subtotal 
+        };
+
+        console.log(info);
+
+        //fetch
+        fetch("http://localhost/gasthof-backend/add-to-cart.php", {
+                method: "POST",
+                mode: "same-origin",
+                credentials: "same-origin",
+                headers: {
+                    'Accept': "application/json, text/plain, */*",
+                    'Content-Type': "application/json"
+                },
+                body: JSON.stringify(info)
+            })
+            .then(response => response.json())
+            .then(data => {
+                //window.location.href = "http://localhost/gasthof-backend/wishlist.php";
+                console.log(data);
+            })
+            .catch(err => console.log("error: " + err));
+    }
     </script>
     <!--script-->
 </body>

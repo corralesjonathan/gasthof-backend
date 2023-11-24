@@ -60,9 +60,13 @@
                         </ul>
                     </div>
                 </li>
-                <li><a class="bag-icon" href="cart.php"><img class="cart-img" src="./imgs/icons/bag.svg" alt="Bag"></a></li>
-      
-        
+                <?php
+                if(isset($_SESSION["isLoggedIn"])){ 
+                   echo "<li><a class='bag-icon' href='cart.php'><img class='cart-img' src='./imgs/icons/bag.svg' alt='Bag'></a></li>"; 
+                }else{
+                   echo "<li><a class='bag-icon' href='login.php'><img class='cart-img' src='./imgs/icons/bag.svg' alt='Bag'></a></li>"; 
+                }
+                ?>  
 </div>
 
 <!--nav icons-->
