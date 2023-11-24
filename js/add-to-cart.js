@@ -1,5 +1,7 @@
-function addToCart(id_user, id_dish, quantity, subtotal) {
-    console.log(id_user, id_dish, quantity, subtotal);
+function addToCart(id_user, id_dish, quantity, dishPrice) {
+    console.log(id_user, id_dish, quantity, dishPrice);
+    let subtotal = quantity*dishPrice;
+    console.log(subtotal);
     
     let info = {
         id_user: id_user,
