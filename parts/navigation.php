@@ -41,11 +41,12 @@
 
         <!--nav icons-->
         <ul class="icons_container">
-                <li><a class="search-icon" href="#"><img class="search-img" src="./imgs/icons/search-icon.svg" alt="Search"></a></li>
-                <li><a id="user-icon"><img class="user-img" src="./imgs/icons/user.svg" alt="Account"></a>
-                    <div id="account-menu">
-                        <ul class="nav-list account-list">
-                            <?php 
+            <li><a class="search-icon" href="#"><img class="search-img" src="./imgs/icons/search-icon.svg"
+                        alt="Search"></a></li>
+            <li><a id="user-icon"><img class="user-img" src="./imgs/icons/user.svg" alt="Account"></a>
+                <div id="account-menu">
+                    <ul class="nav-list account-list">
+                        <?php 
                                 session_start();
                                 if(isset($_SESSION["isLoggedIn"])){
                                     echo "<li><a class='nav-list-link account-nav-list-link'>Hi, <b>".$_SESSION["fullname"]."!</b></a></li>";
@@ -57,16 +58,16 @@
                                     echo "<li><a class='nav-list-link account-nav-list-link' href='login.php'>login</a></li>";
                                 }
                             ?>
-                        </ul>
-                    </div>
-                </li>
-                <?php
+                    </ul>
+                </div>
+            </li>
+            <?php
                 if(isset($_SESSION["isLoggedIn"])){ 
-                   echo "<li><a class='bag-icon' href='cart.php'><img class='cart-img' src='./imgs/icons/bag.svg' alt='Bag'></a></li>"; 
+                   echo "<li><a class='bag-icon' href='cart.php'><img class='bag-img' src='./imgs/icons/bag.svg' alt='Bag'></a></li>"; 
                 }else{
-                   echo "<li><a class='bag-icon' href='login.php'><img class='cart-img' src='./imgs/icons/bag.svg' alt='Bag'></a></li>"; 
+                   echo "<li><a class='bag-icon' href='login.php'><img class='bag-img' src='./imgs/icons/bag.svg' alt='Bag'></a></li>"; 
                 }
-                ?>  
+                ?>
 </div>
 
 <!--nav icons-->
@@ -74,20 +75,20 @@
 
 <script>
 //mobile-nav-menu
-    //get elements by id
-    let nav = document.getElementById("nav-container");
-    let open = document.getElementById("mobile-open-btn");
-    let close = document.getElementById("mobile-close-btn");
-    
-    //make nav visible
-    open.addEventListener("click", () => {
-        nav.classList.add("visible");
-    })
-    
-    //make nav unvisible
-    close.addEventListener("click", () =>{
-        nav.classList.remove("visible");
-    })
+//get elements by id
+let nav = document.getElementById("nav-container");
+let open = document.getElementById("mobile-open-btn");
+let close = document.getElementById("mobile-close-btn");
+
+//make nav visible
+open.addEventListener("click", () => {
+    nav.classList.add("visible");
+})
+
+//make nav unvisible
+close.addEventListener("click", () => {
+    nav.classList.remove("visible");
+})
 </script>
 
 <script>
@@ -114,7 +115,7 @@ function selectedPage() {
     }
 }
 //main loading
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     selectedPage();
 });
 </script>

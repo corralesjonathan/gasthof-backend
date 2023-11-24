@@ -21,7 +21,6 @@
     function getWishlist($database, $id_dish) {
         $userId = $_SESSION["user_id"];
     
-        // Obtén la información de la wishlist para un platillo específico y un usuario específico
         $wishlist = $database->select("tb_wishlist", [
             "[>]tb_dishes" => ["id_dish" => "id_dish"],
             "[>]tb_users" => ["id_user" => "id_user"],
@@ -41,26 +40,55 @@
     
         return $wishlist;
     }
-?>
 
+    function createDishCard($database, $dish){
+        echo "<section class='dish-card'>"
+                    . "<div class='card-img-container'>"
+                    . "<a class='dish-card-link' href='dish.php?id=".$dish["id_dish"]."'>"
+                    . "<img src='./imgs/dishes/".$dish["dish_category_name"]."/".$dish["dish_image"]."' alt=".$dish["dish_name"]." class='dish-card-img'>"
+                    . "</a>";
+
+                if (isset($_SESSION["isLoggedIn"])) {
+                    $wishlist = getWishlist($database, $dish["id_dish"]);
+                    $likeAction = !empty($wishlist) ? "removeFromWishlist(".$wishlist[0]["id_wishlist"].")" : "addToWishlist(".$dish["id_dish"].", ".$_SESSION["user_id"].")";
+                    echo "<a id='like' onclick='".$likeAction."'><img class='like-icon' src='./imgs/icons/like".(!empty($wishlist) ? '-fill' : '').".svg'></a>";
+                } else {
+                    echo "<a href='login.php' id='like'><img id='like-icon' src='./imgs/icons/like.svg'></a>";
+                }
+
+                echo "</div>"
+                    . "<div class='dish-data-container'>"
+                    . "<div class='dish-texts-container'>"
+                    . "<a class='a-titles' href='dish.php?id=".$dish["id_dish"]."'>"
+                    . "<h2 class='dish-title'>".$dish["dish_name"]."</h2>"
+                    . "</a>"
+                    . "<p class='dish-type'>".$dish["dish_category_name"]."</p>"
+                    . "</div>";
+
+                if (isset($_SESSION["isLoggedIn"])) {
+                    echo "<a onclick='addToCart(".$_SESSION["user_id"].", ".$dish["id_dish"].", 1, ".$dish["dish_price"].")'><img class='cart-img' src='./imgs/icons/cart.svg' alt='Cart'></a>";
+                } else {
+                    echo "<a href='login.php'><img src='./imgs/icons/cart.svg' alt='Cart'></a>";
+                }
+
+                echo "</div>"
+                    . "<p class='dish-price'>$".$dish["dish_price"]."</p>"
+                    . "<a class='btn order' href='dish.php?id=".$dish["id_dish"]."'>Order</a>"
+                    . "</section>";
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Gasthof</title>
     <!--favicon-->
-    <link rel="icon" href="./imgs/icons/favicon.svg" type="image/x-icon">
+    <?php include './parts/favicon.php'?>
     <!--fonts-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.cdnfonts.com/css/bebas-neue" rel="stylesheet">
-    <!--fonts-->
+    <?php include './parts/fonts.php'?>
     <link rel="stylesheet" href="./css/main.css">
 </head>
-
 <body>
     <!--header & hero-->
     <header> <?php include './parts/header.php'?> </header>
@@ -76,37 +104,10 @@
             </div>
             <div class="dishes-container">
                 <?php
-                        foreach ($dishes as $dish) {
-                            echo "<section class='dish-card'>"
-                            ."<div class='card-img-container'>"
-                            ."<a class='dish-card-link' href='dish.php?id=".$dish["id_dish"]."'>"
-                                    ."<img src='./imgs/dishes/".$dish["dish_category_name"]."/".$dish["dish_image"]."' alt=".$dish["dish_name"]." class='dish-card-img'>"
-                                    ."</a>";
-                                    if(isset($_SESSION["isLoggedIn"])){
-                                        $wishlist = getWishlist($database, $dish["id_dish"]);
-                                        if(!empty($wishlist)){
-                                            echo "<a id='like'  onclick='removeFromWishlist(".$wishlist[0]["id_wishlist"].")'><img class='like-icon' src='./imgs/icons/like-fill.svg'></a>";
-                                        }else{
-                                            echo "<a id='like'  onclick='addToWishlist(".$dish["id_dish"].", ".$_SESSION["user_id"].")'><img class='like-icon' src='./imgs/icons/like.svg'></a>";
-                                        }
-                                    }else{
-                                        echo "<a href='login.php' id='like'><img id='like-icon' src='./imgs/icons/like.svg'></a>";   
-                                    }
-                                    echo"</div>"
-                                    ."<div class='dish-data-container'>"
-                                        ."<div class='dish-texts-container'>"
-                                        ."<a class='a-titles' href='dish.php?id=".$dish["id_dish"]."'>"
-                                            ."<h2 class='dish-title'>".$dish["dish_name"]."</h2>"
-                                            ."</a>"
-                                            ."<p class='dish-type'>".$dish["dish_category_name"]."</p>"
-                                        ."</div>"
-                                        ."<a onclick='addToCart(".$_SESSION["user_id"].", ".$dish["id_dish"].", 1, ".$dish["dish_price"].")' href='#'><img src='./imgs/icons/cart.svg' alt='Cart'></a>"
-                                    ."</div>"
-                                    ."<p class='dish-price'>$".$dish["dish_price"]."</p>"
-                                    ."<a class='btn order' href='dish.php?id=".$dish["id_dish"]."'>Order</a>"
-                            ."</section>";
-                        }
-                    ?>
+                foreach ($dishes as $dish) {
+                createDishCard($database, $dish); 
+                }
+                ?>
             </div>
             <a href="menu.php" class="btn view-all">view all</a>
         </div>
@@ -131,89 +132,9 @@
     <!--footer-->
 
     <!--script-->
-    <script>
-    function addToWishlist(id_dish, id_user) {
-        console.log(id_dish, id_user);
-        
-        let info = {
-            id_dish: id_dish,
-            id_user: id_user
-        };
-
-        //fetch
-        fetch("http://localhost/gasthof-backend/add-to-wishlist.php", {
-                method: "POST",
-                mode: "same-origin",
-                credentials: "same-origin",
-                headers: {
-                    'Accept': "application/json, text/plain, */*",
-                    'Content-Type': "application/json"
-                },
-                body: JSON.stringify(info)
-            })
-            .then(response => response.json())
-            .then(data => {
-                window.location.href = "http://localhost/gasthof-backend/wishlist.php";
-            })
-            .catch(err => console.log("error: " + err));
-
-    }
-    function removeFromWishlist(id_wishlist) {
-            console.log(id_wishlist);
-
-            let info = {
-                id_wishlist: id_wishlist,
-            };
-
-            // Fetch
-            fetch("http://localhost/gasthof-backend/remove-from-wishlist.php", {
-                    method: "POST",
-                    mode: "same-origin",
-                    credentials: "same-origin",
-                    headers: {
-                        'Accept': "application/json, text/plain, */*",
-                        'Content-Type': "application/json"
-                    },
-                    body: JSON.stringify(info)
-                })
-                .then(response => response.json())
-                .then(data => {
-                    location.reload();
-                    console.log(data);
-                })
-                .catch(err => console.log("Error al enviar la solicitud: " + err));
-        }
-        function addToCart(id_user, id_dish, quantity, subtotal) {
-        console.log(id_user, id_dish, quantity, subtotal);
-        
-        let info = {
-            id_user: id_user,
-            id_dish: id_dish,
-            quantity: quantity,
-            subtotal: subtotal 
-        };
-
-        console.log(info);
-
-        //fetch
-        fetch("http://localhost/gasthof-backend/add-to-cart.php", {
-                method: "POST",
-                mode: "same-origin",
-                credentials: "same-origin",
-                headers: {
-                    'Accept': "application/json, text/plain, */*",
-                    'Content-Type': "application/json"
-                },
-                body: JSON.stringify(info)
-            })
-            .then(response => response.json())
-            .then(data => {
-                //window.location.href = "http://localhost/gasthof-backend/wishlist.php";
-                console.log(data);
-            })
-            .catch(err => console.log("error: " + err));
-    }
-    </script>
+    <script src="./js/add-to-wishlist.js"></script>
+    <script src="./js/remove-from-wishlist.js"></script>
+    <script src="./js/add-to-cart.js"></script>
     <!--script-->
 </body>
 </html>

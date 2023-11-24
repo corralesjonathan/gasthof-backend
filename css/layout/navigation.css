@@ -175,8 +175,12 @@
     cursor: pointer;
 }
 
-.user-img:hover, .search-img:hover, .cart-img:hover{
+.user-img:hover, .search-img:hover, .bag-img:hover{
     transform: scale(1.1);
+}
+
+.cart-img{
+    cursor: pointer;
 }
 
 .account-list {
