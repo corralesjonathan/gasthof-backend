@@ -63,12 +63,12 @@ function isWishlistEmpty($database) {
             $dishes = getWishlist($database);
             if(isset($_SESSION["isLoggedIn"])){ 
                 echo "<div class='home-titles-container'>"
-                    ."<h3 class='home-title1'>Hello,</h3>"
-                    ."<h2 class='home-title2'>".$_SESSION["fullname"]."</h2>"
+                    ."<h3 class='home-title1'>my</h3>"
+                    ."<h2 class='home-title2'>shopping cart</h2>"
                 ."</div>";
             }
             ?>
-                <?php echo "<h2 class='slide-title dish-title wish-list-title'>My Wishlist (".count($dishes)." items)</h2>"; ?>
+                <?php echo"<h2 class='slide-title dish-title wish-list-title'>Your Cart (".count($dishes)." items)</h2>";?>
                 <table class="wishlist-table">
                     <thead class="wishlist-thead">
                         <tr class="wishlist-tr">
@@ -76,7 +76,7 @@ function isWishlistEmpty($database) {
                             <td class="dish-title wishlist-td-image"></td>
                             <td class="dish-title wishlist-td-name">Name</td>
                             <td class="dish-title wishlist-td-price">Unit price</td>
-                            <td class="dish-title wishlist-td-actions"></td>
+                            <td class="dish-title wishlist-td-actions">Quantity</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -87,7 +87,7 @@ function isWishlistEmpty($database) {
                         ."<td class='dish-type slide-description'><a href='dish.php?id=".$dish["id_dish"]."'><img class='wishlist-img' src='./imgs/dishes/".$dish["dish_category_name"]."/".$dish["dish_image"]."' alt=''></a></td>"
                         ."<td><a class='dish-type slide-description' href='dish.php?id=".$dish["id_dish"]."'>".$dish["dish_name"]."</a></td>"
                         ."<td class='dish-type slide-description'>$".$dish["dish_price"]."</td>"
-                        ."<td><a href='#'><img src='./imgs/icons/cart.svg' alt=''></a></td>"
+                        ."<td><input class='quantity' type='number' id='quantity' value='1'></td>"
                     ."</tr>";
                 }
             ?>

@@ -163,14 +163,20 @@
 }
 
 #user-icon:hover + #account-menu, 
-#account-menu:hover {
+#account-menu:hover{
    visibility: visible;
    opacity: 1;
    margin-top: 0rem;
+
+    
 }
 
 #user-icon{
     cursor: pointer;
+}
+
+.user-img:hover, .search-img:hover, .cart-img:hover{
+    transform: scale(1.1);
 }
 
 .account-list {
@@ -178,7 +184,6 @@
     align-items: flex-start;
     gap: 1.5rem;
 }
-
 
 .account-nav-list-link {
     text-transform: capitalize;

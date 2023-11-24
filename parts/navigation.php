@@ -40,10 +40,9 @@
         <!--nav menu & mobile btn-->
 
         <!--nav icons-->
-       
-            <ul class="icons_container">
-                <li><a class="search-icon" href="#"><img src="./imgs/icons/search-icon.svg" alt="Search"></a></li>
-                <li><a id="user-icon"  id="account-icon"><img src="./imgs/icons/user.svg" alt="Account"></a>
+        <ul class="icons_container">
+                <li><a class="search-icon" href="#"><img class="search-img" src="./imgs/icons/search-icon.svg" alt="Search"></a></li>
+                <li><a id="user-icon"><img class="user-img" src="./imgs/icons/user.svg" alt="Account"></a>
                     <div id="account-menu">
                         <ul class="nav-list account-list">
                             <?php 
@@ -61,7 +60,7 @@
                         </ul>
                     </div>
                 </li>
-                <li><a class="bag-icon" href="#"><img src="./imgs/icons/bag.svg" alt="Bag"></a></li>
+                <li><a class="bag-icon" href="cart.php"><img class="cart-img" src="./imgs/icons/bag.svg" alt="Bag"></a></li>
       
         
 </div>
