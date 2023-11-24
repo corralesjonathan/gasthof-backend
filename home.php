@@ -42,7 +42,7 @@
     }
 
     function createDishCard($database, $dish){
-        echo "<section class='dish-card'>"
+                echo "<section class='dish-card'>"
                     . "<div class='card-img-container'>"
                     . "<a class='dish-card-link' href='dish.php?id=".$dish["id_dish"]."'>"
                     . "<img src='./imgs/dishes/".$dish["dish_category_name"]."/".$dish["dish_image"]."' alt=".$dish["dish_name"]." class='dish-card-img'>"
