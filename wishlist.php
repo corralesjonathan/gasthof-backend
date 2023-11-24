@@ -47,13 +47,13 @@ function isWishlistEmpty($database) {
     <!--header & hero-->
     <header>
         <!--nav-->
-        <?php 
-            include './parts/navigation.php'
-        ?>
+        <?php include './parts/navigation.php'?>
         <!--nav-->
-        <!--header & hero-->
+    </header>
+    <!--header & hero-->
 
-        <main>
+    <!--main content-->
+    <main>
             <div class="dishes-main-container">
                 <?php
             $dishes = getWishlist($database);
@@ -95,47 +95,22 @@ function isWishlistEmpty($database) {
                 }
                 ?>
             </div>
-        </main>
-
-        <footer>
-            <?php 
-            include './parts/footer.php'
-        ?>
-        </footer>
-
+    </main>
+    <!--main content-->
+    
+    <!--footer-->
+    <footer> <?php include './parts/footer.php'?> </footer>
+    <!--footer-->
+    
+    <!--script-->
+    <script src="./js/remove-from-wishlist.js"></script>
         <script>
-        function removeFromWishlist(id_wishlist) {
-            console.log(id_wishlist);
-
-            let info = {
-                id_wishlist: id_wishlist,
-            };
-
-            // Fetch
-            fetch("http://localhost/gasthof-backend/remove-from-wishlist.php", {
-                    method: "POST",
-                    mode: "same-origin",
-                    credentials: "same-origin",
-                    headers: {
-                        'Accept': "application/json, text/plain, */*",
-                        'Content-Type': "application/json"
-                    },
-                    body: JSON.stringify(info)
-                })
-                .then(response => response.json())
-                .then(data => {
-                    updateInterface(id_wishlist);
-                    console.log(data);
-                })
-                .catch(err => console.log("Error al enviar la solicitud: " + err));
-        }
-
         function updateInterface(id_wishlist) {
             let tr = document.querySelector(`#tr-${id_wishlist}`);
             tr.remove();
             location.reload()
         }
-        </script>
+    </script>
+    <!--script-->
 </body>
-
 </html>
