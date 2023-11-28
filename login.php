@@ -9,8 +9,20 @@
     if ($_POST){
 
         if(isset($_POST["login"])){
-            $user = $database->select("tb_users", "*",[
-                "usr"=>$_POST["usr"]
+            $user = $database->select("tb_users", [
+                "[>]tb_user_type" => ["id_user_type" => "id_user_type"]
+            ], [
+                "tb_users.id_user",
+                "tb_users.usr",
+                "tb_users.email",
+                "tb_users.pwd",
+                "tb_users.name",
+                "tb_users.lastname",
+                "tb_users.phone",
+                "tb_user_type.id_user_type",
+                "tb_user_type.user_type_name"
+            ], [
+                "tb_users.usr" => $_POST["usr"]
             ]);
 
             if (count($user) > 0){
@@ -20,7 +32,11 @@
                     $_SESSION["fullname"] = $user[0]["name"];
                     //this session variable stores the user id
                     $_SESSION["user_id"] = $user[0]["id_user"];
-                    header("location: home.php");
+                    if ($user[0]["id_user_type"]==1){
+                        header("location: home.php");
+                    }else{
+                        header("location: ./admin/list-dishes.php");
+                    }
                 } else {
                     $messageLogin = "wrong username or password";
                 }
@@ -48,7 +64,6 @@
                     "lastname" => $_POST["lastname"],
                     "phone" => $_POST["phone"],
                 ]);
-                //  header("location: book.php?id=".$_POST["register"]);
             }
         }
 
