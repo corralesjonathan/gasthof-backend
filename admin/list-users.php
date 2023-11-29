@@ -21,10 +21,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gasthof-Users List</title>
     <link rel="stylesheet" href="../css/themes/admin.css">
+    <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
+    <header>
+        <?php include 'navigation-admin.php'; ?>
+    </header>
     <div class="main-container">
-<img src="../imgs/gasthof-logo.webp" alt="Gathof Logo"> 
     <h2>Registered Users</h2>
     <table>
         <thead>
@@ -46,8 +49,7 @@
                 echo "<td class='data-td'>".$users[$i]["usr"]."</td>";
                 echo "<td class='data-td'>".$users[$i]["email"]."</td>";
                 echo "<td class='data-td'>+".$users[$i]["country_phonecode"]." ".$users[$i]["phone"]."</td>";
-                echo "<td><a style='color: #333; text-decoration:none' href='edit-users.php?id=".$users[$i]["id_user"]."'> 
-                Edit </a> <a style='color: #9d1310; text-decoration:none' href='delete-user.php?id=".$users[$i]["id_user"]."'>Delete</a></td>";
+                echo "<td><a style='color: #9d1310; text-decoration:none' href='delete-user.php?id=".$users[$i]["id_user"]."'>Delete</a></td>";
                 echo "</tr>";
             };
             ?>

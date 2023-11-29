@@ -18,10 +18,9 @@
         <div id="nav-container">
             <button id="mobile-close-btn"><img src="../imgs/icons/close.svg" alt=""></button>
             <ul class="nav-list">
-                <li><a id="btnHome" class="nav-list-link" href="home.php">Home</a></li>
-                <li><a id="btnMenu" class="nav-list-link" href="menu.php">Menu +</a></li>
-                <li><a id="btnContact" class="nav-list-link" href="contact.php">Contact</a></li>
-                <li><a id="btnAboutUs" class="nav-list-link" href="aboutus.php">About Us</a></li>
+                <li><a id="listDishes" class="nav-list-link" href="list-dishes.php">Dishes list</a></li>
+                <li><a id="addDish" class="nav-list-link" href="add-dish.php">Add dish</a></li>
+                <li><a id="listUsers" class="nav-list-link" href="list-users.php">Users list</a></li>
             </ul>
         </div>
         <!--nav menu & mobile btn-->
@@ -66,23 +65,20 @@ close.addEventListener("click", () => {
 //nav-menu
 function selectedPage() {
     //get buttons by id
-    let btnHome = document.getElementById('btnHome');
-    let btnMenu = document.getElementById('btnMenu');
-    let btnContact = document.getElementById('btnContact');
-    let btnAboutUs = document.getElementById('btnAboutUs');
+    let listDishes = document.getElementById('listDishes');
+    let addDish = document.getElementById('addDish');
+    let listUsers = document.getElementById('listUsers');
 
     //get currently url
     let url = window.location.href;
 
     //check url
-    if (url.includes("home.php")) {
-        btnHome.classList.add("active");
-    } else if (url.includes("menu.php")) {
-        btnMenu.classList.add("active");
-    } else if (url.includes("contact.php")) {
-        btnContact.classList.add("active");
-    } else if (url.includes("aboutus.php")) {
-        btnAboutUs.classList.add("active");
+    if (url.includes("list-dishes.php")) {
+        listDishes.classList.add("active");
+    } else if (url.includes("add-dish.php")) {
+        addDish.classList.add("active");
+    } else if (url.includes("list-users.php")) {
+        listUsers.classList.add("active");
     }
 }
 //main loading

@@ -57,6 +57,7 @@
                 $pass = password_hash($_POST["pwd"], PASSWORD_DEFAULT, ['cost'=>12]);
                 $database->insert("tb_users",[
                     "id_country" => $_POST["prefix"],
+                    "id_user_type" => 1,
                     "usr" => $_POST["usr"],
                     "email" => $_POST["email"],
                     "pwd" => $pass,

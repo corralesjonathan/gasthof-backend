@@ -32,9 +32,7 @@
 </head>
 <body>
     <header>
-        <?php 
-            include 'navigation-admin.php';
-        ?>
+        <?php include 'navigation-admin.php'; ?>
     </header>
     <main>
         <div class="main-container">
@@ -63,8 +61,8 @@
                     echo "<td class='data-td'>".$dishes[$i]["dish_description"]."</td>";
                     echo "<td class='data-td'>".$dishes[$i]["dish_description_de"]."</td>";
                     echo "<td class='data-td'>".$dishes[$i]["dish_price"]."</td>";
-                    echo "<td ><a style='color: blue; text-decoration:none' href='edit-dish.php?id=".$dishes[$i]["id_dish"]."'> 
-                    Edit </a> <a style='color: red; text-decoration:none' href='delete-dish.php?id=".$dishes[$i]["id_dish"]."'>Delete</a></td>";
+                    echo "<td ><a style='color: #333333; text-decoration:none' href='edit-dish.php?id=".$dishes[$i]["id_dish"]."'> 
+                    Edit </a> <a style='color: #9d1310; text-decoration:none' href='delete-dish.php?id=".$dishes[$i]["id_dish"]."'>Delete</a></td>";
                     echo "</tr>";
                 };
                 ?>

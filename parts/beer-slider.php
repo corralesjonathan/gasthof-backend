@@ -69,7 +69,7 @@
                         <p class="dish-type slide-description">A full-bodied golden yellow wheat beer with aromas of
                             cloves.</p>
                         <p class="dish-price">$2.50</p>
-                        <a class="btn order" href="dish.php?id=40">Order</a>
+                        <a class="btn order" href="dish.php?id=41">Order</a>
                     </div>
                 </div>
                 <!--left-column-->

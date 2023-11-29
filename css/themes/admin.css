@@ -18,7 +18,7 @@ body{
     width: 80vw;
 }
 
-.form-items{
+.form-items-admin{
     display: flex;
     flex-direction: column;
     margin: 1rem;
@@ -37,7 +37,7 @@ input, textarea{
     width: 100%;
 }
 
-.submit-btn{
+.submit-btn-admin{
     border: none;
     background: #9d1310;
     color: white;

@@ -68,43 +68,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gasthof-Add Dishes</title>
     <link rel="stylesheet" href="../css/themes/admin.css">
+    <link rel="stylesheet" href="../css/main.css">
 </head>
-
+<header>
+        <?php include 'navigation-admin.php'; ?>
+    </header>
 <body>
     <div class="main-container">
-        <img src="../imgs/gasthof-logo.webp" alt="Gathof Logo">
         <h2>Add New Dish</h2>
         <div class="container">
             <div class="column">
                 <form method="post" action="add-dish.php" enctype="multipart/form-data">
 
-                    <div class="form-items"> <!---Dish Name--->
+                    <div class="form-items-admin"> <!---Dish Name--->
                         <label for="dish_name">Dish name</label>
                         <input id="dish_name" class="textfield" name="dish_name" type="text">
                     </div>
-                    <div class="form-items"> <!---Dish Name - DE--->
+                    <div class="form-items-admin"> <!---Dish Name - DE--->
                         <label for="dish_name_de">Dish name - DE</label>
                         <input id="dish_name_de" class="textfield" name="dish_name_de" type="text">
                     </div>
-                    <div class="form-items"> <!---Dish Description--->
+                    <div class="form-items-admin"> <!---Dish Description--->
                         <label for="dish_description">Dish Description</label>
                         <textarea id="dish_description" name="dish_description" cols="30" rows="5"></textarea>
                     </div>
-                    <div class="form-items"> <!---Dish Description - DE--->
+                    <div class="form-items-admin"> <!---Dish Description - DE--->
                         <label for="dish_description_de">Dish Description - DE</label>
                         <textarea id="dish_description_de" name="dish_description_de" cols="30" rows="5"></textarea>
                     </div>
             </div>
 
             <div class="column">
-                <div class="form-items"> <!---Dish Price--->
+                <div class="form-items-admin"> <!---Dish Price--->
                     <label for="dish_price">Dish Price</label>
                     <div class="price-container">
                         <span style="margin-right: 1rem">$</span>
                         <input id="dish_price" class="textfield" name="dish_price" type="number" step="0.01">
                     </div>
                 </div>
-                <div class="form-items"> <!---Dish Category--->
+                <div class="form-items-admin"> <!---Dish Category--->
                     <label for="dish_category_name">Dish Category</label>
                     <select name="dish_category_name" id="dish_category_name">
                     <?php 
@@ -114,7 +116,7 @@
                     ?>
                     </select>
                 </div>
-                <div class="form-items"> <!---Dish Size--->
+                <div class="form-items-admin"> <!---Dish Size--->
                     <label for="dish_size_name">Dish Size</label>
                     <select name="dish_size_name" id="dish_size_name">
                     <?php 
@@ -124,7 +126,7 @@
                     ?>
                     </select>
                 </div>
-                <div class="form-items"> <!---Featured--->
+                <div class="form-items-admin"> <!---Featured--->
                     <div>
                         <label>Is a featured dish?</label>
                         <div class="radio-group">
@@ -138,13 +140,13 @@
             </div>
 
             <div class="column">
-                <div class="form-items"> <!---Dish Image--->
+                <div class="form-items-admin"> <!---Dish Image--->
                     <label for="dish_image">Dish Image</label>
                     <img id="preview" src="../imgs/placeholder-img.jpg" alt="Preview">
                     <input id="dish_image" type="file" name="dish_image" onchange="readURL(this)">
                 </div>
-                <div class="form-items">
-                    <input class="submit-btn" type="submit" value="Add New Dish">
+                <div class="form-items-admin">
+                    <input class="submit-btn-admin" type="submit" value="Add New Dish">
                 </div>
             </div>
             </form>
