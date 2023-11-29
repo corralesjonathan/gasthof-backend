@@ -175,12 +175,21 @@
     cursor: pointer;
 }
 
+.user-img, .search-img, .bag-img{
+    transition: transform 0.3s ease-in-out;
+}
+
 .user-img:hover, .search-img:hover, .bag-img:hover{
     transform: scale(1.1);
 }
 
 .cart-img{
     cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.cart-img:hover{
+    transform: translateY(-5px);
 }
 
 .account-list {

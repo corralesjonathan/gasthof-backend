@@ -35,11 +35,14 @@
     background: transparent;
     display: inline-block;
     cursor: pointer;
+    transition: transform 0.3s ease-in-out;
 }
 
 .order:hover {
     background: var(--clr-main);
     color: var(--clr-white);
+    transform: translateY(-5px);
+    
 }
 
 #en.clicked{
@@ -68,6 +71,8 @@
     box-shadow: var(--bs-button);
     margin: var(--mg-nm) auto;
     cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+
 }
 
 .view-all:hover {
@@ -75,6 +80,7 @@
     box-shadow: var(--bs-button-hover);
     color: var(--clr-white);
     opacity: .9;
+    transform: translateY(-5px);
 }
 
 /*used in dish page "add to cart"*/

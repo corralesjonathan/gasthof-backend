@@ -41,8 +41,6 @@
 
         <!--nav icons-->
         <ul class="icons_container">
-            <li><a class="search-icon" href="#"><img class="search-img" src="./imgs/icons/search-icon.svg"
-                        alt="Search"></a></li>
             <li><a id="user-icon"><img class="user-img" src="./imgs/icons/user.svg" alt="Account"></a>
                 <div id="account-menu">
                     <ul class="nav-list account-list">

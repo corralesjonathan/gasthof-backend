@@ -41,6 +41,36 @@
         return $wishlist;
     }
 
+    function getCart($database) {
+
+        $dishesInCart = $database->select("tb_cart", [
+            "[>]tb_dishes" => ["id_dish" => "id_dish"],
+            "[>]tb_users" => ["id_user" => "id_user"],
+            //"[>]tb_dishes_categories" => ["tb_dishes.id_dish_category" => "id_dish_category"],
+        ], [
+            "tb_cart.id_cart",
+            "tb_dishes.id_dish",
+            "tb_users.id_user",
+            "tb_cart.quantity",
+            "tb_cart.subtotal",
+            //"tb_dishes_categories.dish_category_name"
+        ], [
+            "tb_cart.id_user" => $_SESSION["user_id"]
+        ]);
+    
+        return $dishesInCart;
+    }
+
+    function calculateTotal($cart) {
+        $total = 0;
+    
+        foreach ($cart as $item) {
+            $total += $item['subtotal'];
+        }
+    
+        return $total;
+    }
+
     function createDishCard($database, $dish){
                 echo "<section class='dish-card'>"
                     . "<div class='card-img-container'>"
@@ -112,6 +142,17 @@
             <a href="menu.php" class="btn view-all">view all</a>
         </div>
         <!--featured dishes-->
+
+        <div class="cart-poppup">
+            <h2 class="slide-title dish-title">dish successfully added to your cart!</h2>
+            <?php 
+            $dishesInCart = getCart($database);
+            $total = calculateTotal($dishesInCart);
+            echo "<p class='dish-type slide-description'>You have <b>".count($dishesInCart)."</b> items in your cart</p>";
+            echo "<p class='dish-type slide-description'><b>Total:</b> $".$total."</p>";
+            ?>
+            <a href="cart.php" class="btn view-all">go to cart</a>
+        </div>
 
         <!--beers slider-->
         <?php include './parts/beer-slider.php'?>
