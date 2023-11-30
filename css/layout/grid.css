@@ -91,7 +91,6 @@
 
 .like-icon:hover {
     content: url(../../imgs/icons/like-fill.svg);
-
 }
 
 .restaurant-data-container {
@@ -312,9 +311,9 @@
     width: 5%;
 }
 
-.cart-poppup{
+#cart-popup{
     position: fixed;
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -328,6 +327,10 @@
     background: var(--clr-white);
     box-shadow: var(--bs-main);
     box-shadow: 0 0 0 100vmax rgba(0, 0, 0, .5);
+}
+
+#cart-popup.show-cart-popup{
+        display: flex;
 }
 
 @media (max-width: 768px) {

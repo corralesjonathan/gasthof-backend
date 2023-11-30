@@ -25,8 +25,8 @@ function addToCart(id_user, id_dish, quantity, dishPrice) {
         })
         .then(response => response.json())
         .then(data => {
-            window.location.href = "http://localhost/gasthof-backend/cart.php";
             console.log(data);
+            document.getElementById("cart-popup").classList.add("show-cart-popup");
         })
         .catch(err => console.log("error: " + err));
 }
