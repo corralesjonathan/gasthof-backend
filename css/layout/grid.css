@@ -314,7 +314,6 @@
 #cart-popup{
     position: fixed;
     display: none;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     top: 50%;
@@ -330,7 +329,7 @@
 }
 
 #cart-popup.show-cart-popup{
-        display: flex;
+        display: grid;
 }
 
 @media (max-width: 768px) {
@@ -352,7 +351,7 @@
         height: 50px;
     }
     
-    .cart-poppup{
+    #cart-popup{
         width: 70vw;
     }
 }

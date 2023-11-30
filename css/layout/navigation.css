@@ -208,6 +208,23 @@
     border-bottom: .0625rem solid var(--clr-main);
 }
 
+.close-btn-popup{
+    text-align: end;
+    margin-bottom: 1rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    
+}
+
+.close-img-popup{
+    transition: transform 0.3s ease-in-out;
+}
+
+.close-img-popup:hover{
+    transform: scale(1.1);
+}
+
 
 @media (max-width: 767.98px) {
     .website-logo-container {

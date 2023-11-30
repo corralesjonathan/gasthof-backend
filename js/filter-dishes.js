@@ -64,8 +64,7 @@ function getCategories(idCategory) {
                 document.getElementById("menu-container").appendChild(dishesContainer);
 
                 data.forEach(function(item) {
-                    console.log(item.dish_category_name);
-                    //ish card container
+                    //dish card container
                     let dishCard = document.createElement("section");
                     dishCard.classList.add("dish-card");
                     dishesContainer.appendChild(dishCard);
