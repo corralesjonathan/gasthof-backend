@@ -8,12 +8,26 @@ if (isset($_SERVER["CONTENT_TYPE"])) {
         $content = trim(file_get_contents("php://input"));
         $decoded = json_decode($content, true);
 
-        $insertCart = $database->insert("tb_cart",[
-            "id_user" => $decoded["id_user"],
-            "id_dish" => $decoded["id_dish"],
-            "quantity" => $decoded["quantity"],
-            "subtotal" => $decoded["subtotal"],
+        $isInCart=$database->select("tb_cart", "*", [
+            "AND" => [
+                "id_user" => $decoded["id_user"],
+                "id_dish" => $decoded["id_dish"],
+            ],
         ]);
+
+        if($isInCart){
+            $updateCart = $database->update("tb_cart",[
+                "quantity" => 4,
+                "subtotal" => $decoded["subtotal"]*4
+            ]);
+        }else{
+            $insertCart = $database->insert("tb_cart",[
+                "id_user" => $decoded["id_user"],
+                "id_dish" => $decoded["id_dish"],
+                "quantity" => $decoded["quantity"],
+                "subtotal" => $decoded["subtotal"],
+            ]);
+        }
 
         $cart = $database->select("tb_cart", [
             "[>]tb_dishes" => ["id_dish" => "id_dish"],
