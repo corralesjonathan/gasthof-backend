@@ -354,4 +354,9 @@
     #cart-popup{
         width: 70vw;
     }
+
+    #like{
+        opacity: 1;
+        visibility: visible;
+    }
 }
