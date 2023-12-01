@@ -40,34 +40,6 @@
     
         return $wishlist;
     }
-
-    function getCart($database) {
-
-        $dishesInCart = $database->select("tb_cart", [
-            "[>]tb_dishes" => ["id_dish" => "id_dish"],
-            "[>]tb_users" => ["id_user" => "id_user"],
-        ], [
-            "tb_cart.id_cart",
-            "tb_dishes.id_dish",
-            "tb_users.id_user",
-            "tb_cart.quantity",
-            "tb_cart.subtotal",
-        ], [
-            "tb_cart.id_user" => $_SESSION["user_id"]
-        ]);
-    
-        return $dishesInCart;
-    }
-
-    function calculateTotal($cart) {
-        $total = 0;
-    
-        foreach ($cart as $item) {
-            $total += $item['subtotal'];
-        }
-    
-        return $total;
-    }
     
     function createDishCard($database, $dish){
         echo "<section class='dish-card'>"
@@ -148,7 +120,7 @@
         <!--Main Courses-->
 
         <!--Added to cart popup-->
-        <?php include './parts/added-to-cart-popup.php'?>
+        <div id="cart-popup"></div>
         <!--Added to cart popup-->
 
         <!--subscribe form-->
