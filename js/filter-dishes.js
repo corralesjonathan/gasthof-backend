@@ -1,5 +1,126 @@
-function getCategories(idCategory) {
-    console.log(idCategory);
+function addToCart(id_user, id_dish, quantity, dishPrice) {
+    console.log(id_user, id_dish, quantity, dishPrice);
+    let subtotal = quantity*dishPrice;
+    console.log(subtotal);
+    
+    let info = {
+        id_user: id_user,
+        id_dish: id_dish,
+        quantity: quantity,
+        subtotal: subtotal 
+    };
+
+    //fetch
+    fetch("http://localhost/gasthof-backend/add-to-cart.php", {
+            method: "POST",
+            mode: "same-origin",
+            credentials: "same-origin",
+            headers: {
+                'Accept': "application/json, text/plain, */*",
+                'Content-Type': "application/json"
+            },
+            body: JSON.stringify(info)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+
+            let cartPopup = document.getElementById("cart-popup");
+            cartPopup.classList.add("show-cart-popup");
+            cartPopup.innerHTML = '';
+
+            if (data.length > 0) {
+                    
+                    let total=0;
+                    
+                    data.forEach(function(item) {
+                        total += Number(item.subtotal);
+                        total = Number(total.toFixed(2));
+                        console.log(total);
+                    });
+
+                    //close button
+                    let closeButton =  document.createElement("button");
+                    closeButton.classList.add("close-btn-popup");
+                    closeButton.onclick = function(){
+                        cartPopup.classList.remove("show-cart-popup");
+                    }
+                    cartPopup.appendChild(closeButton);
+
+                    //close img
+                    let closeImg = document.createElement("img");
+                    closeImg.classList.add("close-img-popup");
+                    closeImg.setAttribute("src", './imgs/icons/close.svg');
+                    closeImg.setAttribute("alt", "Close");
+                    closeButton.appendChild(closeImg);
+
+                    //added to cart message
+                    let message = document.createElement("h2");
+                    message.classList.add("slide-title");
+                    message.classList.add("dish-title");
+                    message.innerText = "dish successfully added to your cart!";
+                    cartPopup.appendChild(message);
+
+                    //total of dishes on cart message
+                    let itemsMessage = document.createElement("p");
+                    itemsMessage.classList.add("dish-type");
+                    itemsMessage.classList.add("slide-description");
+                    itemsMessage.innerHTML = "You have <b>"+data.length+"</b> items in your cart";
+                    cartPopup.appendChild(itemsMessage);
+
+                    //total amount message
+                    let totalMesssage = document.createElement("p");
+                    totalMesssage.classList.add("dish-type");
+                    totalMesssage.classList.add("slide-description");
+                    totalMesssage.innerHTML = "<b>Total:</b> $" +total;
+                    cartPopup.appendChild(totalMesssage);
+
+                    //go to cart button
+                    let toCartbtn = document.createElement("a");
+                    toCartbtn.classList.add("btn");
+                    toCartbtn.classList.add("view-all");
+                    toCartbtn.setAttribute("href", "cart.php");
+                    toCartbtn.innerText="go to cart";
+                    cartPopup.appendChild(toCartbtn);
+            }
+        })
+        .catch(err => console.log("error: " + err));
+}
+
+
+function getWishlist(id_dish, id_user){
+    console.log(id_dish, id_user);
+
+    //create variable to send via fetch
+    let info = {
+        id_dish: id_dish,
+        id_user: id_user 
+    };
+    
+    //fetch
+    fetch("http://localhost/gasthof-backend/get-wishlist.php", {
+            method: "POST",
+            mode: "same-origin",
+            credentials: "same-origin",
+            headers: {
+                'Accept': "application/json, text/plain, */*",
+                'Content-Type': "application/json"
+            },
+            body: JSON.stringify(info)
+        })
+        .then(response => response.json())
+        .then(data => {
+            window.location.href = "http://localhost/gasthof-backend/wishlist.php";
+           if (data.length > 0){
+            console.log("Added to wishlist");
+           }else{
+            console.log("Removed from wishlist");
+           }
+        });
+}
+
+function getCategories(idCategory, id_user) {
+    console.log(idCategory, id_user);
 
     //code to add and remove the "active" class depending on the category.
     if(idCategory === "all"){
@@ -34,9 +155,10 @@ function getCategories(idCategory) {
 
     //create variable to send via fetch
     let info = {
-        category: idCategory
+        category: idCategory,
+        id_user: id_user 
     };
-
+    
     //fetch
     fetch("http://localhost/gasthof-backend/filter-dishes.php", {
             method: "POST",
@@ -57,6 +179,7 @@ function getCategories(idCategory) {
             menuContainer.innerHTML = '';
 
             if (data.length > 0) {
+                
                 //create dish cards container
                 let dishesContainer = document.createElement("div");
                 dishesContainer.setAttribute("id", "items");
@@ -89,6 +212,14 @@ function getCategories(idCategory) {
 
                     //like button
                     let like = document.createElement("a");
+                    if(id_user>0){
+                        //action if is already logged user
+                        like.addEventListener("click", () => getWishlist(item.id_dish, id_user));
+                    }else{
+                        //action if don't exist logged user
+                        like.setAttribute("href", 'login.php');
+                        
+                    }
                     like.setAttribute("id", "like");
                     cardImgContainer.appendChild(like);
 
@@ -129,11 +260,18 @@ function getCategories(idCategory) {
 
                     //add to cart button
                     let cart = document.createElement("a");
-                    cart.setAttribute("href", "#");
+                    if(id_user>0){
+                        //action if is already logged user
+                        cart.addEventListener("click", () => addToCart(id_user, item.id_dish, 1, item.dish_price));
+                    }else{
+                        //action if don't exist logged user
+                        cart.setAttribute("href", 'login.php');
+                    }
                     dishDataContainer.appendChild(cart);
 
                     //add to cart icon
                     let cartImg = document.createElement("img");
+                    cartImg.classList.add("cart-img");
                     cartImg.setAttribute("src", './imgs/icons/cart.svg');
                     cartImg.setAttribute("alt", "Cart");
                     cart.appendChild(cartImg);
@@ -156,6 +294,7 @@ function getCategories(idCategory) {
         })
         .catch(err => console.log("error: " + err));
 }
+
 document.addEventListener("DOMContentLoaded", function () {
-    getCategories('all');
+    getCategories('all', userId);
 });

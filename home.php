@@ -41,12 +41,13 @@
     }
 
     function createDishCard($database, $dish){
+                //dish image
                 echo "<section class='dish-card'>"
                     . "<div class='card-img-container'>"
                     . "<a class='dish-card-link' href='dish.php?id=".$dish["id_dish"]."'>"
                     . "<img src='./imgs/dishes/".$dish["dish_category_name"]."/".$dish["dish_image"]."' alt=".$dish["dish_name"]." class='dish-card-img'>"
                     . "</a>";
-
+                //add to wishlist
                 if (isset($_SESSION["isLoggedIn"])) {
                     $wishlist = getWishlist($database, $dish["id_dish"]);
                     $likeAction = !empty($wishlist) ? "removeFromWishlist(".$wishlist[0]["id_wishlist"].")" : "addToWishlist(".$dish["id_dish"].", ".$_SESSION["user_id"].")";
@@ -54,7 +55,7 @@
                 } else {
                     echo "<a href='login.php' id='like'><img class='like-icon' src='./imgs/icons/like.svg'></a>";
                 }
-
+                //dish data
                 echo "</div>"
                     . "<div class='dish-data-container'>"
                     . "<div class='dish-texts-container'>"
@@ -63,13 +64,13 @@
                     . "</a>"
                     . "<p class='dish-type'>".$dish["dish_category_name"]."</p>"
                     . "</div>";
-
+                //add to cart
                 if (isset($_SESSION["isLoggedIn"])) {
                     echo "<a onclick='addToCart(".$_SESSION["user_id"].", ".$dish["id_dish"].", 1, ".$dish["dish_price"].")'><img class='cart-img' src='./imgs/icons/cart.svg' alt='Cart'></a>";
                 } else {
                     echo "<a href='login.php'><img class='cart-img' src='./imgs/icons/cart.svg' alt='Cart'></a>";
                 }
-
+                //order
                 echo "</div>"
                     . "<p class='dish-price'>$".$dish["dish_price"]."</p>"
                     . "<a class='btn order' href='dish.php?id=".$dish["id_dish"]."'>Order</a>"

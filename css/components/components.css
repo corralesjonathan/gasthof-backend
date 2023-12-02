@@ -89,6 +89,7 @@
     border: none; 
     box-shadow: var(--bs-button);
     padding: .6rem 4rem;
+    cursor: pointer;
 }
 
 .add-cart:hover{

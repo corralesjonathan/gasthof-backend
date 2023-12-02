@@ -38,12 +38,13 @@
             <!--filter dishes menu-->
             <div class="categories-buttons-container">
                 <ul class="nav-list menu-filter-products-list">
-                    <?php 
-                        echo "<li><a id='all' onclick=\"getCategories('all')\" class='nav-list-link nav-menu-list-link'>All</a></li>"
-                        . "<li><a id='starters' onclick=\"getCategories(" . $categories[0]["id_dish_category"] . ")\" class='nav-list-link nav-menu-list-link' >" . $categories[0]["dish_category_name"] . "</a></li>"
-                        . "<li><a id='main-courses' onclick=\"getCategories(" . $categories[1]["id_dish_category"] . ")\" class='nav-list-link nav-menu-list-link' >" . $categories[1]["dish_category_name"] . "</a></li>"
-                        . "<li><a id='desserts' onclick=\"getCategories(" . $categories[2]["id_dish_category"] . ")\" class='nav-list-link nav-menu-list-link' >" . $categories[2]["dish_category_name"] . "</a></li>"
-                        . "<li><a id='drinks' onclick=\"getCategories(" . $categories[3]["id_dish_category"] . ")\" class='nav-list-link nav-menu-list-link' >" . $categories[3]["dish_category_name"] . "</a></li>";                    
+                    <?php
+                        $userId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+                        echo "<li><a id='all' onclick=\"getCategories('all', $userId)\" class='nav-list-link nav-menu-list-link'>All</a></li>"
+                        . "<li><a id='starters' onclick=\"getCategories(" . $categories[0]["id_dish_category"] .", $userId)\" class='nav-list-link nav-menu-list-link' >" . $categories[0]["dish_category_name"] . "</a></li>"
+                        . "<li><a id='main-courses' onclick=\"getCategories(" . $categories[1]["id_dish_category"] .", $userId)\" class='nav-list-link nav-menu-list-link' >" . $categories[1]["dish_category_name"] . "</a></li>"
+                        . "<li><a id='desserts' onclick=\"getCategories(" . $categories[2]["id_dish_category"] .", $userId)\" class='nav-list-link nav-menu-list-link' >" . $categories[2]["dish_category_name"] . "</a></li>"
+                        . "<li><a id='drinks' onclick=\"getCategories(" . $categories[3]["id_dish_category"] .", $userId)\" class='nav-list-link nav-menu-list-link' >" . $categories[3]["dish_category_name"] . "</a></li>";                    
                     ?>
                 </ul>
             </div>
@@ -55,6 +56,10 @@
             <!--dishes cards grid-->
         </div>
         <!--dishes main container-->
+
+        <!--Added to cart popup-->
+        <div id="cart-popup"></div>
+        <!--Added to cart popup-->
 
         <!--subscribe form-->
         <?php 
@@ -69,6 +74,7 @@
         include './parts/footer.php'
     ?>
     <!--footer-->
+    <?php echo "<script>const userId = $userId;</script>";?>
     <script src="./js/filter-dishes.js"></script>
 </body>
 </html>

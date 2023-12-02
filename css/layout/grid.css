@@ -286,32 +286,6 @@
     margin: 1rem;
 }
 
-.wishlist-td-delete{
-    padding: .5rem;
-    width: 5%;
-}
-
-.wishlist-td-image{
-    padding: .5rem;
-    width: 5%;
-}
-
-.wishlist-td-name{
-    padding: .5rem;
-    width: 42%;
-}
-
-.wishlist-td-price{
-    padding: .5rem;
-    width: 42%;
-}
-
-.wishlist-td-actions{
-    text-align: right;
-    padding: .5rem;
-    width: 5%;
-}
-
 #cart-popup{
     position: fixed;
     display: none;
@@ -345,6 +319,17 @@
     100% {
       opacity: 1;
       transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes fadeInZoom {
+    0% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
     }
   }
 
