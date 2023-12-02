@@ -11,7 +11,7 @@ function addToCart(id_user, id_dish, quantity, dishPrice) {
     };
 
     //fetch
-    fetch("http://localhost/gasthof-backend/add-to-cart.php", {
+    fetch("http://localhost/gasthof-backend/AJAX/add-to-cart.php", {
             method: "POST",
             mode: "same-origin",
             credentials: "same-origin",
@@ -98,7 +98,7 @@ function getWishlist(id_dish, id_user){
     };
     
     //fetch
-    fetch("http://localhost/gasthof-backend/get-wishlist.php", {
+    fetch("http://localhost/gasthof-backend/AJAX/get-wishlist.php", {
             method: "POST",
             mode: "same-origin",
             credentials: "same-origin",
@@ -160,7 +160,7 @@ function getCategories(idCategory, id_user) {
     };
     
     //fetch
-    fetch("http://localhost/gasthof-backend/AJAX/ilter-dishes.php", {
+    fetch("http://localhost/gasthof-backend/AJAX/filter-dishes.php", {
             method: "POST",
             mode: "same-origin",
             credentials: "same-origin",

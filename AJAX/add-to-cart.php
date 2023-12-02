@@ -1,5 +1,5 @@
 <?php
-require_once 'database.php';
+require_once '../database.php';
 
 if (isset($_SERVER["CONTENT_TYPE"])) {
     $contentType = $_SERVER["CONTENT_TYPE"];
