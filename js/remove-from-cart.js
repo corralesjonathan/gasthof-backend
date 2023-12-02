@@ -6,7 +6,7 @@ function removeFromCart(id_cart) {
     };
 
     // Fetch
-    fetch("http://localhost/gasthof-backend/remove-from-cart.php", {
+    fetch("http://localhost/gasthof-backend/AJAX/remove-from-cart.php", {
             method: "POST",
             mode: "same-origin",
             credentials: "same-origin",

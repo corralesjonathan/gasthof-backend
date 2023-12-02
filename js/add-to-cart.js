@@ -11,7 +11,7 @@ function addToCart(id_user, id_dish, quantity, dishPrice) {
     };
 
     //fetch
-    fetch("http://localhost/gasthof-backend/add-to-cart.php", {
+    fetch("http://localhost/gasthof-backend/AJAX/add-to-cart.php", {
             method: "POST",
             mode: "same-origin",
             credentials: "same-origin",

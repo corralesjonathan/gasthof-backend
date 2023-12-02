@@ -160,7 +160,7 @@ function getCategories(idCategory, id_user) {
     };
     
     //fetch
-    fetch("http://localhost/gasthof-backend/filter-dishes.php", {
+    fetch("http://localhost/gasthof-backend/AJAX/ilter-dishes.php", {
             method: "POST",
             mode: "same-origin",
             credentials: "same-origin",

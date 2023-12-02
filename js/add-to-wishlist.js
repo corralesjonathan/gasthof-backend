@@ -7,7 +7,7 @@ function addToWishlist(id_dish, id_user) {
     };
 
     //fetch
-    fetch("http://localhost/gasthof-backend/add-to-wishlist.php", {
+    fetch("http://localhost/gasthof-backend/AJAX/add-to-wishlist.php", {
             method: "POST",
             mode: "same-origin",
             credentials: "same-origin",

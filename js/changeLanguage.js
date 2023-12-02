@@ -14,7 +14,7 @@ function getTranslation(id, language) {
         language: language
     };
 
-    fetch("http://localhost/gasthof-backend/language.php", {
+    fetch("http://localhost/gasthof-backend/AJAX/language.php", {
         method: "POST",
         mode: "same-origin",
         credentials: "same-origin",

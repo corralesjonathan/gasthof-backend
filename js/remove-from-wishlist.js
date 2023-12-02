@@ -6,7 +6,7 @@ function removeFromWishlist(id_wishlist) {
     };
 
     // Fetch
-    fetch("http://localhost/gasthof-backend/remove-from-wishlist.php", {
+    fetch("http://localhost/gasthof-backend/AJAX/remove-from-wishlist.php", {
             method: "POST",
             mode: "same-origin",
             credentials: "same-origin",
