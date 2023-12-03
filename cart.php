@@ -103,6 +103,10 @@ function isCartEmpty($database) {
                         echo "<p id='total' class='dish-type slide-description'><b>TOTAL: $" . number_format($total, 2) . "</b></p>";
                     }
                     ?>
+                <div class="cart-btn-container">
+                <a class="btn view-all" href="menu.php">explore more dishes</a>
+                <a class="btn view-all" href="checkout.php">checkout</a>
+                </div>
             </div>
         </main>
 

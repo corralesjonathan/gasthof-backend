@@ -57,6 +57,6 @@
     </footer>
         <!--Get current year-->
     <script>
-        let year = document.getElementById("current-year");
-        year.innerHTML = new Date().getFullYear();
+        let currenYear = document.getElementById("current-year");
+        currenYear.innerHTML = new Date().getFullYear();
     </script>

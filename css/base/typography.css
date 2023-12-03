@@ -137,4 +137,8 @@ a{text-decoration: none;}
 .wish-list-title{
     margin: 2rem auto;
 }
+.add-address{
+    color: var(--clr-main);
+    text-decoration: underline;
+}
 
