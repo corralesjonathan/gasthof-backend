@@ -158,7 +158,7 @@ $order_types = $database -> select("tb_order_type", "*");
                 <div class="cart-btn-container">
                     <a class="btn view-all" href="menu.php">explore more dishes</a>
                     <?php 
-                    echo "<a onclick='addOrder(".$_SESSION["user_id"].")' class='btn view-all'>complete order</a>";
+                    echo "<a id='complete-order' onclick='addOrder(".$_SESSION["user_id"].")'  class='btn view-all'>complete order</a>";
                     ?>
                 </div>
             </div>
@@ -224,6 +224,9 @@ $order_types = $database -> select("tb_order_type", "*");
                 .then(response => response.json())
                 .then(data => {
                     console.log(data);
+                    let id_order = data[0].id_order;
+                    document.getElementById("complete-order").setAttribute("href", 'confirmation.php?id='+id_order);
+                    window.location.href = "http://localhost/gasthof-backend/confirmation.php?id=" + id_order;
                 })
                 .catch(err => console.log("Error al enviar la solicitud: " + err));
         }

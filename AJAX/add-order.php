@@ -34,6 +34,16 @@ if (isset($_SERVER["CONTENT_TYPE"])) {
         $orderId = $database->id(); // Obtener el ID de la última inserción
 
         if ($orderId) {
+            // Insertar elementos del carrito en tb_order_items
+            foreach ($cartItems as $item) {
+                $database->insert("tb_order_items", [
+                    "id_order" => $orderId,
+                    "id_dish" => $item["id_dish"],
+                    "quantity" => $item["quantity"],
+                    "subtotal" => $item["subtotal"],
+                ]);
+            }
+
             // Eliminar elementos del carrito
             $database->delete("tb_cart", [
                 "id_user" => $decoded["id_user"]
