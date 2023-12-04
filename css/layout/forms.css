@@ -34,6 +34,11 @@
     gap: 0rem;
 }
 
+.reset-pass-form{
+    width: 50%;
+    margin: auto;
+}
+
 .form-items {
     display: flex;
     flex-direction: column;

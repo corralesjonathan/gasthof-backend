@@ -74,7 +74,13 @@
         include './parts/footer.php'
     ?>
     <!--footer-->
-    <?php echo "<script>const userId = $userId;</script>";?>
+    <?php 
+    if(isset($_SESSION["isLoggedIn"])){ 
+        echo "<script>const userId = $userId;</script>";
+        }else{
+            echo "<script>const userId = 0;</script>";   
+        }
+    ?>
     <script src="./js/filter-dishes.js"></script>
 </body>
 </html>

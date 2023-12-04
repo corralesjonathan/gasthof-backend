@@ -38,10 +38,10 @@
                         header("location: ./admin/list-dishes.php");
                     }
                 } else {
-                    $messageLogin = "wrong username or password";
+                    $messageLogin = "Wrong username or password";
                 }
             } else {
-                $messageLogin = "wrong username or password";
+                $messageLogin = "Wrong username or password";
             }
         }
 
@@ -112,12 +112,10 @@
                         <label class="nav-footer-link contact-texts" for="pwd">Password</label>
                         <input id="pwd" class="contact-input" name="pwd" type="password">
                     </div>
+                    <a class="dish-type slide-description add-address" href="reset-password.php">Forgot your password?</a>
+                    <?php echo "<p class='dish-type'>$messageLogin</p>";?>
                     <input class="btn view-all" type="submit" value="LOGIN">
-                    <p>
-                        <?php 
-                            echo $messageLogin;   
-                        ?>
-                    </p>
+                        
                     <input type="hidden" name="login" value="1">
                 </form>
             </div>
