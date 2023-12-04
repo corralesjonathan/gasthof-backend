@@ -52,8 +52,8 @@ let id_order_type = 0;
                 .then(data => {
                     console.log(data);
                     let id_order = data[0].id_order;
-                    document.getElementById("complete-order").setAttribute("href", 'confirmation.php?id='+id_order);
-                    window.location.href = "http://localhost/gasthof-backend/confirmation.php?id=" + id_order;
+                    document.getElementById("complete-order").setAttribute("href", 'order.php?id='+id_order);
+                    window.location.href = "http://localhost/gasthof-backend/order.php?id=" + id_order;
                 })
                 .catch(err => console.log("Error al enviar la solicitud: " + err));
         }
