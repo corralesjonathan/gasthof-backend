@@ -348,6 +348,19 @@
     text-align: left;
 }
 
+.account-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    width: 80vw;
+    margin: auto;
+}
+
+.account-options-container{
+    display: flex;
+    flex-direction: column;
+}
+
+
 @keyframes slideIn {
     0% {
       opacity: 0;

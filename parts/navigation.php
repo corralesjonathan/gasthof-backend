@@ -22,7 +22,7 @@
         <div id="nav-container">
             <button id="mobile-close-btn"><img src="./imgs/icons/close.svg" alt=""></button>
             <ul class="nav-list">
-                <li><a id="btnHome" class="nav-list-link" href="home.php">Home</a></li>
+                <li><a id="btnHome" class="nav-list-link" href="index.php">Home</a></li>
                 <li><a id="btnMenu" class="nav-list-link" href="menu.php">Menu +</a>
                     <div id="dropdown-content">
                         <?php 
@@ -102,7 +102,7 @@ function selectedPage() {
     let url = window.location.href;
 
     //check url
-    if (url.includes("home.php")) {
+    if (url.includes("index.php")) {
         btnHome.classList.add("active");
     } else if (url.includes("menu.php")) {
         btnMenu.classList.add("active");

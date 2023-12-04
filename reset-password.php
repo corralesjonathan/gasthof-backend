@@ -118,7 +118,7 @@ function generateRandomPassword($length = 12) {
                                 . "<h2 class='slide-title dish-title'>Password reset successful</h2>"
                                 . "<p class='dish-type slide-description'>Your new password: <b>$newPassword</b></p>"
                                 . "<p class='dish-type slide-description'>You can change your password <a class='dish-type slide-description add-address' href='account.php'>here</a></p>"
-                                . "<a class='btn view-all' href='home.php'>go home</a></div>";
+                                . "<a class='btn view-all' href='index.php'>go home</a></div>";
                         }
                         ?>
                     <input type="hidden" name="login" value="1">

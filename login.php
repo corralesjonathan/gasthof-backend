@@ -33,7 +33,7 @@
                     //this session variable stores the user id
                     $_SESSION["user_id"] = $user[0]["id_user"];
                     if ($user[0]["id_user_type"]==1){
-                        header("location: home.php");
+                        header("location: index.php");
                     }else{
                         header("location: ./admin/list-dishes.php");
                     }
@@ -46,16 +46,18 @@
         }
 
         if(isset($_POST["signup"])){
-            //validate if user already registered
-            $validateUsername = $database->select("tb_users", "*",[
-                "usr"=>$_POST["usr"]
+            // validate if user already registered
+            $validateUsername = $database->select("tb_users", "*", [
+                "usr" => $_POST["usr"]
             ]);
-
+        
             if(count($validateUsername) > 0){
                 $message = "This username is already registered";
-            }else{
+            } else {
                 $pass = password_hash($_POST["pwd"], PASSWORD_DEFAULT, ['cost'=>12]);
-                $database->insert("tb_users",[
+        
+                //add new user
+                $database->insert("tb_users", [
                     "id_country" => $_POST["prefix"],
                     "id_user_type" => 1,
                     "usr" => $_POST["usr"],
@@ -65,6 +67,23 @@
                     "lastname" => $_POST["lastname"],
                     "phone" => $_POST["phone"],
                 ]);
+        
+                //get added user
+                $newUser = $database->select("tb_users", [
+                    "id_user",
+                    "name"
+                ], [
+                    "usr" => $_POST["usr"]
+                ]);
+        
+                //start sessiona and create session variables
+                session_start();
+                $_SESSION["isLoggedIn"] = true;
+                $_SESSION["fullname"] = $newUser[0]["name"];
+                $_SESSION["user_id"] = $newUser[0]["id_user"];
+        
+                //redirect to home page
+                header("location: index.php");
             }
         }
 
