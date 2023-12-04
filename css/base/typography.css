@@ -142,3 +142,7 @@ a{text-decoration: none;}
     text-decoration: underline;
 }
 
+.total{
+    font-size: var(--fs-nm);
+}
+

@@ -263,6 +263,14 @@
     margin: auto;
 }
 
+.total-table{
+    text-align: center;
+}
+
+.td-total{
+    padding-top: 1rem;
+}
+
 .wishlist-thead{
     color: var(--clr-gray);
 }

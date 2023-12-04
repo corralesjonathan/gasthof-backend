@@ -75,12 +75,12 @@ $order_types = $database -> select("tb_order_type", "*");
             <table class="wishlist-table">
                 <thead class="wishlist-thead">
                     <tr class="wishlist-tr">
-                        <td class="dish-title wishlist-td-delete"></td>
-                        <td class="dish-title wishlist-td-image"></td>
-                        <td class="dish-title wishlist-td-name">Name</td>
-                        <td class="dish-title wishlist-td-price">Unit price</td>
-                        <td class="dish-title wishlist-td-actions">Quantity</td>
-                        <td class="dish-title wishlist-td-actions">Subtotal</td>
+                        <td class="dish-title"></td>
+                        <td class="dish-title"></td>
+                        <td class="dish-title">Name</td>
+                        <td class="dish-title">Unit price</td>
+                        <td class="dish-title">Quantity</td>
+                        <td class="dish-title">Subtotal</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -98,20 +98,32 @@ $order_types = $database -> select("tb_order_type", "*");
                     ?>
                 </tbody>
             </table>
+            <table class="wishlist-table total-table">
+                    <thead class="wishlist-thead">
+                        <tr class="wishlist-tr">
+                            <td class="dish-title total">Total</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $total = 0;
+
+                        foreach ($dishes as $dish) {
+                            $total += $dish["subtotal"];
+                        }
+
+                        echo "<tr>"
+                            ."<td> <p id='total' class='dish-type slide-description'> <b>$" . number_format($total, 2) . "</b> </p> </td>"
+                        ."</tr>";
+                        ?>
+                    </tbody>
+                </table>
             <!--review order section-->
             
             <?php
-            $total = 0;
-
-            foreach ($dishes as $dish) {
-                $total += $dish["subtotal"];
-            }
-
-            if (empty($dishes)) {
-                echo "<p class='dish-type slide-description'>Add dishes to your cart.</p>";
-            } else {
-                echo "<p id='total' class='dish-type slide-description'><b>TOTAL: $" . number_format($total, 2) . "</b></p>";
-            }
+                if (empty($dishes)) {
+                    echo "<p class='dish-type slide-description'>Add dishes to your cart.</p>";
+                }
             ?>
             
             <div class="order-container">

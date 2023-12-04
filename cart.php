@@ -90,19 +90,33 @@ function isCartEmpty($database) {
 
                     </tbody>
                 </table>
+
+                <table class="wishlist-table total-table">
+                    <thead class="wishlist-thead">
+                        <tr class="wishlist-tr">
+                            <td class="dish-title total">Total</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $total = 0;
+
+                        foreach ($dishes as $dish) {
+                            $total += $dish["subtotal"];
+                        }
+
+                        echo "<tr>"
+                            ."<td> <p id='total' class='dish-type slide-description'> <b>$" . number_format($total, 2) . "</b> </p> </td>"
+                        ."</tr>";
+                        ?>
+                    </tbody>
+                </table>
+
                 <?php
-                    $total = 0;
-
-                    foreach ($dishes as $dish) {
-                        $total += $dish["subtotal"];
-                    }
-
                     if (isCartEmpty($database)) {
                         echo "<p class='dish-type slide-description'>Your cart is empty.</p>";
-                    } else {
-                        echo "<p id='total' class='dish-type slide-description'><b>TOTAL: $" . number_format($total, 2) . "</b></p>";
                     }
-                    ?>
+                ?>
                 <div class="cart-btn-container">
                 <a class="btn view-all" href="menu.php">explore more dishes</a>
                 <a class="btn view-all" href="checkout.php">checkout</a>

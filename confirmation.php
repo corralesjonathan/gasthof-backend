@@ -11,6 +11,7 @@ if($_GET){
     ], [
         "tb_orders.id_order",
         "tb_orders.order_date",
+        "tb_orders.total",
         "tb_order_type.order_type_name",
         "tb_order_items.quantity",
         "tb_order_items.subtotal",
@@ -40,11 +41,10 @@ if($_GET){
 
 <body>
     <header>
-        <!--nav-->
         <?php include './parts/navigation.php'?>
-        <!--nav-->
+    </header>
 
-        <main>
+    <main>
             <div class="dishes-main-container">
                 <?php
             if(isset($_SESSION["isLoggedIn"])){ 
@@ -60,11 +60,11 @@ if($_GET){
              <table class="wishlist-table">
                     <thead class="wishlist-thead">
                         <tr class="wishlist-tr">
-                            <td class="dish-title wishlist-td-image"></td>
-                            <td class="dish-title wishlist-td-name">Name</td>
-                            <td class="dish-title wishlist-td-price">Unit price</td>
-                            <td class="dish-title wishlist-td-actions">Quantity</td>
-                            <td class="dish-title wishlist-td-actions">Subtotal</td>
+                            <td class="dish-title"></td>
+                            <td class="dish-title">Name</td>
+                            <td class="dish-title">Unit price</td>
+                            <td class="dish-title">Quantity</td>
+                            <td class="dish-title">Subtotal</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -78,6 +78,21 @@ if($_GET){
                             ."<td class='dish-type slide-description'>$ ".$order["subtotal"]."</td>"
                         ."</tr>";
                     }
+                    ?>
+                    </tbody>
+                </table>
+
+                <table class="wishlist-table total-table">
+                    <thead class="wishlist-thead">
+                        <tr class="wishlist-tr">
+                            <td class="dish-title total">Total</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        echo "<tr>"
+                            ."<td class='dish-type slide-description td-total'> <b>$ ".$orders[0]["total"]."</b> </td>"
+                        ."</tr>";
                     ?>
                     </tbody>
                 </table>
@@ -97,11 +112,10 @@ if($_GET){
                 ?>
             </div>
                 
-        </main>
+    </main>
 
-        <footer>
-            <?php include './parts/footer.php'?>
-        </footer>
+    <footer>
+        <?php include './parts/footer.php'?>
+    </footer>
 </body>
-
 </html>

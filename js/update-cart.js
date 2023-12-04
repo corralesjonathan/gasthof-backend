@@ -39,7 +39,7 @@ function updateCart(id_user, id_dish, dish_price, id_cart) {
                 console.log(total);
             });
 
-            ptotal.innerHTML="<b>TOTAL: $"+total+"</b>";
+            ptotal.innerHTML="<b>$"+total+"</b>";
         })
         .catch(err => console.log("Error al enviar la solicitud: " + err));
 }
