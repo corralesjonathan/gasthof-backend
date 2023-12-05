@@ -112,7 +112,8 @@ if($_GET){
                     . "</div>"
                     . "<div class='delivery-address-container'>"
                         . "<h2 class='slide-title dish-title wish-list-title'>Address</h2>"
-                        . "<p class='dish-type slide-description'                         ".$orders[0]["delivery_address"].",
+                        . "<p class='dish-type slide-description'>                         
+                         ".$orders[0]["delivery_address"].",
                          <br> 
                          ".$orders[0]["city"].",
                          <br>

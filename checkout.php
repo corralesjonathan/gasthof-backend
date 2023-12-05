@@ -152,7 +152,7 @@ $order_types = $database -> select("tb_order_type", "*");
                     $addresses = getAddresses($database);
                     if (empty($addresses)) {
                         echo "<p class='dish-type slide-description'>No addresses found</p>";
-                        echo "<a class='dish-type slide-description add-address' href='account.php'><b>Add a new address</b></a>";
+                        echo "<a class='dish-type slide-description add-address' href='addresses.php'><b>Add a new address</b></a>";
                     } else {
                         foreach ($addresses as $address) {
                             echo "<div class='input-container'>"
@@ -163,7 +163,7 @@ $order_types = $database -> select("tb_order_type", "*");
                             ."</div>";
                         }
                         if (count($addresses) < 2) {
-                            echo "<a class='dish-type slide-description add-address' href='account.php'><b>Add a new address</b></a>";
+                            echo "<a class='dish-type slide-description add-address' href='addresses.php'><b>Add a new address</b></a>";
                         }
                     }
                     ?>

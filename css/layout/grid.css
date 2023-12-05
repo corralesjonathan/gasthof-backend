@@ -6,8 +6,9 @@
 }
 
 .home-titles-container {
-    margin-bottom: var(--mg-md);
+    padding-bottom: var(--mg-md);
     width: 80vw;
+    margin: auto;
 }
 
 .login-titles-container {
@@ -327,9 +328,6 @@
     flex-direction: column;
 }
 
-.account-orders-container{
-    display: flex;
-}
 
 .account-container{
     display: grid;

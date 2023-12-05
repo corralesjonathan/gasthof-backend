@@ -1,5 +1,5 @@
 table {
-    width: 90vw;
+    width: 90%;
     border-collapse: collapse;
     margin: 20px auto;
 }
@@ -20,7 +20,7 @@ th {
     object-fit: cover;
     width: 100px;
     height: 100px;
-    margin: 1rem;
+    padding: .5rem;
 }
 
 .td-total{
@@ -61,7 +61,7 @@ td{
     .wishlist-img{
         width: 50px;
         height: 50px;
-        margin: 0;  
+        padding: 0;  
     }
 
     td{
