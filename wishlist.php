@@ -65,14 +65,14 @@ function isWishlistEmpty($database) {
             }
             ?>
             <?php echo "<h2 class='slide-title dish-title wish-list-title'>My Wishlist (".count($dishes)." items)</h2>"; ?>
-            <table class="wishlist-table">
-                <thead class="wishlist-thead">
-                    <tr class="wishlist-tr">
-                        <td class="dish-title wishlist-td-delete"></td>
-                        <td class="dish-title wishlist-td-image"></td>
-                        <td class="dish-title wishlist-td-name">Name</td>
-                        <td class="dish-title wishlist-td-price">Unit price</td>
-                        <td class="dish-title wishlist-td-actions"></td>
+            <table>
+                <thead>
+                    <tr>
+                        <th class="dish-title"></th>
+                        <th class="dish-title">Image</th>
+                        <th class="dish-title">Name</th>
+                        <th class="dish-title">Unit price</th>
+                        <th class="dish-title"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -80,9 +80,9 @@ function isWishlistEmpty($database) {
                 foreach($dishes as $dish){
                     echo "<tr id='tr-{$dish["id_wishlist"]}'>"
                         ."<td><a onclick='removeFromWishlist(".$dish["id_wishlist"].")' href='#'><img src='./imgs/icons/delete.svg' alt=''></a></td>"
-                        ."<td class='dish-type slide-description'><a href='dish.php?id=".$dish["id_dish"]."'><img class='wishlist-img' src='./imgs/dishes/".$dish["dish_category_name"]."/".$dish["dish_image"]."' alt=''></a></td>"
-                        ."<td class='wishlist-dish-title'><a class='dish-type slide-description' href='dish.php?id=".$dish["id_dish"]."'>".$dish["dish_name"]."</a><br><a class='dish-type'>".$dish["dish_category_name"]."</a></td>"
-                        ."<td class='dish-type slide-description'>$".$dish["dish_price"]."</td>"
+                        ."<td class='dish-type'><a href='dish.php?id=".$dish["id_dish"]."'><img class='wishlist-img' src='./imgs/dishes/".$dish["dish_category_name"]."/".$dish["dish_image"]."' alt=''></a></td>"
+                        ."<td class='dish-type'><a class='dish-type' href='dish.php?id=".$dish["id_dish"]."'>".$dish["dish_name"]."</a><br><a class='dish-type'>".$dish["dish_category_name"]."</a></td>"
+                        ."<td class='dish-type'>$".$dish["dish_price"]."</td>"
                         ."<td><a onclick='addToCart(".$_SESSION["user_id"].", ".$dish["id_dish"].", 1, ".$dish["dish_price"].")'><img class='cart-img' src='./imgs/icons/cart.svg' alt=''></a></td>"
                     ."</tr>";
                 }

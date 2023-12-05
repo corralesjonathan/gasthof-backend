@@ -44,6 +44,10 @@
     transform: translateY(-5px);
     
 }
+.order-focus{
+    background: var(--clr-main);
+    color: var(--clr-white);
+}
 
 #en.clicked{
     background: var(--clr-main);

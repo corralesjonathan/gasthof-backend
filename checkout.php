@@ -75,12 +75,12 @@ $order_types = $database -> select("tb_order_type", "*");
             <table class="wishlist-table">
                 <thead class="wishlist-thead">
                     <tr class="wishlist-tr">
-                        <td class="dish-title"></td>
-                        <td class="dish-title"></td>
-                        <td class="dish-title">Name</td>
-                        <td class="dish-title">Unit price</td>
-                        <td class="dish-title">Quantity</td>
-                        <td class="dish-title">Subtotal</td>
+                        <th class="dish-title"></th>
+                        <th class="dish-title">Image</th>
+                        <th class="dish-title">Name</th>
+                        <th class="dish-title">Unit price</th>
+                        <th class="dish-title">Quantity</th>
+                        <th class="dish-title">Subtotal</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -88,20 +88,20 @@ $order_types = $database -> select("tb_order_type", "*");
                     foreach ($dishes as $dish) {
                         echo "<tr id='tr-{$dish["id_cart"]}'>"
                             . "<td><a onclick='removeFromCart(" . $dish["id_cart"] . ")' href='#'><img src='./imgs/icons/delete.svg' alt=''></a></td>"
-                            . "<td class='dish-type slide-description'><a href='dish.php?id=" . $dish["id_dish"] . "'><img class='wishlist-img' src='./imgs/dishes/" . $dish["dish_category_name"] . "/" . $dish["dish_image"] . "' alt=''></a></td>"
-                            . "<td class='wishlist-dish-title'><a class='dish-type slide-description' href='dish.php?id=" . $dish["id_dish"] . "'>" . $dish["dish_name"] . "</a><br><a class='dish-type'>" . $dish["dish_category_name"] . "</a></td>"
-                            . "<td class='dish-type slide-description'>$" . $dish["dish_price"] . "</td>"
+                            . "<td class='dish-type'><a href='dish.php?id=" . $dish["id_dish"] . "'><img class='wishlist-img' src='./imgs/dishes/" . $dish["dish_category_name"] . "/" . $dish["dish_image"] . "' alt=''></a></td>"
+                            . "<td class='dish-type'><a class='dish-type' href='dish.php?id=" . $dish["id_dish"] . "'>" . $dish["dish_name"] . "</a><br><a class='dish-type'>" . $dish["dish_category_name"] . "</a></td>"
+                            . "<td class='dish-type'>$" . $dish["dish_price"] . "</td>"
                             . "<td><input onchange='updateCart(" . $_SESSION["user_id"] . ", " . $dish["id_dish"] . ", " . $dish["dish_price"] . ", " . $dish["id_cart"] . ")' class='quantity' type='number' id='quantity-{$dish["id_cart"]}' value=" . $dish["quantity"] . " min='1'></td>"
-                            . "<td class='dish-type slide-description' id='subtotal-{$dish["id_cart"]}'>$" . $dish["subtotal"] . "</td>"
+                            . "<td class='dish-type' id='subtotal-{$dish["id_cart"]}'>$" . $dish["subtotal"] . "</td>"
                             . "</tr>";
                     }
                     ?>
                 </tbody>
             </table>
-            <table class="wishlist-table total-table">
-                    <thead class="wishlist-thead">
-                        <tr class="wishlist-tr">
-                            <td class="dish-title total">Total</td>
+            <table>
+                    <thead>
+                        <tr>
+                            <th class="dish-title td-total">Total</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -113,7 +113,7 @@ $order_types = $database -> select("tb_order_type", "*");
                         }
 
                         echo "<tr>"
-                            ."<td> <p id='total' class='dish-type slide-description'> <b>$" . number_format($total, 2) . "</b> </p> </td>"
+                            ."<td> <p id='total' class='dish-type slide-description td-total'> <b>$" . number_format($total, 2) . "</b> </p> </td>"
                         ."</tr>";
                         ?>
                     </tbody>

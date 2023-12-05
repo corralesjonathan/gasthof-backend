@@ -57,35 +57,35 @@ if($_GET){
             <?php 
                 echo "<h2 class='slide-title dish-title wish-list-title'>Order #".$orders[0]["id_order"]."</h2>";
             ?>
-             <table class="wishlist-table">
-                    <thead class="wishlist-thead">
-                        <tr class="wishlist-tr">
-                            <td class="dish-title"></td>
-                            <td class="dish-title">Name</td>
-                            <td class="dish-title">Unit price</td>
-                            <td class="dish-title">Quantity</td>
-                            <td class="dish-title">Subtotal</td>
+             <table>
+                    <thead>
+                        <tr>
+                            <th class="dish-title">Image</th>
+                            <th class="dish-title">Name</th>
+                            <th class="dish-title">Unit price</th>
+                            <th class="dish-title">Quantity</thd>
+                            <th class="dish-title">Subtotal</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                     foreach($orders as $order){
                         echo "<tr>"
-                            ."<td class='dish-type slide-description'><a><img class='wishlist-img' src='./imgs/dishes/".$order["dish_category_name"]."/".$order["dish_image"]."' alt=''></a></td>"
-                            ."<td class='wishlist-dish-title'><a class='dish-type slide-description'>".$order["dish_name"]."</a><br><a class='dish-type'>".$order["dish_category_name"]."</a></td>"
-                            ."<td class='dish-type slide-description'>$".$order["dish_price"]."</td>"
-                            ."<td class='dish-type slide-description'>".$order["quantity"]."</td>"
-                            ."<td class='dish-type slide-description'>$ ".$order["subtotal"]."</td>"
+                            ."<td class='dish-type'><a><img class='wishlist-img' src='./imgs/dishes/".$order["dish_category_name"]."/".$order["dish_image"]."' alt=''></a></td>"
+                            ."<td class='dish-type'><a class='dish-type'>".$order["dish_name"]."</a><br><a class='dish-type'>".$order["dish_category_name"]."</a></td>"
+                            ."<td class='dish-type'>$".$order["dish_price"]."</td>"
+                            ."<td class='dish-type'>".$order["quantity"]."</td>"
+                            ."<td class='dish-type'>$ ".$order["subtotal"]."</td>"
                         ."</tr>";
                     }
                     ?>
                     </tbody>
                 </table>
 
-                <table class="wishlist-table total-table">
-                    <thead class="wishlist-thead">
-                        <tr class="wishlist-tr">
-                            <td class="dish-title total">Total</td>
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="dish-title td-total">Total</th>
                         </tr>
                     </thead>
                     <tbody>

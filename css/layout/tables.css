@@ -1,0 +1,30 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.wishlist-img {
+    position: relative;
+    object-fit: cover;
+    width: 100px;
+    height: 100px;
+    margin: 1rem;
+}
+.td-total{
+    text-align: center;
+}
+
+  @media (max-width: 768px) {
+}

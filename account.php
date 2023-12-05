@@ -2,31 +2,28 @@
     require_once 'database.php';
     $message = "";
 
-    if ($_POST){
-        if(isset($_POST["update"])){
-            //validate if user already registered
-            $validateUsername = $database->select("tb_users", "*",[
-                "usr"=>$_POST["usr"]
-            ]);
-
-            if(count($validateUsername) > 0){
-                $message = "This username is already registered";
-            }else{
-                $pass = password_hash($_POST["confirmed-pwd"], PASSWORD_DEFAULT, ['cost'=>12]);
-                $database->update("tb_users",[
-                    "id_country" => $_POST["prefix"],
-                    "id_user_type" => 1,
-                    "usr" => $_POST["usr"],
-                    "email" => $_POST["email"],
-                    "pwd" => $pass,
-                    "name" => $_POST["name"],
-                    "lastname" => $_POST["lastname"],
-                    "phone" => $_POST["phone"],
-                ], [
-                    "id_user" => $_POST["id"],
-                ]);
-            }
+    if ($_POST && isset($_POST["update"])) {
+        $userData = [
+            "id_country" => $_POST["prefix"],
+            "id_user_type" => 1,
+            "usr" => $_POST["usr"],
+            "email" => $_POST["email"],
+            "name" => $_POST["name"],
+            "lastname" => $_POST["lastname"],
+            "phone" => $_POST["phone"],
+        ];
+    
+        //verify if password exist
+        if (!empty($_POST["confirmed-pwd"])) {
+            ////new password hash
+            $pass = password_hash($_POST["confirmed-pwd"], PASSWORD_DEFAULT, ['cost' => 12]);
+            $userData["pwd"] = $pass;
         }
+    
+        //update user info
+        $database->update("tb_users", $userData, ["id_user" => $_POST["id"]]);
+    
+        $message = "User information updated successfully!";
     }
 
     // Reference: https://medoo.in/api/select
@@ -88,11 +85,11 @@
             ?>
             <div class="account-container">
                 <div class="account-options-container">
-                    <a href="">Account details  </a>
-                    <a href="">Orders</a>
-                    <a href="">Addresses</a>
-                    <a href="">My Wishlist</a>
-                    <a href="">Log Out</a>
+                    <a class="btn order order-focus" href="account.php">Account details</a>
+                    <a class="btn order" href="orders.php">Orders</a>
+                    <a class="btn order" href="">Addresses</a>
+                    <a class="btn order" href="wishlist.php">My Wishlist</a>
+                    <a class="btn order" href="logout.php">Log Out</a>
                 </div>
 
                 <div class="account-data-container">
@@ -102,6 +99,7 @@
                     echo "<form class='contact-form' method='post' action='account.php'>"
                         //Name
                         ."<div class='form-items login-form-items'>"
+                        ."<h3 class='nav-footer-link contact-texts'><b>Account information</b></h3>"
                         ."<label class='nav-footer-link contact-texts' for='name'>Name</label>"
                         ."<input id='name' class='contact-input' name='name' type='text' value='".$users[0]["name"]."'>"   
                         ."</div>"
@@ -155,6 +153,16 @@
                         ."<input type='hidden' name='update' value='1'>"
                     ."</form>";
                 ?>
+                        <?php
+                        if (!empty($message)) {
+                            echo "<div id='cart-popup' class='show-cart-popup'>"
+                                ."<a href='account.php' class='close-btn-popup'><img class='close-img-popup' src='./imgs/icons/close.svg' alt='Close'></a>"
+                                ."<h2 class='slide-title dish-title'>Changes saved successfullyl</h2>"
+                                ."<p class='dish-type slide-description'>".$users[0]["name"].", your changes have been saved successfully</p>"
+                                ."<a class='btn view-all' href='index.php'>go back</a>"
+                                ."</div>";
+                        }
+                        ?>
                     </div>
                 </div>
             </div> 
