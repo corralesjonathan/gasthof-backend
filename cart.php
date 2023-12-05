@@ -66,12 +66,12 @@ function isCartEmpty($database) {
                 <table>
                     <thead>
                         <tr>
-                            <th class="dish-title"></th>
-                            <th class="dish-title">Image</th>
-                            <th class="dish-title">Name</th>
-                            <th class="dish-title">Unit price</th>
-                            <th class="dish-title">Quantity</th>
-                            <th class="dish-title">Subtotal</th>
+                            <th></th>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Unit price</th>
+                            <th>Quantity</th>
+                            <th>Subtotal</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -79,11 +79,11 @@ function isCartEmpty($database) {
                     foreach($dishes as $dish){
                         echo "<tr id='tr-{$dish["id_cart"]}'>"
                             ."<td class='td-actions'><a onclick='removeFromCart(".$dish["id_cart"].")' href='#'><img class='trash-icon' src='./imgs/icons/delete.svg' alt=''></a></td>"
-                            ."<td class='dish-type'><a href='dish.php?id=".$dish["id_dish"]."'><img class='wishlist-img' src='./imgs/dishes/".$dish["dish_category_name"]."/".$dish["dish_image"]."' alt=''></a></td>"
-                            ."<td class='dish-type'><a class='dish-type' href='dish.php?id=".$dish["id_dish"]."'>".$dish["dish_name"]."</a><br><a class='dish-type'>".$dish["dish_category_name"]."</a></td>"
-                            ."<td class='dish-type''>$".$dish["dish_price"]."</td>"
+                            ."<td><a href='dish.php?id=".$dish["id_dish"]."'><img class='wishlist-img' src='./imgs/dishes/".$dish["dish_category_name"]."/".$dish["dish_image"]."' alt=''></a></td>"
+                            ."<td><a class='td-a' href='dish.php?id=".$dish["id_dish"]."'>".$dish["dish_name"]."</a><br><a class='td-a'>".$dish["dish_category_name"]."</a></td>"
+                            ."<td>$".$dish["dish_price"]."</td>"
                             ."<td class='td-actions'><input onchange='updateCart(".$_SESSION["user_id"].", ".$dish["id_dish"].", ".$dish["dish_price"].", ".$dish["id_cart"].")' class='quantity' type='number' id='quantity-{$dish["id_cart"]}' value=".$dish["quantity"]." min='1'></td>"
-                            ."<td class='dish-type' id='subtotal-{$dish["id_cart"]}'>$".$dish["subtotal"]."</td>"
+                            ."<td id='subtotal-{$dish["id_cart"]}'>$".$dish["subtotal"]."</td>"
                         ."</tr>";
                     }
                     ?>
@@ -115,8 +115,8 @@ function isCartEmpty($database) {
                     }
                 ?>
                 <div class="cart-btn-container">
-                    <a class="btn view-all" href="menu.php">explore more dishes</a>
-                    <a class="btn view-all" href="checkout.php">checkout</a>
+                    <a class="btn view-all margin-btn" href="menu.php">explore more dishes</a>
+                    <a class="btn view-all margin-btn" href="checkout.php">checkout</a>
                 </div>
             </div>
         </main>

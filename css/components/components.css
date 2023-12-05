@@ -67,6 +67,10 @@
     display: none;
 }
 
+.margin-btn{
+    margin: 0rem !important;
+}
+
 
 /*used in home page "view all" and "read more"*/
 .view-all {

@@ -5,6 +5,7 @@ if($_GET){
     // Realiza la consulta para obtener las órdenes del usuario
     $orders = $database->select("tb_orders", [
         "[>]tb_order_items" => ["id_order" => "id_order"],
+        "[>]tb_addresses" => ["id_address" => "id_address"],
         "[>]tb_order_type" => ["id_order_type" => "id_order_type"],
         "[>]tb_dishes" => ["tb_order_items.id_dish" => "id_dish"],
         "[>]tb_dishes_categories" => ["tb_dishes.id_dish_category" => "id_dish_category"]
@@ -15,6 +16,11 @@ if($_GET){
         "tb_order_type.order_type_name",
         "tb_order_items.quantity",
         "tb_order_items.subtotal",
+        "tb_addresses.id_address",
+        "tb_addresses.country",
+        "tb_addresses.province",
+        "tb_addresses.city",
+        "tb_addresses.delivery_address",
         "tb_dishes.dish_name",
         "tb_dishes.dish_image",
         "tb_dishes.dish_price",
@@ -60,22 +66,22 @@ if($_GET){
              <table>
                     <thead>
                         <tr>
-                            <th class="dish-title">Image</th>
-                            <th class="dish-title">Name</th>
-                            <th class="dish-title">Unit price</th>
-                            <th class="dish-title">Quantity</thd>
-                            <th class="dish-title">Subtotal</th>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Unit price</th>
+                            <th>Quantity</thd>
+                            <th>Subtotal</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                     foreach($orders as $order){
                         echo "<tr>"
-                            ."<td class='dish-type'><a><img class='wishlist-img' src='./imgs/dishes/".$order["dish_category_name"]."/".$order["dish_image"]."' alt=''></a></td>"
-                            ."<td class='dish-type'><a class='dish-type'>".$order["dish_name"]."</a><br><a class='dish-type'>".$order["dish_category_name"]."</a></td>"
-                            ."<td class='dish-type'>$".$order["dish_price"]."</td>"
-                            ."<td class='dish-type'>".$order["quantity"]."</td>"
-                            ."<td class='dish-type'>$ ".$order["subtotal"]."</td>"
+                            ."<td><a><img class='wishlist-img' src='./imgs/dishes/".$order["dish_category_name"]."/".$order["dish_image"]."' alt=''></a></td>"
+                            ."<td><a class='td-a'>".$order["dish_name"]."</a><br><a class='td-a'>".$order["dish_category_name"]."</a></td>"
+                            ."<td>$".$order["dish_price"]."</td>"
+                            ."<td>".$order["quantity"]."</td>"
+                            ."<td>$ ".$order["subtotal"]."</td>"
                         ."</tr>";
                     }
                     ?>
@@ -106,7 +112,13 @@ if($_GET){
                     . "</div>"
                     . "<div class='delivery-address-container'>"
                         . "<h2 class='slide-title dish-title wish-list-title'>Address</h2>"
-                        . "<p class='dish-type slide-description'>" . $orders[0]["order_type_name"] . "</p>"  
+                        . "<p class='dish-type slide-description'                         ".$orders[0]["delivery_address"].",
+                         <br> 
+                         ".$orders[0]["city"].",
+                         <br>
+                         ".$orders[0]["province"].",
+                         <br>
+                         ".$orders[0]["country"]." </p>"  
                     . "</div>"
                 . "</div>";
                 ?>

@@ -60,13 +60,13 @@
                 </div>
 
                 <div class="account-orders-container">
-                    <table class="order-table">
+                    <table>
                         <thead>
                             <tr>
-                                <th class="dish-title">Order</th>
-                                <th class="dish-title">Date</th>
-                                <th class="dish-title">Order Type</th>
-                                <th class="dish-title">Total</th>
+                                <th>Order</th>
+                                <th>Date</th>
+                                <th>Order Type</th>
+                                <th>Total</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -74,10 +74,10 @@
                             $orders = getOrders($database);
                             foreach ($orders as $order){
                             echo "<tr>"
-                                ."<td class='dish-type'><a class='dish-type add-address' href='order.php?id=".$order["id_order"]."'>#".$order["id_order"]."</a></td>"
-                                ."<td class='dish-type'>".$order["order_date"]."</td>"
-                                ."<td class='dish-type'>".$order["order_type_name"]."</td>"
-                                ."<td class='dish-type'>$".$order["total"]."</td>"
+                                ."<td><a class='dish-type add-address' href='order.php?id=".$order["id_order"]."'>#".$order["id_order"]."</a></td>"
+                                ."<td>".$order["order_date"]."</td>"
+                                ."<td>".$order["order_type_name"]."</td>"
+                                ."<td>$".$order["total"]."</td>"
                             ."</tr>";
                             }
                             ?>

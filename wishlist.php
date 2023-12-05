@@ -68,11 +68,11 @@ function isWishlistEmpty($database) {
             <table>
                 <thead>
                     <tr>
-                        <th class="dish-title"></th>
-                        <th class="dish-title">Image</th>
-                        <th class="dish-title">Name</th>
-                        <th class="dish-title">Unit price</th>
-                        <th class="dish-title"></th>
+                        <th></th>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Unit price</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -80,9 +80,9 @@ function isWishlistEmpty($database) {
                 foreach($dishes as $dish){
                     echo "<tr id='tr-{$dish["id_wishlist"]}'>"
                         ."<td class='td-actions'><a onclick='removeFromWishlist(".$dish["id_wishlist"].")' href='#'><img class='trash-icon' src='./imgs/icons/delete.svg' alt=''></a></td>"
-                        ."<td class='dish-type'><a href='dish.php?id=".$dish["id_dish"]."'><img class='wishlist-img' src='./imgs/dishes/".$dish["dish_category_name"]."/".$dish["dish_image"]."' alt=''></a></td>"
-                        ."<td class='dish-type'><a class='dish-type' href='dish.php?id=".$dish["id_dish"]."'>".$dish["dish_name"]."</a><br><a class='dish-type'>".$dish["dish_category_name"]."</a></td>"
-                        ."<td class='dish-type'>$".$dish["dish_price"]."</td>"
+                        ."<td><a href='dish.php?id=".$dish["id_dish"]."'><img class='wishlist-img' src='./imgs/dishes/".$dish["dish_category_name"]."/".$dish["dish_image"]."' alt=''></a></td>"
+                        ."<td><a class='td-a' href='dish.php?id=".$dish["id_dish"]."'>".$dish["dish_name"]."</a><br><a class='td'>".$dish["dish_category_name"]."</a></td>"
+                        ."<td>$".$dish["dish_price"]."</td>"
                         ."<td class='td-actions'><a onclick='addToCart(".$_SESSION["user_id"].", ".$dish["id_dish"].", 1, ".$dish["dish_price"].")'><img class='cart-img' src='./imgs/icons/cart.svg' alt=''></a></td>"
                     ."</tr>";
                 }

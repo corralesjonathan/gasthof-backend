@@ -12,3 +12,9 @@
 input:focus{
     border: .0625rem solid var(--clr-main);
 }
+
+@media (max-width: 768px) {
+    .quantity{
+        padding: .2rem .5rem;
+    }
+}
