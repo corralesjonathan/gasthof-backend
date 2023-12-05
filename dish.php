@@ -1,6 +1,23 @@
 <?php 
 require_once 'database.php';
 
+$relatedDishes = $database->rand("tb_dishes",[
+    "[>]tb_dishes_sizes"=>["id_dish_size" => "id_dish_size"],
+    "[>]tb_dishes_categories"=>["id_dish_category" => "id_dish_category"]
+],[
+    "tb_dishes.id_dish",
+    "tb_dishes.dish_name",
+    "tb_dishes.dish_name_de",
+    "tb_dishes.dish_description",
+    "tb_dishes.dish_description_de",
+    "tb_dishes.dish_price",
+    "tb_dishes.dish_image",
+    "tb_dishes.featured",
+    "tb_dishes_sizes.id_dish_size",
+    "tb_dishes_sizes.dish_size_name",
+    "tb_dishes_categories.dish_category_name",
+]); 
+
 if ($_GET){
     $dish = $database->select("tb_dishes",[
         "[>]tb_dishes_sizes"=>["id_dish_size" => "id_dish_size"],
@@ -20,6 +37,29 @@ if ($_GET){
     ],[
         "id_dish" => $_GET["id"]
     ]); 
+}
+
+function getWishlist($database, $id_dish) {
+    $userId = $_SESSION["user_id"];
+
+    $wishlist = $database->select("tb_wishlist", [
+        "[>]tb_dishes" => ["id_dish" => "id_dish"],
+        "[>]tb_users" => ["id_user" => "id_user"],
+        "[>]tb_dishes_categories" => ["tb_dishes.id_dish_category" => "id_dish_category"],
+    ], [
+        "tb_wishlist.id_wishlist",
+        "tb_dishes.id_dish",
+        "tb_dishes.dish_name",
+        "tb_dishes.dish_image",
+        "tb_dishes.dish_price",
+        "tb_users.id_user",
+        "tb_dishes_categories.dish_category_name"
+    ], [
+        "tb_wishlist.id_user" => $userId,
+        "tb_wishlist.id_dish" => $id_dish,
+    ]);
+
+    return $wishlist;
 }
 ?>
 
@@ -93,34 +133,62 @@ if ($_GET){
         <!-- Added to cart popup -->
         <div id="cart-popup"></div>
         <!-- Added to cart popup -->
-
+        
         <!-- Related dishes -->
-        <!--<div class="dishes-main-container">
-            <div class="home-titles-container">
+        <div class="dishes-main-container">
+        <div class="home-titles-container">
                 <h3 class="home-title1">discover</h3>
                 <h2 class="home-title2">related dishes</h2>
             </div>
-            <div class="dishes-container">
-                <?php 
-                /*foreach($categories as $category){
-                    echo "<section class='dish-card'>
-                            <img src='./imgs/dishes/".$category["dish_category_name"]."/".$category["dish_image"]."' alt=".$category["dish_name"]." class='dish-card-img'>
-                            <div class='dish-data-container'>
-                                <div>
-                                    <h2 class='dish-title'>".$category["dish_name"]."</h2>
-                                    <p class='dish-type'>".$category["dish_category_name"]."</p>
-                                </div>
-                                <a href='#'><img src='./imgs/icons/cart.svg' alt='Cart'></a>
-                            </div>
-                            <p class='dish-price'>$5.90</p>
-                            <a class='btn order' href=''>Order</a>
-                        </section>";
-                }*/
-                ?>
-            </div>
-        </div>-->
-        <!-- Related dishes -->
+        <div class="dishes-container">
+        <?php
+        $contador = 0;
+        foreach($relatedDishes as $relatedDish){
+            //dish image
+            echo "<section class='dish-card'>"
+            . "<div class='card-img-container'>"
+            . "<a class='dish-card-link' href='dish.php?id=".$relatedDish["id_dish"]."'>"
+            . "<img src='./imgs/dishes/".$relatedDish["dish_category_name"]."/".$relatedDish["dish_image"]."' alt=".$relatedDish["dish_name"]." class='dish-card-img'>"
+            . "</a>";
+        //add to wishlist
+        if (isset($_SESSION["isLoggedIn"])) {
+            $wishlist = getWishlist($database, $relatedDish["id_dish"]);
+            $likeAction = !empty($wishlist) ? "removeFromWishlist(".$wishlist[0]["id_wishlist"].")" : "addToWishlist(".$relatedDish["id_dish"].", ".$_SESSION["user_id"].")";
+            echo "<a id='like' onclick='".$likeAction."'><img class='like-icon' src='./imgs/icons/like".(!empty($wishlist) ? '-fill' : '').".svg'></a>";
+        } else {
+            echo "<a href='login.php' id='like'><img class='like-icon' src='./imgs/icons/like.svg'></a>";
+        }
+        //dish data
+        echo "</div>"
+            . "<div class='dish-data-container'>"
+            . "<div class='dish-texts-container'>"
+            . "<a class='a-titles' href='dish.php?id=".$relatedDish["id_dish"]."'>"
+            . "<h2 class='dish-title'>".$relatedDish["dish_name"]."</h2>"
+            . "</a>"
+            . "<p class='dish-type'>".$relatedDish["dish_category_name"]."</p>"
+            . "</div>";
+        //add to cart
+        if (isset($_SESSION["isLoggedIn"])) {
+            echo "<a onclick='addToCart(".$_SESSION["user_id"].", ".$relatedDish["id_dish"].", 1, ".$relatedDish["dish_price"].")'><img class='cart-img' src='./imgs/icons/cart.svg' alt='Cart'></a>";
+        } else {
+            echo "<a href='login.php'><img class='cart-img' src='./imgs/icons/cart.svg' alt='Cart'></a>";
+        }
+        //order
+        echo "</div>"
+            . "<p class='dish-price'>$".$relatedDish["dish_price"]."</p>"
+            . "<a class='btn order' href='dish.php?id=".$relatedDish["id_dish"]."'>Order</a>"
+            . "</section>";
 
+            $contador++;
+            if($contador == 4){
+                break;
+            }
+        }
+        ?>
+        </div>
+        </div>
+        <!-- Related dishes -->
+        
         <!-- Subscribe form -->
         <?php include './parts/subscribe-form.php'?>
         <!-- Subscribe form -->
@@ -132,6 +200,8 @@ if ($_GET){
     
     <script src="./js/changeLanguage.js"></script>
     <script src="./js/add-to-cart.js"></script>
+    <script src="./js/add-to-wishlist.js"></script>
+    <script src="./js/remove-from-wishlist.js"></script>
 </body>
 
 </html>
