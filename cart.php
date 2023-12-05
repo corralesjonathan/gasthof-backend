@@ -78,11 +78,11 @@ function isCartEmpty($database) {
                         <?php
                     foreach($dishes as $dish){
                         echo "<tr id='tr-{$dish["id_cart"]}'>"
-                            ."<td><a onclick='removeFromCart(".$dish["id_cart"].")' href='#'><img src='./imgs/icons/delete.svg' alt=''></a></td>"
+                            ."<td class='td-actions'><a onclick='removeFromCart(".$dish["id_cart"].")' href='#'><img class='trash-icon' src='./imgs/icons/delete.svg' alt=''></a></td>"
                             ."<td class='dish-type'><a href='dish.php?id=".$dish["id_dish"]."'><img class='wishlist-img' src='./imgs/dishes/".$dish["dish_category_name"]."/".$dish["dish_image"]."' alt=''></a></td>"
                             ."<td class='dish-type'><a class='dish-type' href='dish.php?id=".$dish["id_dish"]."'>".$dish["dish_name"]."</a><br><a class='dish-type'>".$dish["dish_category_name"]."</a></td>"
                             ."<td class='dish-type''>$".$dish["dish_price"]."</td>"
-                            ."<td><input onchange='updateCart(".$_SESSION["user_id"].", ".$dish["id_dish"].", ".$dish["dish_price"].", ".$dish["id_cart"].")' class='quantity' type='number' id='quantity-{$dish["id_cart"]}' value=".$dish["quantity"]." min='1'></td>"
+                            ."<td class='td-actions'><input onchange='updateCart(".$_SESSION["user_id"].", ".$dish["id_dish"].", ".$dish["dish_price"].", ".$dish["id_cart"].")' class='quantity' type='number' id='quantity-{$dish["id_cart"]}' value=".$dish["quantity"]." min='1'></td>"
                             ."<td class='dish-type' id='subtotal-{$dish["id_cart"]}'>$".$dish["subtotal"]."</td>"
                         ."</tr>";
                     }

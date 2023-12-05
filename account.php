@@ -87,7 +87,7 @@
                 <div class="account-options-container">
                     <a class="btn order order-focus" href="account.php">Account details</a>
                     <a class="btn order" href="orders.php">Orders</a>
-                    <a class="btn order" href="">Addresses</a>
+                    <a class="btn order" href="addresses.php">Addresses</a>
                     <a class="btn order" href="wishlist.php">My Wishlist</a>
                     <a class="btn order" href="logout.php">Log Out</a>
                 </div>

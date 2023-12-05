@@ -326,8 +326,10 @@
     width: 50%;
 }
 
-.account-orders-container{
-    
+.addresses{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 1rem;
 }
 
 

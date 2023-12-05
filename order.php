@@ -49,8 +49,8 @@ if($_GET){
                 <?php
             if(isset($_SESSION["isLoggedIn"])){ 
                 echo "<div class='home-titles-container'>"
-                    ."<h3 class='home-title1'>tank you</h3>"
-                    ."<h2 class='home-title2'>your order was received</h2>"
+                    ."<h3 class='home-title1'>this was</h3>"
+                    ."<h2 class='home-title2'>your order</h2>"
                 ."</div>";
             }
             ?>

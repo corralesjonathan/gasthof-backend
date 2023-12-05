@@ -192,6 +192,15 @@
     transform: translateY(-5px);
 }
 
+.trash-icon{
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.trash-icon:hover{
+    transform: translateY(-5px);
+}
+
 .account-list {
     flex-direction: column;
     align-items: flex-start;

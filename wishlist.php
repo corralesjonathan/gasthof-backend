@@ -79,11 +79,11 @@ function isWishlistEmpty($database) {
                     <?php 
                 foreach($dishes as $dish){
                     echo "<tr id='tr-{$dish["id_wishlist"]}'>"
-                        ."<td><a onclick='removeFromWishlist(".$dish["id_wishlist"].")' href='#'><img src='./imgs/icons/delete.svg' alt=''></a></td>"
+                        ."<td class='td-actions'><a onclick='removeFromWishlist(".$dish["id_wishlist"].")' href='#'><img class='trash-icon' src='./imgs/icons/delete.svg' alt=''></a></td>"
                         ."<td class='dish-type'><a href='dish.php?id=".$dish["id_dish"]."'><img class='wishlist-img' src='./imgs/dishes/".$dish["dish_category_name"]."/".$dish["dish_image"]."' alt=''></a></td>"
                         ."<td class='dish-type'><a class='dish-type' href='dish.php?id=".$dish["id_dish"]."'>".$dish["dish_name"]."</a><br><a class='dish-type'>".$dish["dish_category_name"]."</a></td>"
                         ."<td class='dish-type'>$".$dish["dish_price"]."</td>"
-                        ."<td><a onclick='addToCart(".$_SESSION["user_id"].", ".$dish["id_dish"].", 1, ".$dish["dish_price"].")'><img class='cart-img' src='./imgs/icons/cart.svg' alt=''></a></td>"
+                        ."<td class='td-actions'><a onclick='addToCart(".$_SESSION["user_id"].", ".$dish["id_dish"].", 1, ".$dish["dish_price"].")'><img class='cart-img' src='./imgs/icons/cart.svg' alt=''></a></td>"
                     ."</tr>";
                 }
             ?>

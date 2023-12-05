@@ -1,56 +1,23 @@
 <?php
     require_once 'database.php';
-    $message = "";
 
-    if ($_POST && isset($_POST["update"])) {
-        $userData = [
-            "id_country" => $_POST["prefix"],
-            "id_user_type" => 1,
-            "usr" => $_POST["usr"],
-            "email" => $_POST["email"],
-            "name" => $_POST["name"],
-            "lastname" => $_POST["lastname"],
-            "phone" => $_POST["phone"],
-        ];
-    
-        //verify if password exist
-        if (!empty($_POST["confirmed-pwd"])) {
-            ////new password hash
-            $pass = password_hash($_POST["confirmed-pwd"], PASSWORD_DEFAULT, ['cost' => 12]);
-            $userData["pwd"] = $pass;
-        }
-    
-        //update user info
-        $database->update("tb_users", $userData, ["id_user" => $_POST["id"]]);
-    
-        $message = "User information updated successfully!";
-    }
-
-    // Reference: https://medoo.in/api/select
-    $countries = $database->select("tb_countries","*");
-
-    function getUser($database){
+    function getOrders($database){
         $userId = $_SESSION["user_id"];
 
-        $users = $database->select("tb_users", [
-            "[>]tb_countries" => ["id_country" => "id_country"]
+        $orders = $database->select("tb_orders", [
+            "[>]tb_users" => ["id_user" => "id_user"],
+            "[>]tb_order_type" => ["id_order_type" => "id_order_type"]
         ], [
             "tb_users.id_user",
-            "tb_users.usr",
-            "tb_users.email",
-            "tb_users.pwd",
-            "tb_users.name",
-            "tb_users.lastname",
-            "tb_users.phone",
-            "tb_countries.id_country",
-            "tb_countries.country_name",
-            "tb_countries.country_nicename",
-            "tb_countries.country_phonecode",
+            "tb_orders.id_order",
+            "tb_orders.order_date",
+            "tb_orders.total",
+            "tb_order_type.order_type_name",
         ], [
             "tb_users.id_user" => $userId,
         ]);
 
-        return $users;
+        return $orders;
     }
     
 ?>
@@ -60,7 +27,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Account - Gathof</title>
+    <title>Orders - Gathof</title>
     <!--favicon-->
     <?php include './parts/favicon.php'?>
     <!--fonts-->
@@ -87,7 +54,7 @@
                 <div class="account-options-container">
                     <a class="btn order" href="account.php">Account details</a>
                     <a class="btn order order-focus" href="">Orders</a>
-                    <a class="btn order" href="">Addresses</a>
+                    <a class="btn order" href="addresses.php">Addresses</a>
                     <a class="btn order" href="wishlist.php">My Wishlist</a>
                     <a class="btn order" href="logout.php">Log Out</a>
                 </div>
@@ -103,22 +70,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Aquí puedes agregar filas con los datos específicos -->
-                            <tr>
-                                <td class="dish-type">1</td>
-                                <td class="dish-type">2023-12-04</td>
-                                <td class="dish-type">Online</td>
-                                <td class="dish-type">$50.00</td>
-                            </tr>
-                            <tr>
-                                <td class="dish-type">2</td>
-                                <td class="dish-type">2023-12-05</td>
-                                <td class="dish-type">In-store</td>
-                                <td class="dish-type">$75.00</td>
-                            </tr>
-                            <!-- Agrega más filas según sea necesario -->
+                            <?php 
+                            $orders = getOrders($database);
+                            foreach ($orders as $order){
+                            echo "<tr>"
+                                ."<td class='dish-type'><a class='dish-type add-address' href='order.php?id=".$order["id_order"]."'>#".$order["id_order"]."</a></td>"
+                                ."<td class='dish-type'>".$order["order_date"]."</td>"
+                                ."<td class='dish-type'>".$order["order_type_name"]."</td>"
+                                ."<td class='dish-type'>$".$order["total"]."</td>"
+                            ."</tr>";
+                            }
+                            ?>
                         </tbody>
                     </table>
+                    <?php
+                    if (empty($orders)) {
+                        echo "<p class='dish-type slide-description'>No orders yet.</p>";
+                        }
+                    ?>
                 </div>
             </div>
         </div>

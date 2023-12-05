@@ -22,7 +22,12 @@ th {
     height: 100px;
     margin: 1rem;
 }
+
 .td-total{
+    text-align: center;
+}
+
+.td-actions{
     text-align: center;
 }
 
