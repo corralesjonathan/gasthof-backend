@@ -244,8 +244,15 @@
         margin-bottom: .5rem;
     }
 
-    .search-icon, .bag-icon{
+    .search-icon{
         display: none;
+    }
+
+    .bag-icon{
+        display: flex;
+        width: 1.5625rem;
+        height: 1.5625rem;
+        cursor: pointer;
     }
 
     #user-icon{
@@ -254,8 +261,6 @@
         height: 1.5625rem;
         cursor: pointer;
     }
-
-    
 
     .account-list{
         align-items: flex-start !important;
@@ -266,7 +271,7 @@
         display: flex;
         order: 1;
         justify-content: flex-start;
-        gap: 0;
+        gap: .5rem;
     }
 
     #nav-container {
